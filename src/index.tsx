@@ -11,7 +11,7 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/c
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({ 
-    uri: 'https://ref1-backend.herokuapp.com',
+    uri: 'https://ref1-backend.herokuapp.com' ,
     credentials: 'include',
   })
 });

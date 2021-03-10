@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import CurrentDriversPanel from './Components/CurrentDriversPanel';
@@ -9,13 +9,19 @@ import { Spacer } from './Components/LayoutComponents';
 import TeamProfile from './Components/TeamProfile';
 import LegendsPanel from './Components/LegendsPanel';
 import SkySportsPanel from './Components/SkySportsPanel';
+import SearchModal from './Components/Search';
 
 const App: React.FC = () => {
+  const [ isOpen, toggle ] = useState<boolean>(false);
+
+  const handleOpenSearch = (open: boolean) => {
+    toggle(open);
+  };
 
 
   return (
     <div className="App">
-      <Header />
+      <Header handleOpenSearch={() => handleOpenSearch(true)}/>
       <Switch>
         <Route exact path="/">
           <CurrentDriversPanel />
@@ -32,6 +38,8 @@ const App: React.FC = () => {
           <TeamProfile />
         </Route>
       </Switch>
+
+      <SearchModal isOpen={isOpen}  handleClose={() => handleOpenSearch(false)} />
       
 
     </div>
