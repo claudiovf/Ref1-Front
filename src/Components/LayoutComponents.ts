@@ -177,7 +177,7 @@ export const AchIcon = styled.span`
 `;
 
 export const Icon = styled.div`
-    color: #FF8700;
+    color: #bfc8c9;
     display: flex;
     flex-direction: column;
     justify-content: center;
