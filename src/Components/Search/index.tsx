@@ -71,6 +71,7 @@ const CloseX = styled.div`
     border-radius: 50%;
 `;
 
+
 interface Props {
     isOpen: boolean;
     handleClose: () => void;
