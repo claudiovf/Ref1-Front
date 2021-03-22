@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Driver } from '../../types';
 import { getDriverStyle } from '../../utils/currentInfo';
-import { Cards, Fonts, StyledLink } from '../LayoutComponents';
+import { Cards, StyledLink } from '../LayoutComponents';
 
 
 const CodeNumber = styled.div<{ color: string;}>`
@@ -56,7 +56,6 @@ const CurrentDriverCards: React.FC<{ driver: Driver }> = ({driver}: {driver: Dri
 
     return (
         <>
-            <Fonts />
             <StyledLink to={"/profile/driver/" + driver.driverId}>
                 <Cards  bg={driverStyle.primary}>
                     <CodeNumber color={driverStyle.secondary}>

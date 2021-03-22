@@ -1,6 +1,8 @@
 import React from 'react';
-import { Fonts, StyledLink } from '../LayoutComponents';
+import {  StyledLink } from '../LayoutComponents';
 import styled from "styled-components";
+import { useDispatch } from 'react-redux';
+import { toggleOpen } from '../../store/actions';
 
 export const HeaderStyled = styled.div`
 
@@ -15,6 +17,7 @@ export const HeaderStyled = styled.div`
     box-shadow: 0px 0.5px 2px #D1DADC;
     background-color: #FFFFFF;
     overflow: hidden;
+    z-index: 1000;
 `;
 
 
@@ -47,20 +50,21 @@ const Mag = styled.div`
   transform: rotate(45deg);
 `;
 
-interface Props {
-  handleOpenSearch: () => void; 
-}
 
-const Header: React.FC<Props> = ({handleOpenSearch}: Props) => {
+const Header: React.FC = () => {
+  const dispatch = useDispatch();
 
   return (
       <React.Fragment>
         <HeaderStyled> 
-          <Fonts />
           <StyledLink to={"/"}>
             <LogoStyled>REF1</LogoStyled> 
           </StyledLink>
-            <MagBox onClick={handleOpenSearch} ><Mag>&#9906;</Mag></MagBox> 
+            <MagBox onClick={ () => {
+              // await dispatch( setSearch({resultsFor: "drivers", sortBy: "wins", filterBy: "Team", period: "red_bull"}) );
+              dispatch( toggleOpen() );
+
+            }} ><Mag>&#9906;</Mag></MagBox> 
         </HeaderStyled>
       </React.Fragment>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { CurrTeamStyles, TeamPeriod } from '../../../types';
 import { formattedPeriod } from '../../../utils/formatting';
-import { StyledButton, Scroll } from '../../LayoutComponents';
+import { SelectionButton, Scroll } from '../../LayoutComponents';
 
 const ScrollWrapper = styled.div<{ bg: string}>`
     background-color: ${props => props.bg };
@@ -12,18 +12,7 @@ const ScrollWrapper = styled.div<{ bg: string}>`
     position: -webkit-sticky;
     position: sticky;
     top: 6rem;
-`;
-
-const SelectionButton = styled(StyledButton)<{ bg: string; color: string; selected: boolean; border: string; }>`
-    background-color: ${props => props.bg};
-    color: ${props => props.color};
-    border: 2px solid ${props => props.border};
-    padding: 0.5rem 1rem;
-    font-family: ${props => props.selected ? "Work Sans Bold" : "Work Sans Semi Bold" };
-    margin: 0.25rem;
-    white-space: nowrap;
-    border-radius: 2rem;
-    scroll-snap-align: center;
+    z-index:1000;
 `;
 
 

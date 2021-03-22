@@ -1,6 +1,13 @@
 import { CurrTeamStyles } from "../types";
 
-
+export const patchId = (id: string, firstName: string | null): string => {
+    if(id === "mclaren" && firstName ) return "";
+    else if(id === "ferrari" && firstName ) return "";
+    else if(id === "williams" && firstName ) return "";
+    else if(id === "stewart" && firstName ) return "";
+    else return id;
+};
+ 
 export const getDriverStyle = (id: string): CurrTeamStyles => {
     switch(true) {
         case id === 'hamilton' || id === 'bottas' || id === 'mercedes':
@@ -68,8 +75,8 @@ export const getDriverStyle = (id: string): CurrTeamStyles => {
         default:
             return {
                 team: 'NA',
-                primary: '#EF435C',
-                secondary: '#2E2E2E'
+                primary: '#ff425c',
+                secondary: '#2D2D2D'
             };
     }
 };

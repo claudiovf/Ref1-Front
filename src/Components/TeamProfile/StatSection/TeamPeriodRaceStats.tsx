@@ -44,17 +44,32 @@ const TeamPeriodRaceStats: React.FC<Props> = ({ displayPeriod, teamStyle }: Prop
                             }
                             else if (displayPeriod.stats.indexOf(s) === 0) {
                                 return (
-                                    <StatCard key={s.stat} s={s} rad={"0.5rem 0.5rem 0 0"} />
+                                    <StatCard 
+                                    key={s.stat} 
+                                    s={s} 
+                                    rad={"0.5rem 0.5rem 0 0"} 
+                                    period={displayPeriod.period}
+                                    type={"teams"}/>
                                 );
                             }
                             else if (displayPeriod.stats.indexOf(s) === displayPeriod.stats.length - 1) {
                                 return (
-                                    <StatCard s={s} rad={"0 0 0.5rem 0.5rem"} key={s.stat} />
+                                    <StatCard 
+                                    s={s} 
+                                    rad={"0 0 0.5rem 0.5rem"} 
+                                    key={s.stat} 
+                                    period={displayPeriod.period}
+                                    type={"teams"}/>
                                 );
                             }
                             else {
                                 return (
-                                    <StatCard s={s} rad={"none"} key={s.stat} />
+                                    <StatCard 
+                                    s={s} 
+                                    rad={"none"} 
+                                    key={s.stat} 
+                                    period={displayPeriod.period}
+                                    type={"teams"}/>
                                 );
                             }
                         })}

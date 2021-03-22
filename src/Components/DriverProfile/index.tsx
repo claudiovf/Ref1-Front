@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { Driver } from '../../types';
-import { BackHome, Period, ProfileContainer, Spacer, StyledLink } from '../LayoutComponents';
+import { BackHome, ProfileContainer, Spacer, StyledLink } from '../LayoutComponents';
 import Spinner from '../Common/Spinner';
 
 import StatSection from './StatSection/StatSection';
@@ -24,8 +24,9 @@ const DriverProfile: React.FC = () => {
     useEffect(() => {
         if ( data ) {
             setDriver(data.findDriver);
+            setPeriod("Career");
         }
-    }, [data]);
+    }, [data, period]);
 
     const changeProfilePeriod = ( period: string ) => {
         setPeriod(period);
@@ -42,7 +43,7 @@ const DriverProfile: React.FC = () => {
             <ProfileContainer>
                 <StyledLink to="/">
                     <BackHome>
-                        &larr; {driver.givenName} {driver.familyName} <Period>/{period}</Period>
+                        &larr; {driver.givenName} {driver.familyName}
                     </BackHome>
                 </StyledLink>
 

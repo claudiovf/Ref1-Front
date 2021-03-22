@@ -1,32 +1,5 @@
 import { gql } from '@apollo/client';
 
-export const CURRENT_DRIVERS_HOME = gql`
-    query {
-        allDrivers(
-            period: "2020"
-        ) {
-            givenName
-            familyName
-            code
-            permanentNumber
-            driverId
-            entries {
-                points
-            }
-        }
-  }
-`;
-
-export const CURRENT_TEAMS_HOME = gql`
-    query {
-        allTeams(
-            period: "2020"
-        ) {
-            name
-            constructorId
-        }
-  }
-`;
 
 export const DRIVER_PROFILE = gql`
     query getDriver(
@@ -167,6 +140,61 @@ export const GET_SEASON_TEAMS = gql`
             name
             constructorId
     
+        }
+    }
+`;
+
+export const GET_TEAM_NAMES = gql`
+    query getTeamNames($teamsList: [String!]){
+        findManyTeams(
+        teamsList: $teamsList
+        ) {
+            name
+            constructorId
+        }
+    }
+`;
+
+export const GET_DRIVER_RESULTS = gql`
+    query getResults($period: String!, $stat: String!, $skip: Int!, $pct: Boolean!){
+        findDriverResults(
+            period: $period
+            stat: $stat
+            skip: $skip
+            pct: $pct
+        ) {
+            driverId
+            givenName
+            familyName
+            entries{
+                entries
+                stats {
+                    stat
+                    total
+                    pct
+                }
+            }
+        }
+    }
+`;
+export const GET_TEAM_RESULTS = gql`
+    query getResults($period: String!, $stat: String!, $skip: Int!, $pct: Boolean!){
+        getTeamSearchResults(
+            period: $period
+            stat: $stat
+            skip: $skip
+            pct: $pct
+        ) {
+            constructorId
+            name
+            entries{
+                entries
+                stats {
+                    stat
+                    total
+                    pct
+                }
+            }
         }
     }
 `;

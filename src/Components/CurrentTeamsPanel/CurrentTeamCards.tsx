@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Team } from '../../types';
 import { getDriverStyle } from '../../utils/currentInfo';
-import { Cards, Fonts, StyledLink } from '../LayoutComponents';
+import { Cards, StyledLink } from '../LayoutComponents';
 
 
 const TeamName = styled.div<{ color: string;}>`
@@ -25,7 +25,6 @@ const CurrentTeamCards: React.FC<{ team: Team }> = ({team}: {team: Team}) => {
 
     return (
         <>
-            <Fonts />
             <StyledLink to={"/profile/team/" + team.constructorId}>
                 <Cards bg={teamStyle.primary}>
                     <TeamName color={teamStyle.secondary}>

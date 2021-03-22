@@ -23,7 +23,7 @@ const LegendsPanel: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title>F1 Legends</Title>
+                <Title>Legends</Title>
                     { loading ? <Spinner /> : null}
                 <Scroll>
                     { data ?  (
