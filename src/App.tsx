@@ -13,10 +13,13 @@ import SearchModal from './Components/Search';
 import ExploreDrivers from './Components/ExploreDrivers';
 import ExploreTeams from './Components/ExploreTeams';
 import Standings from './Components/Standings';
-
-
+import ReactGA from 'react-ga';
+import RouteTracker from './RouteTracker';
 
 const App: React.FC = () => {
+
+  const TRACKING_ID = "UA-192952368-1";
+  ReactGA.initialize(TRACKING_ID);
 
   return (
     <div className="App">
@@ -43,8 +46,7 @@ const App: React.FC = () => {
       </Switch>
 
       <SearchModal />
-      
-
+      <RouteTracker />
     </div>
   );
 };
