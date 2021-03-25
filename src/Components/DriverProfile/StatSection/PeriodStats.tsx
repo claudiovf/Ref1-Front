@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CurrTeamStyles, DriverPeriod } from '../../../types';
 import { formattedDate } from '../../../utils/formatting';
+import NextSearchOverlay from '../../Common/NextSearchOverlay';
 import { InfoRow, InfoBox, Value, Label, Icon, SectionTitle } from '../../LayoutComponents';
 
 
@@ -26,6 +27,7 @@ const TopStats = styled.div`
     margin: 0rem 1.5rem 1.5rem 1.5rem;
     padding: 1rem;
     border-radius: 0.5rem;
+    position: relative;
 `;
 
 const DarkValue = styled(Value)`
@@ -65,6 +67,9 @@ interface Props {
     driverStyle: CurrTeamStyles;
 }
 const PeriodStats: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => {
+    const [ overlay, setOverlay ] = useState<boolean>(false);
+
+    const handleOverlay = (bool: boolean) => setOverlay(bool);
 
    
     return (
@@ -80,7 +85,7 @@ const PeriodStats: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => 
                             { displayPeriod.championshipRank > 0 
                             ? <CenterInfoBox>
                                 <DarkValue>{displayPeriod.championshipRank}</DarkValue>
-                                <DarkLabel>Championship Rank</DarkLabel>
+                                <DarkLabel>Season Rank</DarkLabel>
                             </CenterInfoBox>
                             : null}
                         </InfoRowWithBorder>
@@ -120,6 +125,16 @@ const PeriodStats: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => 
                                 <DarkLabel>Last</DarkLabel>
                             </CenterInfoBox>
                         </InfoRow>
+
+               
+                        <NextSearchOverlay 
+                            stats={["entries", "points", "avgPoints", "avgPosition"]}
+                            rad={"0.5rem"}
+                            period={displayPeriod.period}
+                            type={"drivers"}
+                            overlay={overlay}
+                            handleOverlay={handleOverlay}
+                        />
                    
                 </TopStats>
             </StatsContainer>

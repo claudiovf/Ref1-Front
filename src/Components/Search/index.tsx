@@ -11,8 +11,8 @@ import ResutsFor from './ResultsFor';
 import { useQuery } from '@apollo/client';
 import { GET_TEAM_NAMES } from '../../queries';
 import { Team } from '../../types';
-import DriverResults from './DriverResults';
 import TeamResults from './TeamResults';
+import DriverResults from './DriverResults';
 
 const overlayAnimation = keyframes`
     0% { opacity: 0;}
@@ -148,20 +148,12 @@ const SearchModal: React.FC = () => {
                             <FilterBy />
                             {
                                 search.selections.resultsFor 
-                                && search.selections.resultsFor === "drivers"
                                 && search.selections.sortBy
                                 && search.selections.filterBy
                                 && search.selections.period
-                                    ? <DriverResults />
-                                    : null
-                            }
-                            {
-                                search.selections.resultsFor 
-                                && search.selections.resultsFor === "teams"
-                                && search.selections.sortBy
-                                && search.selections.filterBy
-                                && search.selections.period
-                                    ? <TeamResults />
+                                    ? search.selections.resultsFor === "drivers" 
+                                        ? <DriverResults />
+                                        : <TeamResults />
                                     : null
                             }
                         </ModalOverflow>

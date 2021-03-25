@@ -8,7 +8,7 @@ import { Section, Title, Scroll, popOutAnimation } from '../LayoutComponents';
 
 const SearchCard = styled.div`
     font-family: "Work Sans Bold";
-    background-color: #262a4d;
+    background-color: #446df6;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -26,12 +26,12 @@ const StatDescription = styled.div`
     font-size: 0.75rem;
     font-family: "Work Sans Semi Bold";
     color: #FFFFFF;
-    margin-top: 1rem;
 `;
 
 const StatTitle = styled.div`
     font-size: 1.25rem;
     color: #FFFFFF;
+    margin-top: 1rem;
 `;
 
 const ExploreDrivers: React.FC = () => {
@@ -62,8 +62,8 @@ const ExploreDrivers: React.FC = () => {
                                     dispatch( toggleOpen() );
                                 }}
                                 >
-                                    <StatDescription>Career</StatDescription>
                                     <StatTitle>{formattedStat(stat)}</StatTitle>
+                                    <StatDescription>Career - Drivers</StatDescription>
                             </SearchCard>)
                     }
                 </Scroll>

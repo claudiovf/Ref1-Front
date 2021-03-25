@@ -168,6 +168,10 @@ export const GET_DRIVER_RESULTS = gql`
             familyName
             entries{
                 entries
+                points
+                avgPosition
+                avgPoints
+                bestResult
                 stats {
                     stat
                     total
@@ -189,6 +193,10 @@ export const GET_TEAM_RESULTS = gql`
             name
             entries{
                 entries
+                points
+                avgPosition
+                avgPoints
+                bestResult
                 stats {
                     stat
                     total

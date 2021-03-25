@@ -12,6 +12,7 @@ import SkySportsPanel from './Components/SkySportsPanel';
 import SearchModal from './Components/Search';
 import ExploreDrivers from './Components/ExploreDrivers';
 import ExploreTeams from './Components/ExploreTeams';
+import Standings from './Components/Standings';
 
 
 
@@ -25,8 +26,9 @@ const App: React.FC = () => {
         <Route exact path="/">
           <CurrentDriversPanel />
           <CurrentTeamsPanel />
-          <LegendsPanel />
+          <Standings />
           <ExploreDrivers />
+          <LegendsPanel />
           <ExploreTeams />
           <SkySportsPanel />
         </Route>

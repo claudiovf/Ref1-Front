@@ -16,6 +16,8 @@ const SortBy: React.FC = () => {
         "wins", "wins_pct", 
         "podiums",  "podiums_pct", 
         "pointsFinish", "pointsFinish_pct",
+        "points", "avgPoints",
+        "entries", "avgPosition",
         "dnfs"
     ];
 

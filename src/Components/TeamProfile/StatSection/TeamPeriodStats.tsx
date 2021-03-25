@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CurrTeamStyles, TeamPeriod } from '../../../types';
 import { formattedPeriod, formattedDate } from '../../../utils/formatting';
+import NextSearchOverlay from '../../Common/NextSearchOverlay';
 import { InfoRow, InfoBox, Value, Label, Icon } from '../../LayoutComponents';
 
 
@@ -26,6 +27,7 @@ const TopStats = styled.div`
     margin: 0rem 1.5rem 1.5rem 1.5rem;
     padding: 1rem;
     border-radius: 0.5rem;
+    position: relative;
 `;
 
 const DarkValue = styled(Value)`
@@ -96,6 +98,9 @@ interface Props {
 }
 const TeamPeriodStats: React.FC<Props> = ({ displayPeriod, teamStyle }: Props) => {
     const [ expandedDrivers, setExpandedDrivers ] = useState<boolean>(false);
+    const [ overlay, setOverlay ] = useState<boolean>(false);
+
+    const handleOverlay = (bool: boolean) => setOverlay(bool);
 
    const correctedPeriod = (period: string): string => period === 'Career' ? 'All Time' : period;
 
@@ -111,7 +116,7 @@ const TeamPeriodStats: React.FC<Props> = ({ displayPeriod, teamStyle }: Props) =
                             { displayPeriod.championshipRank > 0 
                             ? <CenterInfoBox>
                                 <DarkValue>{displayPeriod.championshipRank}</DarkValue>
-                                <DarkLabel>Championship Rank</DarkLabel>
+                                <DarkLabel>Season Rank</DarkLabel>
                             </CenterInfoBox>
                             : null}
                         </InfoRowWithBorder>
@@ -173,7 +178,14 @@ const TeamPeriodStats: React.FC<Props> = ({ displayPeriod, teamStyle }: Props) =
                                 }
                                 
                         </InfoRowDrivers>
-                   
+                        <NextSearchOverlay 
+                            stats={["entries", "points", "avgPoints", "avgPosition"]}
+                            rad={"0.5rem"}
+                            period={displayPeriod.period}
+                            type={"teams"}
+                            overlay={overlay}
+                            handleOverlay={handleOverlay}
+                        />
                 </TopStats>
             </StatsContainer>
         </React.Fragment>

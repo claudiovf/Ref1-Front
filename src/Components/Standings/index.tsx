@@ -2,13 +2,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { setSearch, toggleOpen } from '../../store/actions';
-import { formattedStat } from '../../utils/formatting';
 import { Section, Title, Scroll, popOutAnimation } from '../LayoutComponents';
 
 
 const SearchCard = styled.div`
     font-family: "Work Sans Bold";
-    background-color: #7765e3;
+    background-color: #f44174;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -34,10 +33,10 @@ const StatTitle = styled.div`
     margin-top: 1rem;
 `;
 
-const ExploreTeams: React.FC = () => {
+const Standings: React.FC = () => {
 
-    const stats = [
-        'wins', 'podiums', 'pointsFinish', 'dnfs', 
+    const seasons = [
+        '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010' 
     ];
 
     const dispatch = useDispatch();
@@ -46,24 +45,24 @@ const ExploreTeams: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title>Explore Teams</Title>
+                <Title>Driver Standings</Title>
                 <Scroll>
                     {
-                        stats.map(stat => 
+                        seasons.map(season => 
                             <SearchCard 
-                                key={stat + "1"}
+                                key={season}
                                 onClick={() => {
                                     dispatch( setSearch({
-                                        resultsFor: "teams",
-                                        sortBy: stat,
-                                        filterBy: "All Time",
-                                        period: "All Time"
+                                        resultsFor: "drivers",
+                                        sortBy: "points",
+                                        filterBy: "Season",
+                                        period: season
                                     }) );
                                     dispatch( toggleOpen() );
                                 }}
                                 >
-                                    <StatTitle>{formattedStat(stat)}</StatTitle>
-                                    <StatDescription>All Time - Teams</StatDescription>
+                                    <StatTitle>{season}</StatTitle>
+                                    <StatDescription>Driver Standings</StatDescription>
                             </SearchCard>)
                     }
                 </Scroll>
@@ -72,4 +71,4 @@ const ExploreTeams: React.FC = () => {
     );
 };
 
-export default ExploreTeams;
+export default Standings;
