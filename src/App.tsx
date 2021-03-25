@@ -16,6 +16,7 @@ import Standings from './Components/Standings';
 import ReactGA from 'react-ga';
 import RouteTracker from './RouteTracker';
 
+
 const App: React.FC = () => {
 
   const TRACKING_ID = "UA-192952368-1";
@@ -47,6 +48,7 @@ const App: React.FC = () => {
 
       <SearchModal />
       <RouteTracker />
+
     </div>
   );
 };

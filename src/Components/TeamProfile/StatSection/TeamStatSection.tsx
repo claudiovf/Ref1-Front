@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Team, TeamPeriod } from '../../../types';
 import { getDriverStyle } from '../../../utils/currentInfo';
-import { formattedPeriod } from '../../../utils/formatting';
 import TeamPeriodButtons from './TeamPeriodButtons';
 import TeamPeriodStats from './TeamPeriodStats';
 import TeamPeriodRaceStats from './TeamPeriodRaceStats';
@@ -10,23 +9,21 @@ import TeamPeriodRaceStats from './TeamPeriodRaceStats';
 
 interface Props {
     team: Team;
-    period: string;
-    changeProfilePeriod: (selected: string) => void;
 }
 
-const TeamStatInfo: React.FC<Props> = ({ team, period, changeProfilePeriod }: Props) => {
-    const [ periodSelected, setPeriodSelected] = useState<string>(period);
+const TeamStatInfo: React.FC<Props> = ({ team }: Props) => {
+    const [ periodSelected, setPeriodSelected] = useState<string>("All Time");
     const [ displayPeriod, setDisplayPeriod ] = useState<TeamPeriod | null>(null);
     const teamStyle = getDriverStyle(team.constructorId);
     
     useEffect(() => {
         const correctedPeriod = (period: string): string => period === 'All Time' ? 'Career' : period;
 
-        const periodToDisplay = team.entries.find(p => p.period === correctedPeriod(period));
+        const periodToDisplay = team.entries.find(p => p.period === correctedPeriod(periodSelected));
         if ( periodToDisplay ) {
             setDisplayPeriod(periodToDisplay);
         }
-    }, [periodSelected]);
+    }, [periodSelected, team]);
     
     if ( !team ) return null;
 
@@ -34,7 +31,6 @@ const TeamStatInfo: React.FC<Props> = ({ team, period, changeProfilePeriod }: Pr
 
     const handlePeriodChange = (selected: string) => {
 
-        changeProfilePeriod(formattedPeriod(selected));
         setPeriodSelected(selected);
     };
 

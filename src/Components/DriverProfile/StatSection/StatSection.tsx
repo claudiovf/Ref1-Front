@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Driver, DriverPeriod } from '../../../types';
 import { getDriverStyle } from '../../../utils/currentInfo';
-import { formattedPeriod } from '../../../utils/formatting';
 import PeriodButtons from './PeriodButtons';
 import PeriodRaceStats from './PeriodRaceStats';
 import PeriodStats from './PeriodStats';
@@ -11,12 +10,10 @@ import VsTeammates from './VsTeammates';
 
 interface Props {
     driver: Driver;
-    period: string;
-    changeProfilePeriod: (selected: string) => void;
 }
 
-const StatInfo: React.FC<Props> = ({ driver, period, changeProfilePeriod }: Props) => {
-    const [ periodSelected, setPeriodSelected] = useState<string>(period);
+const StatInfo: React.FC<Props> = ({ driver }: Props) => {
+    const [ periodSelected, setPeriodSelected] = useState<string>("Career");
     const [ displayPeriod, setDisplayPeriod ] = useState<DriverPeriod | null>(null);
     const driverStyle = getDriverStyle(driver.driverId);
     
@@ -25,14 +22,13 @@ const StatInfo: React.FC<Props> = ({ driver, period, changeProfilePeriod }: Prop
         if ( periodToDisplay ) {
             setDisplayPeriod(periodToDisplay);
         }
-    }, [periodSelected]);
+    }, [periodSelected, driver]);
     
     if ( !driver ) return null;
 
 
 
     const handlePeriodChange = (selected: string) => {
-        changeProfilePeriod(formattedPeriod(selected));
         setPeriodSelected(selected);
     };
 

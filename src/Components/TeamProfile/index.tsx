@@ -16,7 +16,6 @@ import TeamAchievements from './TeamAchievements';
 
 const TeamProfile: React.FC = () => {
     const [ team, setTeam ] = useState<Team | null>(null);
-    const [ period, setPeriod ] = useState<string>("All Time");
     
 
     const { constructorId } = useParams<{ constructorId: string }>();
@@ -26,13 +25,9 @@ const TeamProfile: React.FC = () => {
     useEffect(() => {
         if ( data ) {
             setTeam(data.findTeam);
-            setPeriod("All Time");
         }
-    }, [data, period]);
+    }, [data]);
 
-    const changeProfilePeriod = ( period: string ) => {
-        setPeriod(period);
-    };
     
     
     if ( loading ) return <> <Spacer /><Spinner /> </>;
@@ -50,9 +45,7 @@ const TeamProfile: React.FC = () => {
                 <TeamInfo team={team} />
                 <TeamAchievements team={team} />
                 <TeamStatSection 
-                    team={team} 
-                    period={period} 
-                    changeProfilePeriod={changeProfilePeriod} />
+                    team={team} />
             </ProfileContainer>
         </React.Fragment>
     );

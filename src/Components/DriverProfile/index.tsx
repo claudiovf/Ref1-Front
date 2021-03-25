@@ -14,7 +14,6 @@ import Achievements from './Achievements';
 
 const DriverProfile: React.FC = () => {
     const [ driver, setDriver ] = useState<Driver | null>(null);
-    const [ period, setPeriod ] = useState<string>("Career");
     
 
     const { driverId } = useParams<{ driverId: string }>();
@@ -24,14 +23,9 @@ const DriverProfile: React.FC = () => {
     useEffect(() => {
         if ( data ) {
             setDriver(data.findDriver);
-            setPeriod("Career");
         }
-    }, [data, period]);
+    }, [data]);
 
-    const changeProfilePeriod = ( period: string ) => {
-        setPeriod(period);
-    };
-    
     
     if ( loading ) return <> <Spacer /><Spinner /> </>;
 
@@ -50,9 +44,7 @@ const DriverProfile: React.FC = () => {
                 <GeneralInfo driver={driver} />
                 <Achievements driver={driver} />
                 <StatSection 
-                    driver={driver} 
-                    period={period} 
-                    changeProfilePeriod={changeProfilePeriod} />
+                    driver={driver} />
             </ProfileContainer>
         </React.Fragment>
     );
