@@ -21,7 +21,7 @@ const LoadMoreContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 `;
 
 const OptionsButton = styled(SelectionButton)`

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { eventGa } from '../../RouteTracker';
 import { setSearch, toggleOpen } from '../../store/actions';
 import { formattedStat } from '../../utils/formatting';
 import { Section, Title, Scroll, popOutAnimation } from '../LayoutComponents';
@@ -60,6 +61,7 @@ const ExploreTeams: React.FC = () => {
                                         period: "All Time"
                                     }) );
                                     dispatch( toggleOpen() );
+                                    eventGa("ExploreTeams", `Teams - ${stat} - Period: All Time`, 'Teams');
                                 }}
                                 >
                                     <StatTitle>{formattedStat(stat)}</StatTitle>

@@ -10,12 +10,11 @@ import { GET_SEASON_DRIVERS } from '../../queries';
 const CurrentDriversPanel: React.FC = () => {
 
     const driversList = [
-        'hamilton', 'bottas', 'max_verstappen', 'albon', 
-        'leclerc', 'vettel', 'perez', 'stroll', 
-        'ricciardo', 'ocon', 'sainz', 'norris', 
-        'gasly', 'kvyat', 'raikkonen', 'giovinazzi', 
-        'kevin_magnussen', 'grosjean', 'russell', 'latifi', 
-        'hulkenberg', 'aitken', 'pietro_fittipaldi'
+        'hamilton', 'bottas', 'max_verstappen', 'perez', 
+        'norris', 'ricciardo', 'stroll', 'vettel', 
+        'ocon', 'alonso', 'leclerc', 'sainz', 
+        'gasly', 'tsunoda', 'raikkonen', 'giovinazzi', 
+        'mick_schumacher', 'mazepin', 'russell', 'latifi'
     ];
         
     const { loading, data } = useQuery<{ findManyDrivers: Driver[] }>(GET_SEASON_DRIVERS,

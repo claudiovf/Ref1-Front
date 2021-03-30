@@ -3,6 +3,7 @@ import {  StyledLink } from '../LayoutComponents';
 import styled from "styled-components";
 import { useDispatch } from 'react-redux';
 import { toggleOpen } from '../../store/actions';
+import { eventGa } from '../../RouteTracker';
 
 export const HeaderStyled = styled.div`
 
@@ -61,8 +62,8 @@ const Header: React.FC = () => {
             <LogoStyled>REF1</LogoStyled> 
           </StyledLink>
             <MagBox onClick={ () => {
-              // await dispatch( setSearch({resultsFor: "drivers", sortBy: "wins", filterBy: "Team", period: "red_bull"}) );
               dispatch( toggleOpen() );
+              eventGa("HeaderSearch", 'default', 'default');
 
             }} ><Mag>&#9906;</Mag></MagBox> 
         </HeaderStyled>

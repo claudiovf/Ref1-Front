@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { eventGa } from '../../RouteTracker';
 import { setSearch, toggleOpen } from '../../store/actions';
 import { Section, Title, Scroll, popOutAnimation } from '../LayoutComponents';
 
@@ -36,7 +37,7 @@ const StatTitle = styled.div`
 const Standings: React.FC = () => {
 
     const seasons = [
-        '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010' 
+        '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010' 
     ];
 
     const dispatch = useDispatch();
@@ -59,6 +60,7 @@ const Standings: React.FC = () => {
                                         period: season
                                     }) );
                                     dispatch( toggleOpen() );
+                                    eventGa("Standings", `Drivers - points - Period: ${season}`, 'Drivers');
                                 }}
                                 >
                                     <StatTitle>{season}</StatTitle>

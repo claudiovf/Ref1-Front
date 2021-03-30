@@ -17,43 +17,43 @@ export const getDriverStyle = (id: string): CurrTeamStyles => {
                 secondary: '#2E2E2E'
 
             };
-        case id === 'max_verstappen' || id === 'albon' || id === 'red_bull':
+        case id === 'max_verstappen' || id === 'perez' || id === 'red_bull':
             return {
                 team: 'Red Bull Racing',
                 primary: '#0000AE',
                 secondary: '#F94774'
             };
-        case id === 'leclerc' || id === 'vettel' || id === 'ferrari':
+        case id === 'leclerc' || id === 'sainz' || id === 'ferrari':
             return {
                 team: 'Scuderia Ferrari',
                 primary: '#C00000',
                 secondary: '#2E2E2E'
             };
-        case id === 'norris' || id === 'sainz' || id === 'mclaren':
+        case id === 'norris' || id === 'ricciardo' || id === 'mclaren':
             return {
                 team: 'Mclaren Racing',
                 primary: '#FF8700',
                 secondary: '#2E2E2E'
             };
-        case id === 'perez' || id === 'stroll' || id === 'racing_point':
+        case id === 'stroll' || id === 'vettel' || id === 'aston_martin':
             return {
-                team: 'Racing Point F1 Team',
-                primary: '#FB61B2',
-                secondary: '#002E6C'
+                team: 'Aston Martin Cognizant F1 Team',
+                primary: '#006F62',
+                secondary: '#FFFFFF'
             };
-        case id === 'gasly' || id === 'kvyat' || id === 'alphatauri':
+        case id === 'gasly' || id === 'tsunoda' || id === 'alphatauri':
             return {
                 team: 'Scuderia AlphaTauri',
                 primary: '#1B2441',
                 secondary: '#D4D4D4'
             };
-        case id === 'ocon' || id === 'ricciardo' || id === 'renault':
+        case id === 'ocon' || id === 'alonso' || id === 'alpine':
             return {
-                team: 'Renault F1 Team',
-                primary: '#2A2A2A',
-                secondary: '#FFF500'
+                team: 'Alpine F1 Team',
+                primary: '#0090FF',
+                secondary: '#FFFFFF'
             };
-        case id === 'giovinazzi' || id === 'raikkonen' || id === 'alfa':
+        case id === 'raikkonen' || id === 'giovinazzi' || id === 'alfa':
             return {
                 team: 'Alfa Romeo Racing',
                 primary: '#960000',
@@ -65,11 +65,11 @@ export const getDriverStyle = (id: string): CurrTeamStyles => {
                 primary: '#0082FA',
                 secondary: '#2E2E2E'
             };
-        case id === 'grosjean' || id === 'kevin_magnussen' || id === 'haas':
+        case id === 'mick_schumacher' || id === 'mazepin' || id === 'haas':
             return {
                 team: 'Haas F1 Team',
-                primary: '#9A9A9A',
-                secondary: '#C70A27'
+                primary: '#e60b0b',
+                secondary: '#FFFFFF'
             };
         
         default:

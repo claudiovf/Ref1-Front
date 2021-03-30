@@ -66,10 +66,10 @@ const ModalContainer = styled.div<{ closing: boolean }>`
 
 const ModalOverflow = styled.div`
     width: 100vw;
-    height: 91vh;
+    height: 95vh;
     background-color: white;
     position:absolute;                        
-    top: 45%;                        
+    top: 48%;                        
     left: 50%;                        
     transform:translate(-50%,-50%);  
     border-radius:1rem 1rem 0 0;

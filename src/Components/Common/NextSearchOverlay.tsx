@@ -4,6 +4,7 @@ import { SelectionButton, slideUpAnimation } from '../LayoutComponents';
 import { formattedPeriod, formattedStat, isDark } from '../../utils/formatting';
 import { useDispatch } from 'react-redux';
 import { setSearch, toggleOpen } from '../../store/actions';
+import { eventGa } from '../../RouteTracker';
 
 
 
@@ -93,6 +94,7 @@ const NextSearchOverlay: React.FC<Props> = ({stats, rad, period, type, overlay, 
         }) );
         handleOverlay(false);
         dispatch( toggleOpen() );
+        eventGa("NextSearch", `${type} - ${stat} - Period: ${period}`, type);
     };
       
     return (

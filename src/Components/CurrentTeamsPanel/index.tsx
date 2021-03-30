@@ -10,8 +10,8 @@ import { GET_SEASON_TEAMS } from '../../queries';
 
 const CurrentTeamsPanel: React.FC = () => {
     const teamsList = [
-        'mercedes', 'red_bull', 'racing_point', 'renault', 
-        'mclaren', 'ferrari', 'alphatauri', 'alfa', 
+        'mercedes', 'red_bull', 'mclaren', 'aston_martin', 
+        'alpine', 'ferrari', 'alphatauri', 'alfa', 
         'haas', 'williams'
     ];
     
