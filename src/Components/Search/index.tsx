@@ -62,6 +62,12 @@ const ModalContainer = styled.div<{ closing: boolean }>`
     animation-name: ${props => props.closing ? slideDownAnimation : slideUpAnimation};
     animation-duration: 0.5s;
     
+    @media (min-width: 768px) {
+        width: 40rem;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+    }
 `;
 
 const ModalOverflow = styled.div`
@@ -69,11 +75,17 @@ const ModalOverflow = styled.div`
     height: 95vh;
     background-color: white;
     position:absolute;                        
-    top: 48%;                        
+    top: 47%;                        
     left: 50%;                        
     transform:translate(-50%,-50%);  
     border-radius:1rem 1rem 0 0;
     overflow-y:  auto;
+    
+    @media (min-width: 768px) {
+        width: 100%;
+        height: 96vh;
+        margin: 0;
+    }
 `;
 
 
@@ -84,6 +96,10 @@ const SearchHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    
+    @media (min-width: 768px) {
+        margin-top: 1rem;
+    }
 `;
 
 const SearchTitle = styled(Title)`
@@ -104,6 +120,12 @@ const CloseX = styled.div`
     font-size: 1rem;
     margin: 1rem;
     border-radius: 50%;
+    cursor: pointer;
+    @media (min-width: 768px) {
+        &:hover {
+            transform: scale(1.1);
+          }
+    }
 `;
 
 

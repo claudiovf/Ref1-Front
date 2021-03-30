@@ -10,7 +10,12 @@ const StatsContainer = styled.div<{ bg: string }>`
     flex-direction: column;
     justify-content: flex-start;
     // align-items: center;
-    widht: 100%;
+    width: 100%;
+
+    @media (min-width: 768px) {
+        padding-top: 1rem;
+        padding-right: 2.5rem;
+      }
 `;
 
 const TopStats = styled.div`

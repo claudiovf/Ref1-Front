@@ -20,6 +20,12 @@ const SearchCard = styled.div`
     border-radius: 0.5rem;
     animation-name: ${popOutAnimation};
     animation-duration: 1s;
+    cursor: pointer;
+    @media (min-width: 768px) {
+        &:hover {
+            transform: scale(1.05);
+          }
+    }
 `;
 
 const StatDescription = styled.div`

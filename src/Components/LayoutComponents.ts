@@ -44,7 +44,10 @@ export const Section = styled.div`
     align-items: left;
     height: auto;
     width: 100%;
-    // background-color: turquoise;
+    @media (min-width: 768px) {
+        width: 80%;
+        margin: 3rem 5% 3rem 10%;
+      }
 `;
 
 
@@ -56,6 +59,9 @@ export const Title = styled.div`
     font-size: 1.25rem;
     padding: 1.25rem;
     padding-bottom: 0.25rem;
+    @media (min-width: 768px) {
+        padding-bottom: 1.25rem;
+      }
 `;
 
 export const SectionTitle = styled.div<{ color: string; }>`
@@ -64,6 +70,7 @@ export const SectionTitle = styled.div<{ color: string; }>`
     color: ${props => props.color};
     font-size: 1rem;
     padding: 0.5rem 1.5rem 1rem 1.5rem;
+
 `;
 
 
@@ -75,6 +82,10 @@ export const Scroll = styled.div`
     padding: 0 0 0.25rem 1rem;
     overflow: auto;
     scroll-snap-type: x mandatory;
+
+    @media (min-width: 768px) {
+        flex-flow: row wrap;
+      }
 `;
 
 export const popOutAnimation = keyframes`
@@ -101,6 +112,15 @@ export const Cards = styled.div<{ bg: string}>`
     border-radius: 0.5rem;
     animation-name: ${popOutAnimation};
     animation-duration: 1s;
+    cursor: pointer;
+
+    @media (min-width: 768px) {
+        max-width: 9rem;
+        min-width: 9rem;
+        &:hover {
+            transform: scale(1.05);
+          }
+      }
 `;
 
 export const ProfileContainer = styled.div`
@@ -108,6 +128,50 @@ export const ProfileContainer = styled.div`
     animation-duration: 1s;
     width: auto;
     overflow:visible;
+    @media (min-width: 768px) {
+        background-color: #EdEDED;
+    
+      }
+`;
+
+export const ProfileName = styled.div<{ bg: string; color: string}>`
+    color: ${props => props.color};
+    background-color: ${props => props.bg};
+    font-family: "Work Sans Extra Bold";
+    align-text: center;
+    font-size: 2rem;
+    padding: 3.5rem 0 1rem 0;
+    width: 100%;
+`;
+
+export const ProfileWrap = styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+
+      @media (min-width: 960px) {
+        width: 80%;
+        margin: 0 10% 0 10%;
+      }
+`;
+
+export const GenAchContainer = styled.div<{contBg: string}>`
+    background-color: ${props => props.contBg};
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: flex-start;
+      }
 `;
 
 
@@ -137,6 +201,12 @@ export const SelectionButton = styled(StyledButton)<{ bg: string; color: string;
     white-space: nowrap;
     border-radius: 2rem;
     scroll-snap-align: center;
+    cursor: pointer;
+    @media (min-width: 768px) {
+        &:hover {
+            transform: scale(1.1);
+          }
+    }
 `;
 
 export const BackHome = styled.div`

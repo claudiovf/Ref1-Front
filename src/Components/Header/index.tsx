@@ -31,6 +31,7 @@ export const LogoStyled = styled.div`
     margin: 0.5rem;
     margin-left: 1.25rem;
     border-radius: 4px;
+    cursor: pointer;
 `;
 
 export const MagBox = styled.div`
@@ -43,6 +44,12 @@ export const MagBox = styled.div`
     margin: 0.5rem;
     margin-right: 1.25rem;
     border-radius: 2rem;
+    cursor: pointer;
+    @media (min-width: 768px) {
+      &:hover {
+          transform: scale(1.1);
+        }
+  }
 `;
 const Mag = styled.div`
   -webkit-transform: rotate(45deg); 

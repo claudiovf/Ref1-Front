@@ -24,7 +24,7 @@ const CurrentDriversPanel: React.FC = () => {
         <React.Fragment>
             <Spacer />
             <Section>  
-                <Title>2020 Drivers</Title>
+                <Title>2021 Drivers</Title>
                     { loading ? <Spinner /> : null}
                 <Scroll>
                     { data ?  (

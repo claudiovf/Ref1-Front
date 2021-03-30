@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CurrTeamStyles, TeamPeriod } from '../../../types';
 import { formattedPeriod, formattedDate } from '../../../utils/formatting';
 import NextSearchOverlay from '../../Common/NextSearchOverlay';
-import { InfoRow, InfoBox, Value, Label, Icon } from '../../LayoutComponents';
+import { InfoRow, InfoBox, Value, Label, Icon, SectionTitle } from '../../LayoutComponents';
 
 
 const StatsContainer = styled.div<{ bg: string }>`
@@ -11,11 +11,13 @@ const StatsContainer = styled.div<{ bg: string }>`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    // align-items: center;
-    widht: 100%;
-
+    width: 100%;
     padding-top: 1rem;
 
+    @media (min-width: 768px) {
+        width: 100%;
+        
+    }
 `;
 
 const TopStats = styled.div`
@@ -28,6 +30,16 @@ const TopStats = styled.div`
     padding: 1rem;
     border-radius: 0.5rem;
     position: relative;
+    @media (min-width: 768px) {
+        max-width: 35rem;
+        margin-left: 3.5rem;
+    }
+`;
+
+const TeamSectionTitle = styled(SectionTitle)`
+    @media (min-width: 768px) {
+        margin-left: 2rem;
+    }
 `;
 
 const DarkValue = styled(Value)`
@@ -87,6 +99,12 @@ const ExpandButton = styled.div`
     background-color: #EFEFEF;
     color: #2F2F2F;
     border-radius: 1rem;
+    cursor: pointer;
+    @media (min-width: 768px) {
+        &:hover {
+            transform: scale(1.1);
+          }
+    }
 `;
 
 
@@ -107,6 +125,7 @@ const TeamPeriodStats: React.FC<Props> = ({ displayPeriod, teamStyle }: Props) =
     return (
         <React.Fragment>
             <StatsContainer bg={teamStyle.primary}>
+                <TeamSectionTitle color={teamStyle.secondary}>Summary</TeamSectionTitle>
                 <TopStats>
                         <InfoRowWithBorder>
                             <CenterInfoBox>

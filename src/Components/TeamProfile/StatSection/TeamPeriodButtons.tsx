@@ -9,12 +9,23 @@ const ScrollWrapper = styled.div<{ bg: string}>`
     height: auto;
     width: 100%;
     padding: 0.5rem 0;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 6rem;
-    z-index:1000;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 6rem;
+        z-index:1000;
+      }
 `;
 
+const ProfileScroll =styled(Scroll)`
+    @media (min-width: 768px) {
+        justify-content: center;
+        align-items: center;
+        padding: 0 3rem 0 3rem;
+    }
+`;
 
 interface Props {
     periods: TeamPeriod[];
@@ -48,7 +59,7 @@ const TeamPeriodButtons: React.FC<Props> = ({periods, handlePeriodChange, style,
     return (
         <React.Fragment>
             <ScrollWrapper bg={style.primary}>
-                <Scroll>
+                <ProfileScroll>
                     { 
                     displayPeriods.map(period => period !== null
                         ? period === periodSelected 
@@ -73,7 +84,7 @@ const TeamPeriodButtons: React.FC<Props> = ({periods, handlePeriodChange, style,
                             </SelectionButton> 
                         : null )
                     }
-                </Scroll>
+                </ProfileScroll>
             </ScrollWrapper>
         </React.Fragment>
     );

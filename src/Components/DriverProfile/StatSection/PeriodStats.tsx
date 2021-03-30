@@ -11,11 +11,12 @@ const StatsContainer = styled.div<{ bg: string }>`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    // align-items: center;
-    widht: 100%;
-
+    width: 100%;
     padding-top: 1rem;
 
+    @media (min-width: 768px) {
+        padding-left: 2.5rem;
+    }
 `;
 
 const TopStats = styled.div`
@@ -28,6 +29,7 @@ const TopStats = styled.div`
     padding: 1rem;
     border-radius: 0.5rem;
     position: relative;
+    
 `;
 
 const DarkValue = styled(Value)`

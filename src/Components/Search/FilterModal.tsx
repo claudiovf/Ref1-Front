@@ -109,7 +109,7 @@ const FilterModal: React.FC = () => {
     if (search.selections.filterBy && search.selections.filterBy !== "All Time" && !search.selections.period) {
 
     const options = [];
-    for (let i = 1950; i < 2021; i++) {
+    for (let i = 1950; i < 2022; i++) {
         options.push(i.toString());
     }
 

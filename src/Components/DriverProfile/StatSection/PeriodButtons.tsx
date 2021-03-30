@@ -13,8 +13,19 @@ const ScrollWrapper = styled.div<{ bg: string}>`
     position: sticky;
     top: 6rem;
     z-index: 1000;
+
+    @media (min-width: 768px) {
+        width: 100%;
+      }
 `;
 
+const ProfileScroll =styled(Scroll)`
+    @media (min-width: 768px) {
+        justify-content: center;
+        align-items: center;
+        padding: 0 3rem 0 3rem;
+    }
+`;
 
 interface Props {
     periods: DriverPeriod[];
@@ -51,7 +62,7 @@ const PeriodButtons: React.FC<Props> = ({periods, handlePeriodChange, style, per
     return (
         <React.Fragment>
             <ScrollWrapper bg={style.primary}>
-                <Scroll>
+                <ProfileScroll>
                     {displayPeriods.map(period => period !== null
                         ? period === periodSelected
                             ? <SelectionButton 
@@ -75,7 +86,7 @@ const PeriodButtons: React.FC<Props> = ({periods, handlePeriodChange, style, per
                             </SelectionButton> 
                         : null )
                     }
-                </Scroll>
+                </ProfileScroll>
             </ScrollWrapper>
         </React.Fragment>
     );

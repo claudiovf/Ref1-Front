@@ -62,14 +62,14 @@ export const getDriverStyle = (id: string): CurrTeamStyles => {
         case id === 'latifi' || id === 'russell' || id === 'williams':
             return {
                 team: 'Williams Racing',
-                primary: '#0082FA',
-                secondary: '#2E2E2E'
+                primary: '#212121',
+                secondary: '#0082FA'
             };
         case id === 'mick_schumacher' || id === 'mazepin' || id === 'haas':
             return {
                 team: 'Haas F1 Team',
-                primary: '#e60b0b',
-                secondary: '#FFFFFF'
+                primary: '#dbdbdb',
+                secondary: '#e60b0b'
             };
         
         default:

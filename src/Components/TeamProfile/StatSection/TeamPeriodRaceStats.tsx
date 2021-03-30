@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { CurrTeamStyles, TeamPeriod, Stat } from '../../../types';
 import StatCard from '../../Common/StatCard';
+import { SectionTitle } from '../../LayoutComponents';
 
 
 const StatsContainer = styled.div<{ bg: string }>`
@@ -9,22 +10,37 @@ const StatsContainer = styled.div<{ bg: string }>`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    // align-items: center;
-    widht: 100%;
+    width: 100%;
     
+    @media (min-width: 768px) {
+        justify-content: center;
+        align-items: left;
+    }
 
 `;
 
 const RaceStats = styled.div`
-    background-color: rgb(255,255,255);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0rem 1.5rem 1.5rem 1.5rem;
     border-radius: 0.5rem;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        flex-flow: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0 2.5rem 0 2.5rem;
+    }
 `;
 
+const RaceSectionTitle = styled(SectionTitle)`
+    @media (min-width: 768px) {
+        padding: 0.5rem 3rem 1rem 4rem;
+    }
+`;
 
 
 interface Props {
@@ -37,6 +53,7 @@ const TeamPeriodRaceStats: React.FC<Props> = ({ displayPeriod, teamStyle }: Prop
     return (
         <React.Fragment>
             <StatsContainer bg={teamStyle.primary}>
+                <RaceSectionTitle color={teamStyle.secondary} >Race Stats</RaceSectionTitle>
                 <RaceStats>
                         {displayPeriod.stats.map((s: Stat) => {
                             if (s.stat === 'fastestLaps') {

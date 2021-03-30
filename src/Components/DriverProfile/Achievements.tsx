@@ -11,6 +11,11 @@ const AchieveContainer = styled.div<{ bg: string }>`
     justify-content: center;
     align-items: left;
     width: 100%;
+
+    @media (min-width: 768px) {
+        justify-content: flex-start;
+        width: 20rem;
+      }
 `;
 
 const Title = styled.div`
@@ -32,6 +37,11 @@ const AchieveCard = styled.div`
     color: #FFFFFF;
     border-radius: 0.5rem;
     line-height: 1.5rem;
+
+    @media (min-width: 768px) {
+        padding: 1rem;
+        margin: 3rem 0 0 2rem;
+      }
 `;
 
 

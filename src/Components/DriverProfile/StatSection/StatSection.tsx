@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { Driver, DriverPeriod } from '../../../types';
 import { getDriverStyle } from '../../../utils/currentInfo';
 import PeriodButtons from './PeriodButtons';
@@ -7,7 +8,19 @@ import PeriodStats from './PeriodStats';
 import VsTeammates from './VsTeammates';
 
 
-
+const StatGroupWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    height: auto;
+    width: 100%;
+    @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: top;
+    }
+`;
 interface Props {
     driver: Driver;
 }
@@ -45,14 +58,16 @@ const StatInfo: React.FC<Props> = ({ driver }: Props) => {
 
                 {displayPeriod
                 ? <>
-                    <PeriodStats 
-                        displayPeriod={displayPeriod} 
-                        driverStyle={driverStyle}
-                    />
-                    <VsTeammates 
-                        displayPeriod={displayPeriod}
-                        driverStyle={driverStyle}
-                    />
+                    <StatGroupWrap>
+                        <PeriodStats 
+                            displayPeriod={displayPeriod} 
+                            driverStyle={driverStyle}
+                        />
+                        <VsTeammates 
+                            displayPeriod={displayPeriod}
+                            driverStyle={driverStyle}
+                        />
+                    </StatGroupWrap>
                     <PeriodRaceStats
                         displayPeriod={displayPeriod}
                         driverStyle={driverStyle}

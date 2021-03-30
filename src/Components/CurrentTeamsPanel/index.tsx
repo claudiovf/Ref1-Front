@@ -25,7 +25,7 @@ const CurrentTeamsPanel: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title>2020 Teams</Title>
+                <Title>2021 Teams</Title>
                     { loading ? <Spinner /> : null}
                 <Scroll>
                     { data ?  (

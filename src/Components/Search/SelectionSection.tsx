@@ -12,6 +12,10 @@ import { SearchState } from '../../store/searchTypes';
 const FilterTitle = styled(Title)`
     font-family: "Work Sans Bold";
     font-size: 1rem;
+    
+    @media (min-width: 768px) {
+        padding-bottom: 0.25rem;
+    }
 `;
 
 const Unselect = styled.span`
@@ -21,12 +25,27 @@ const Unselect = styled.span`
 
 const ScrollCover = styled.div`
     min-width: 100%;
-    max-height: 5.175rem;
     background-color: #FFFFFF;
     overflow: hidden;
     animation-name: ${slideUpAnimation};
     animation-duration: 0.3s
+    
+
+    @media (max-width: 767px) {
+        max-height: 5.175rem;
+    }
+
 `;
+
+const SectionSearch = styled(Section)`
+    @media (min-width: 768px) {
+        width: 80%;
+        margin: 0;
+    }
+`;
+
+
+
 
 interface Props {
     selected: string | null;
@@ -42,24 +61,24 @@ const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handle
         return(
             <React.Fragment>
                 <ScrollCover>
-                <Section>
-                    <FilterTitle>{title}</FilterTitle>
-                    <Scroll>
-                        {
-                            optionsArr.map(item => 
-                                <SelectionButton 
-                                    selected={false}
-                                    bg={"#e4eced"}
-                                    color={"#2F2F2F"}
-                                    border={"#e4eced"}
-                                    key={item}
-                                    onClick={() => handleSelection(item)}
-                                    >
-                                        {formattedPeriod(formattedStat(item))} 
-                                </SelectionButton> )
-                        }
-                    </Scroll>
-                </Section>
+                    <SectionSearch>
+                        <FilterTitle>{title}</FilterTitle>
+                        <Scroll>
+                            {
+                                optionsArr.map(item => 
+                                    <SelectionButton 
+                                        selected={false}
+                                        bg={"#e4eced"}
+                                        color={"#2F2F2F"}
+                                        border={"#e4eced"}
+                                        key={item}
+                                        onClick={() => handleSelection(item)}
+                                        >
+                                            {formattedPeriod(formattedStat(item))} 
+                                    </SelectionButton> )
+                            }
+                        </Scroll>
+                    </SectionSearch>
                 </ScrollCover>
             </React.Fragment>
         );
@@ -67,7 +86,7 @@ const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handle
 
     return (
         <React.Fragment>
-                <Section>
+                <SectionSearch>
                     <FilterTitle>{title}</FilterTitle>
                     <Scroll>
                         <SelectionButton 
@@ -87,7 +106,7 @@ const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handle
                         </SelectionButton> 
           
                     </Scroll>
-                </Section>
+                </SectionSearch>
             </React.Fragment>
     );
 };

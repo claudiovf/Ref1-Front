@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { Driver } from '../../types';
-import { BackHome, ProfileContainer, Spacer, StyledLink } from '../LayoutComponents';
+import { BackHome, ProfileContainer, 
+        Spacer, StyledLink, GenAchContainer, 
+        ProfileName, ProfileWrap } from '../LayoutComponents';
 import Spinner from '../Common/Spinner';
 
 import StatSection from './StatSection/StatSection';
@@ -10,6 +12,7 @@ import GeneralInfo from './GeneralInfo';
 
 import { DRIVER_PROFILE } from '../../queries';
 import Achievements from './Achievements';
+import { getDriverStyle } from '../../utils/currentInfo';
 
 
 const DriverProfile: React.FC = () => {
@@ -40,11 +43,19 @@ const DriverProfile: React.FC = () => {
                         &larr; {driver.givenName} {driver.familyName}
                     </BackHome>
                 </StyledLink>
-
-                <GeneralInfo driver={driver} />
-                <Achievements driver={driver} />
-                <StatSection 
-                    driver={driver} />
+                <Spacer />
+                <ProfileWrap>
+                    <ProfileName 
+                        color={getDriverStyle(driver.driverId).secondary}
+                        bg={getDriverStyle(driver.driverId).primary}>
+                        {[driver.givenName, driver.familyName].join(" ").toUpperCase()}</ProfileName>
+                    <GenAchContainer contBg={getDriverStyle(driver.driverId).primary}>
+                        <GeneralInfo driver={driver} />
+                        <Achievements driver={driver} />
+                    </GenAchContainer>
+                    <StatSection 
+                        driver={driver} />
+                </ProfileWrap>
             </ProfileContainer>
         </React.Fragment>
     );

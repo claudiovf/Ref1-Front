@@ -20,6 +20,11 @@ const CardOverlay = styled.div<{ rad: string; darkOverlay: boolean}>`
     flex-direction: column;
     justify-content: flex-start;
     align-items: right;
+
+    @media (min-width: 768px) {
+        background-color: rgba(47, 47, 47, 0.85);
+        border-radius: 0.5rem;
+    }
 `;
 const MagButton = styled(SelectionButton)`
     position: absolute;
@@ -30,6 +35,12 @@ const MagButton = styled(SelectionButton)`
     margin: 1rem;
     padding: 0 1rem;
     font-size: 0.75rem;
+
+    @media (min-width: 768px) {
+        &:hover {
+            transform: scale(1.1);
+          }
+    }
 `;
 
 const Mag = styled.div`
@@ -126,6 +137,7 @@ const NextSearchOverlay: React.FC<Props> = ({stats, rad, period, type, overlay, 
                             "entries", "points", "avgPoints", "avgPosition"].includes(stat) 
                             ? <SelectionButtonRight 
                                 selected={true}
+                                key={stat}
                                 bg={"#ff425c"}
                                 border={"#ff425c"}
                                 color={"#FFFFFF"}
@@ -143,6 +155,7 @@ const NextSearchOverlay: React.FC<Props> = ({stats, rad, period, type, overlay, 
                             ? <SelectionButtonRight 
                             selected={true}
                             bg={"#ff425c"}
+                            key={stat}
                             border={"#ff425c"}
                             color={"#FFFFFF"}
                             onClick={() => handleNextSearch(true, stat)}>

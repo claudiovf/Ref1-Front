@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Driver } from '../../types';
 import { getDriverStyle } from '../../utils/currentInfo';
 import { formattedDate } from '../../utils/formatting';
-import { InfoBox, InfoRow, Label, Spacer, Value } from '../LayoutComponents';
+import { InfoBox, InfoRow, Label, Value } from '../LayoutComponents';
 
 const GenContainer = styled.div<{ bg: string }>`
     background-color: ${props => props.bg};
@@ -13,17 +13,13 @@ const GenContainer = styled.div<{ bg: string }>`
     align-items: flex-start;
     min-height: auto;
     padding: 0.5rem;
+
+    @media (min-width: 768px) {
+        max-width: 30rem;
+        padding: 3rem 0 3rem 3rem;
+      }
 `;
 
-
-const ProfileName = styled.div<{ color: string}>`
-    color: ${props => props.color};
-    font-family: "Work Sans Extra Bold";
-    align-text: center;
-    font-size: 2rem;
-    padding: 1.5rem 0 1rem 0;
-    width: 100%;
-`;
 
 const ChampValue = styled(Value)`
     font-size: 2rem;
@@ -37,11 +33,7 @@ const GeneralInfo: React.FC<{ driver: Driver; }> = ( {driver}: { driver: Driver 
 
     return (
         <React.Fragment>
-            
             <GenContainer bg={driverStyle.primary}>
-                <Spacer />
-                <ProfileName color={driverStyle.secondary}>
-                    {[driver.givenName, driver.familyName].join(" ").toUpperCase()}</ProfileName>
                 <InfoRow>
                     <InfoBox>
                         <Value>{driver.nationality}</Value>

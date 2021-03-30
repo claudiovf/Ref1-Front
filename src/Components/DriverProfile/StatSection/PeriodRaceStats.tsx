@@ -10,22 +10,37 @@ const StatsContainer = styled.div<{ bg: string }>`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    // align-items: center;
-    widht: 100%;
+    width: 100%;
+
+    @media (min-width: 768px) {
+        justify-content: center;
+        align-items: left;
+    }
 `;
 
 const RaceStats = styled.div`
-    background-color: rgb(255,255,255);
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0rem 1.5rem 1.5rem 1.5rem;
     border-radius: 0.5rem;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        flex-flow: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0 2.5rem 0 2.5rem;
+    }
 `;
 
-
-
+const RaceSectionTitle = styled(SectionTitle)`
+    @media (min-width: 768px) {
+        padding: 0.5rem 3rem 1rem 4rem;
+    }
+`;
 
 
 interface Props {
@@ -38,7 +53,7 @@ const PeriodRaceStats: React.FC<Props> = ({ displayPeriod, driverStyle }: Props)
     return (
         <React.Fragment>
             <StatsContainer bg={driverStyle.primary}>
-                <SectionTitle color={driverStyle.secondary} >Race Stats</SectionTitle>
+                <RaceSectionTitle color={driverStyle.secondary} >Race Stats</RaceSectionTitle>
                 <RaceStats>
                         {displayPeriod.stats.map((s: Stat) => {
                             if (s.stat === 'fastestLaps') {

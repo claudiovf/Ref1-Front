@@ -6,7 +6,6 @@ import TeamPeriodStats from './TeamPeriodStats';
 import TeamPeriodRaceStats from './TeamPeriodRaceStats';
 
 
-
 interface Props {
     team: Team;
 }
@@ -47,9 +46,9 @@ const TeamStatInfo: React.FC<Props> = ({ team }: Props) => {
                 
                 {displayPeriod
                 ? <TeamPeriodStats 
-                    displayPeriod={displayPeriod} 
-                    teamStyle={teamStyle}
-                />
+                        displayPeriod={displayPeriod} 
+                        teamStyle={teamStyle}
+                    />  
                 : null}
 
                 {displayPeriod

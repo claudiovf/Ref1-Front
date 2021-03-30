@@ -15,6 +15,14 @@ const StatCardStyle = styled.div<{ dark: boolean, rad: string }>`
     padding: 1.5rem 0;
     border-radius: ${props => props.rad};
     position: relative;
+
+    @media (min-width: 768px) {
+        width: 48%;
+        border-radius: 0.5rem;
+        margin-bottom: 4%;
+        background-color: #FFFFFF;
+        color: #2F2F2F;
+    }
 `;
 
 const StatTitle = styled.div<{ colorTitle: boolean }>`
@@ -23,6 +31,9 @@ const StatTitle = styled.div<{ colorTitle: boolean }>`
     font-family: "Work Sans Bold";
     font-size: 1rem;
     padding: 0.5rem 0.5rem;
+    @media (min-width: 768px) {
+        color: #2F2F2F;
+    }
 `;
 
 const StatValue = styled.div<{ colorDark: boolean }>`
@@ -33,6 +44,9 @@ const StatValue = styled.div<{ colorDark: boolean }>`
     align-items: flex-start;
     font-size: 1.25rem;
     color: ${props => props.colorDark ? "#2F2F2F" : "#FFFFFF" };
+    @media (min-width: 768px) {
+        color: #2F2F2F;
+    }
 `;
 const StatValueRace = styled.div<{ colorDark: boolean }>`
     font-family: "Work Sans Semi Bold";
@@ -42,6 +56,9 @@ const StatValueRace = styled.div<{ colorDark: boolean }>`
     align-items: flex-start;
     font-size: 1rem;
     color: ${props => props.colorDark ? "#2F2F2F" : "#FFFFFF" };
+    @media (min-width: 768px) {
+        color: #2F2F2F;
+    }
 `;
 const StatValueDate = styled.div<{ colorDark: boolean }>`
     font-family: "Work Sans Semi Bold";
@@ -51,6 +68,9 @@ const StatValueDate = styled.div<{ colorDark: boolean }>`
     align-items: flex-start;
     font-size: 0.75rem;
     color: ${props => props.colorDark ? "#2F2F2F" : "#FFFFFF" };
+    @media (min-width: 768px) {
+        color: #2F2F2F;
+    }
 `;
 
 const StatLabel = styled.div`
