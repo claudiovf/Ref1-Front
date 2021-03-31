@@ -1,35 +1,5 @@
-import styled, { createGlobalStyle, keyframes } from "styled-components";
-import workSansBold from '../Assets/WorkSans/static/WorkSans-Bold.ttf';
-import workSansSemiBold from '../Assets/WorkSans/static/WorkSans-SemiBold.ttf';
-import workSansExtraBold from '../Assets/WorkSans/static/WorkSans-ExtraBold.ttf';
-import workSansReg from '../Assets/WorkSans/static/WorkSans-Regular.ttf';
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-
-// #24282E Raisin Black
-// #D1DADC Light Gray
-// #FFFFFF White 
-// #388659 Sea Green
-// #EF233C Imperial Red
-// #6279B8 Glaucous
-
-export const Fonts = createGlobalStyle`
-    @font-face {
-        font-family: "Work Sans Extra Bold";
-        src: url(${workSansExtraBold}) format('truetype');
-    }
-    @font-face {
-        font-family: "Work Sans Bold";
-        src: url(${workSansBold}) format('truetype');
-    }
-    @font-face {
-        font-family: "Work Sans Semi Bold";
-        src: url(${workSansSemiBold}) format('truetype');
-    }
-    @font-face {
-        font-family: "Work Sans Reg";
-        src: url(${workSansReg}) format('truetype');
-    }
-`;
 
 
 export const Spacer = styled.div`
@@ -88,11 +58,17 @@ export const Scroll = styled.div`
       }
 `;
 
+export const CardsSlide = keyframes`
+    0% { opacity: 0;}
+    65% { opacity: 0; transform: translateX(5rem)}
+    100% { opacity: 1}
+`;
 export const popOutAnimation = keyframes`
     0% { opacity: 0;}
     65% { opacity: 0; margin-left: 5rem;}
     100% { opacity: 1}
 `;
+
 
 export const slideUpAnimation = keyframes`
     0% { opacity: 0;}
@@ -110,7 +86,8 @@ export const Cards = styled.div<{ bg: string}>`
     margin: 0.25rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    animation-name: ${popOutAnimation};
+    will-change: transform;
+    animation-name: ${CardsSlide};
     animation-duration: 1s;
     cursor: pointer;
 
@@ -124,6 +101,7 @@ export const Cards = styled.div<{ bg: string}>`
 `;
 
 export const ProfileContainer = styled.div`
+    ill-change: transform;
     animation-name: ${popOutAnimation};
     animation-duration: 1s;
     width: auto;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Team } from '../../types';
 import { getDriverStyle } from '../../utils/currentInfo';
-import { InfoBox, InfoRow, Label, Spacer, Value } from '../LayoutComponents';
+import { InfoBox, InfoRow, Label, Value } from '../LayoutComponents';
 
 const GenContainer = styled.div<{ bg: string }>`
     background-color: ${props => props.bg};
@@ -28,8 +28,6 @@ const TeamInfo: React.FC<{ team: Team; }> = ( {team}: { team: Team } ) => {
         <React.Fragment>
             
             <GenContainer bg={teamStyle.primary}>
-                <Spacer />
-                
                 <InfoRow>
                     <InfoBox>
                         <Value>{team.nationality}</Value>
