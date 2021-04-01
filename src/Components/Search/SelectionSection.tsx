@@ -28,11 +28,12 @@ const ScrollCover = styled.div`
     background-color: #FFFFFF;
     overflow: hidden;
     animation-name: ${slideUpAnimation};
-    animation-duration: 0.3s
-    
+    animation-duration: 0.3s;
 
     @media (max-width: 767px) {
         max-height: 5.175rem;
+        animation-name: ${slideUpAnimation};
+        animation-duration: 0.3s
     }
 
 `;
