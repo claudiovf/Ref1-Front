@@ -54,4 +54,6 @@ Formula 1 fans need an easy way to find the statistics they are after. So far, a
 
 ##
 
+![cornerColor](https://user-images.githubusercontent.com/64691675/113237013-c718d880-92f1-11eb-8456-c70c3a1f30fb.jpg)
+thub.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 
