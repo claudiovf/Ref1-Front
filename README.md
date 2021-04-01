@@ -11,10 +11,10 @@ What has
 
 ## Overview
 
+The objective of the [Ref1.App](https://ref1.app) was to create an engaging, visually appealing, and easy to use web app for all Formula 1 fans through the use of a modern stack. I was inspired to create a tool that could benefit new and lifelong fans of the sport. The app aims to address some of the pain points within the online experience that fans have had up until this point in terms of finding the Formula 1 info they want.
 
 
-
-## Learn More
+## The problem
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
