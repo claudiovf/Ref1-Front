@@ -87,6 +87,9 @@ Technically, you can **cycle through all 850+ driver profiles, 210+ team profile
 The use of NextSearch also removed the need to create a menu on the home page. The most frequently searched information (such as driver standings, team standings, most wins, etc) are now cards with pre-defined search variables on the Home page. Up until now that kind of info required its own page view in almost any website and any sport. 
 
 
+## What's Next for Ref1 App?
+
+The app is currently up and running and has almost all the mechanics done. But Formula 1 has plenty more to be discovered. For next versions, I will be focusing on adding tracks, season calendar, race results, icons and loads more stats. **Stay tuned!**:v: 
 
 
 
