@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Ref1 App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The new easy to use Formula 1 stats reference web app. Visit [Ref1.App](https://ref1.app) to see it live! :)
 
 ## Available Scripts
 
