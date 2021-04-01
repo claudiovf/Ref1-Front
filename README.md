@@ -16,6 +16,4 @@ The objective of the [Ref1.App](https://ref1.app) was to create an engaging, vis
 
 ## The problem
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Formula 1 has over 70 years of history. 
