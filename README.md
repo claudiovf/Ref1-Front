@@ -19,6 +19,7 @@ The objective of the [Ref1.App](https://ref1.app) was to create an engaging, vis
 ### Parts + Stack
 
 This project has 3 parts:
+
  1. The Frontend ( This repo )
     * React 
     * Typescript
@@ -51,6 +52,7 @@ Formula 1 fans needed an easy way to find the statistics they are after. So far,
  * Formula 1 has over 70 years of rich history. That makes it difficult to have all countless stats of over 1000 races, 850 drivers and 210 teams within a few clicks away.
  *  Remove all the unnecessary links, lists, tables, dropdown boxes, filters, etc.
  *  Make it intuitive, modern and beautiful.
+
 
 ## The solution
 
