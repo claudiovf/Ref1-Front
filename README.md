@@ -68,7 +68,7 @@ From the start, as a Formula 1 fan, I knew a few things necessary for achieving 
 
 It should be obvious. You see it, you tap it, something happens. The use of a standardized set of cards and buttons makes the app **intuitive, integrated** and it **feels familiar** to most smart-phone users.
 
-It also needed to be fun to look at and navigate. It had to POP! I made it **POP**. :sunglasses:  
+It also needed to be fun to look at and navigate. **It had to POP! I made it POP**. :sunglasses:  
 
 
 ### Relevant Search Results
