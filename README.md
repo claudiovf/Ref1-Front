@@ -13,7 +13,7 @@ What has
 
 ### About The Project
 
-The objective of the [Ref1.App](https://ref1.app) was to create an engaging, visually appealing, and easy to use web app for all Formula 1 fans through the use of a modern stack. I was inspired to create a tool that could benefit new and lifelong fans of the sport. The app aims to address some of the pain points within the online experience that fans have had up until this point in terms of finding the Formula 1 info they want.
+The objective of the [Ref1.App](https://ref1.app) was to create an engaging, visually appealing, and easy to use Mobile-first web app for all Formula 1 fans through the use of a modern stack. I was inspired to create a tool that could benefit new and lifelong fans of the sport. The app aims to address some of the pain points within the online experience that fans have had up until this point in terms of finding the Formula 1 info they want.
 
  
 ### Parts + Stack
@@ -54,6 +54,4 @@ Formula 1 fans need an easy way to find the statistics they are after. So far, a
 
 ##
 
-![cornerColor](https://user-images.githubusercontent.com/64691675/113237013-c718d880-92f1-11eb-8456-c70c3a1f30fb.jpg)
-thub.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 
