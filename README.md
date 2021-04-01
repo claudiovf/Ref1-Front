@@ -1,6 +1,6 @@
 # Ref1 App
 
-The new easy to use Formula 1 stats reference web app. Visit [Ref1.App](https://ref1.app) to see it live! :)
+The new easy to use Formula 1 stats reference web app. Visit [Ref1.App](https://ref1.app) to see it live! :relaxed:
 
 What has 
   * two thumbs 
