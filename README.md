@@ -92,7 +92,7 @@ The use of NextSearch also removed the need to create a menu on the home page. T
 
 ## What's Next for Ref1 App?
 
-The app is currently up and running and has almost all the mechanics done. But Formula 1 has plenty more to be discovered. For next versions, I will be focusing on adding tracks, season calendar, race results, icons and loads more stats. **Stay tuned!**:v: 
+The app is currently up and running and has almost all the mechanics done. But Formula 1 has plenty more to be discovered. For next versions, I will be focusing on adding tracks, season calendar, race results, icons and a lot more stats. **Stay tuned!**:v: 
 
 
 
