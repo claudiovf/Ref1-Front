@@ -49,6 +49,9 @@ const ModalContainer = styled.div<{ teams: boolean }>`
     animation-duration: 0.5s;
     overflow: scroll;
     margin-bottom: 1rem;
+    @media (min-width: 768px) {
+        overflow: hidden;
+    }
 `;
 
 const OptionsContainer = styled.div`
@@ -60,7 +63,13 @@ const OptionsContainer = styled.div`
     height: auto;
     min-height: 12rem;
     margin: 0.5rem 1.5rem;
-    overflow: scroll;
+    overflow: auto;
+    @media (min-width: 768px) {
+        // overflow: hidden;
+        width: 96%;
+        padding: 0 2rem;
+        margin: 0 2rem;
+    }
 `;
 
 
