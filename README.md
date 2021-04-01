@@ -55,7 +55,7 @@ Formula 1 fans needed an easy way to find the statistics they are after. So far,
  *  Making it intuitive, modern and beautiful.
 
 
-## The solution
+## The Solution
 
 ### Simple
 
