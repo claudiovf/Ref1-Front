@@ -19,9 +19,24 @@ The objective of the [Ref1.App](https://ref1.app) was to create an engaging, vis
 ### Parts + Stack
 
 This project has 3 parts:
- * The Front-end - React, Typescript, Redux, GraphQL, Styled-Components ( This repo )
- * The API - NodeJS, Typescript, GraphQL, Mongoose, JWT, MongoDB ( [Back-end repo](https://github.com/claudiovf/ref1-Backend) )
- * The Admin Dashboard - React, Typescript, GraphQL ( [Admin repo](https://github.com/claudiovf/ref1-admin) )
+ 1. The Frontend ( This repo )
+  * React 
+  * Typescript
+  * Redux
+  * GraphQL
+  * Styled-Components 
+ 2. The API  ( [Backend repo](https://github.com/claudiovf/ref1-Backend) )
+  * NodeJS
+  * Typescript
+  * GraphQL
+  * Mongoose
+  * JWT
+  * MongoDB 
+ 3. The Admin Dashboard ( [Admin repo](https://github.com/claudiovf/ref1-admin) )
+  * React
+  * Typescript
+  * GraphQL 
+  * Semantic-ui-css
 
 ## The Problem
 
