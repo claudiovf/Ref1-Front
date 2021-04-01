@@ -24,19 +24,22 @@ This project has 3 parts:
     * Typescript
     * Redux
     * GraphQL
-    * Styled-Components 
+    * Styled-Components
+     
  2. The API  ( [Backend repo](https://github.com/claudiovf/ref1-Backend) )
-  * NodeJS
-  * Typescript
-  * GraphQL
-  * Mongoose
-  * JWT
-  * MongoDB 
+    * NodeJS
+    * Typescript
+    * GraphQL
+    * Mongoose
+    * JWT
+    * MongoDB 
+    
  3. The Admin Dashboard ( [Admin repo](https://github.com/claudiovf/ref1-admin) )
-  * React
-  * Typescript
-  * GraphQL 
-  * Semantic-ui-css
+    * React
+    * Typescript
+    * GraphQL 
+    * Semantic-ui-css
+    
 
 ## The Problem
 
