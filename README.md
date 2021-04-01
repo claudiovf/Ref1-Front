@@ -77,7 +77,9 @@ Enter GraphQL. With the use of GraphQL I was able to deliver only the informatio
 
 Essentially, if the Search has all the necessary query variables, it will be open from anywhere in the app. It works by storing search query variables on a Redux store, which are then used by the Search component to fulfill the query and present the results. 
 
-It worked great! And it allowed me to create what I called NextSearch (nothing special though, I should warn). NextSearch is simply a suggested search based on the state of the profile and stat the user is most interested. In short, the user see a particular stat of a particular driver in a particular period, and fire up a search from there to see the driver rankings for that particular stat in that particular period, intead of starting a whole new google search. 
+It worked great! And it allowed me to create what I called NextSearch (nothing special though, I should warn). NextSearch is simply a suggested search based on the state of the profile and stat the user is most interested. In short, the user see a particular stat of a particular driver in a particular period, and fire up a search from there to view the driver rankings for that particular stat in that particular period, instead of starting a whole new google search.
+
+Technically, you can cycle through all the  850+ driver profiles, 210+ team profiles and 4000 search results by using only the NextSearch. 
 
 It also removed the need to create a menu on the home page, as the most frequently searched information (such as driver standings, team standings, most wins, etc) are now cards with pre-defined search variables on the Home page. Up until now that kind of info required its own page view in almost any website and any sport. 
 
