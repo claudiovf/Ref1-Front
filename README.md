@@ -5,7 +5,7 @@ The new easy to use Formula 1 stats reference web app. Visit [Ref1.App](https://
 What has 
   * two thumbs 
   * started as a personal project to practice MERNG + Typescript skills
-  * and now has over 7.5k page views? 
+  * and has now over 7.5k page views in over 50 countries? 
   
   :+1: THIS PROJECT :+1:
 
@@ -52,6 +52,32 @@ Formula 1 fans need an easy way to find the statistics they are after. So far, a
  *  Remove all the unnecessary links, lists, tables, dropdown boxes, filters, etc.
  *  Make it intuitive, modern and beautiful.
 
-##
+## The solution
+
+#### No more than 3 main page views (Home, Profile, SearchModal)
+
+From the start, as a Formula 1 fan, I knew a few things necessary for achieving the desired result, and one of them is that it needed as few steps to get anywhere.
+
+
+#### An integrated App
+
+It should be obvious, you see it, you tap it, something happens. The use of a standardized set of cards and buttons makes the app intuitive and it feels familiar to most smart phone users.
+
+
+#### Relevant Search Results
+
+Enter GraphQL. With the use of GraphQL I was able to deliver only the information requested by the user in the same search result format used for all searches, allowing users to quickly view the information that they are after in a very clear way.
+
+
+#### An integrated Search & NextSearch
+
+Essentially, if the Search has all the necessary query variables, it will be open from anywhere in the app. It works by storing search query variables on a Redux store, which are then used by the Search component to fulfill the query and present the results. 
+
+It worked great! And it allowed me to create what I called NextSearch (nothing special though, I should warn). NextSearch is simply a suggested search based on the state of the profile and stat the user is most interested. In short, the user see a particular stat of a particular driver in a particular period, and fire up a search from there to see the driver rankings for that particular stat in that particular period. 
+
+It also removed the need to create a menu on the home page, as the most frequently searched information (such as driver standings, team standings, most wins, etc) are now cards with pre-defined search variables on the Home page. Up until now that kind of info required its own page view in almost any sport. 
+
+
+
 
 
