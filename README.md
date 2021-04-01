@@ -20,11 +20,11 @@ The objective of the [Ref1.App](https://ref1.app) was to create an engaging, vis
 
 This project has 3 parts:
  1. The Frontend ( This repo )
-  * React 
-  * Typescript
-  * Redux
-  * GraphQL
-  * Styled-Components 
+   * React 
+   * Typescript
+   * Redux
+   * GraphQL
+   * Styled-Components 
  2. The API  ( [Backend repo](https://github.com/claudiovf/ref1-Backend) )
   * NodeJS
   * Typescript
