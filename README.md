@@ -11,17 +11,17 @@ What has
 
 ## Overview
 
-#### About The Project
+### About The Project
 
 The objective of the [Ref1.App](https://ref1.app) was to create an engaging, visually appealing, and easy to use web app for all Formula 1 fans through the use of a modern stack. I was inspired to create a tool that could benefit new and lifelong fans of the sport. The app aims to address some of the pain points within the online experience that fans have had up until this point in terms of finding the Formula 1 info they want.
 
  
-#### Parts
+### Parts + Stack
 
 This project has 3 parts:
- * The Front-end ( This repo )
- * The API ( [Back-end repo](https://github.com/claudiovf/ref1-Backend) )
- * The Admin Dashboard ( [Admin repo](https://github.com/claudiovf/ref1-admin) )
+ * The Front-end - React, Typescript, Redux, GraphQL, Styled-Components ( This repo )
+ * The API - NodeJS, Typescript, GraphQL, Mongoose, JWT, MongoDB ( [Back-end repo](https://github.com/claudiovf/ref1-Backend) )
+ * The Admin Dashboard - React, Typescript, GraphQL ( [Admin repo](https://github.com/claudiovf/ref1-admin) )
 
 ## The Problem
 
