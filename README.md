@@ -1,3 +1,4 @@
+
 # Ref1 App
 
 The new easy to use Formula 1 stats reference web app. Visit [Ref1.App](https://ref1.app) to see it live! :relaxed:
@@ -46,6 +47,7 @@ This project has 3 parts:
 
 Formula 1 fans needed an easy way to find the statistics they are after. So far, all that was available to fans were poorly formatted websites with lots of links and tables and lists. Add to that the obscene amount of ads and you have something almost unusable, specially during a race when you dont want to spend too long reading an entire Wikipedia article, or decrypting your way through bad websites just to find who had the most podiums in 2013 (it was Vettel by the way). 
 
+![cornerColor](https://user-images.githubusercontent.com/64691675/113251316-d017a300-930d-11eb-8914-54ad1e914db4.jpg)
 
 ## The Challenges
 
