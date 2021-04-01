@@ -75,7 +75,7 @@ It also needed to be fun to look at and navigate. It had to POP! I made it POP. 
 Enter GraphQL. With the use of GraphQL I was able to deliver only the information requested by the user in the same search result format used for all searches. That allows users to quickly view the information that they are after in a very clear way.
 
 
-### An integrated Search & NextSearch
+### Integrated Search & NextSearch
 
 Essentially, if the Search has all the necessary query variables, it will open from anywhere in the app. It works by storing search query variables on a Redux store, which are then used by the Search component to fulfill the query and present the results. 
 
