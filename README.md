@@ -16,4 +16,4 @@ The objective of the [Ref1.App](https://ref1.app) was to create an engaging, vis
 
 ## The problem
 
-Formula 1 has over 70 years of history. 
+Formula 1 has over 70 years of rich history. That makes it difficult to have all countless stats of over 1000 races, 850 drivers and 210 teams in a well laid out form. So far, all that was available to fans were poorly formatted websites with lots of links and tables and lists. Add to that the obscene amount of ads and you have something almost unusable, specially during a race when you dont want spend too long reading an entire Wikipedia article or decrypting your way through bad websites just to find who had the most podiums in 2013.
