@@ -54,7 +54,8 @@ Formula 1 fans needed an easy way to find the statistics they are after. So far,
 
 ## The solution
 
-### No more than 3 main page views (Home, Profile, SearchModal)
+### 3 main page views 
+(Home, Profile, Search)
 
 From the start, as a Formula 1 fan, I knew a few things necessary for achieving the desired result, and one of them is that it needed as few steps to get anywhere.
 
