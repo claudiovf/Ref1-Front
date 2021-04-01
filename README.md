@@ -20,11 +20,11 @@ The objective of the [Ref1.App](https://ref1.app) was to create an engaging, vis
 
 This project has 3 parts:
  1. The Frontend ( This repo )
-   * React 
-   * Typescript
-   * Redux
-   * GraphQL
-   * Styled-Components 
+    * React 
+    * Typescript
+    * Redux
+    * GraphQL
+    * Styled-Components 
  2. The API  ( [Backend repo](https://github.com/claudiovf/ref1-Backend) )
   * NodeJS
   * Typescript
@@ -49,6 +49,6 @@ Formula 1 fans need an easy way to find the statistics they are after. So far, a
  *  Remove all the unnecessary links, lists, tables, dropdown boxes, filters, etc.
  *  Make it intuitive, modern and beautiful.
 
-
+##
 
 
