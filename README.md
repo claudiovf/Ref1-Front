@@ -24,14 +24,15 @@ The objective of the [Ref1.App](https://ref1.app) was to create an **engaging, v
 
 This project has 3 parts:
 
- 1. The Frontend ( This repo )
+ 1. The Frontend ( This repo ) *The good looking one*
+ 
     * React 
     * Typescript
     * Redux
     * GraphQL
     * Styled-Components
      
- 2. The API  ( [Backend repo](https://github.com/claudiovf/ref1-Backend) )
+ 2. The API  ( [Backend repo](https://github.com/claudiovf/ref1-Backend) ) *Feeds the App, will soon be open for everyone*
     * NodeJS
     * Typescript
     * GraphQL
@@ -39,7 +40,7 @@ This project has 3 parts:
     * JWT
     * MongoDB 
     
- 3. The Admin Dashboard ( [Admin repo](https://github.com/claudiovf/ref1-admin) )
+ 3. The Admin Dashboard ( [Admin repo](https://github.com/claudiovf/ref1-admin) ) *Where the magic happens. Process over 70 years of F1 history through countless iterations to create the database*
     * React
     * Typescript
     * GraphQL 
