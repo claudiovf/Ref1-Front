@@ -1,8 +1,8 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Team } from '../../types';
 import { getDriverStyle } from '../../utils/currentInfo';
+import { formattedPeriod } from '../../utils/formatting';
 import { Cards, StyledLink } from '../LayoutComponents';
 
 
@@ -11,24 +11,27 @@ const TeamName = styled.div<{ color: string;}>`
     font-family: "Work Sans Semi Bold";
     display: flex;
     flex-direction: row nowrap;
+    justify-content: center;
     padding: 1rem;
     font-size: 1rem;
-    width: auto;
+    min-width: 5rem;
     height: auto;
     white-space: nowrap;
 `;
 
+interface Props {
+    team: string
+}
 
-
-const CurrentTeamCards: React.FC<{ team: Team }> = ({team}: {team: Team}) => {
-    const teamStyle = getDriverStyle(team.constructorId);
+const CurrentTeamCards: React.FC<Props> = ({team}: Props) => {
+    const teamStyle = getDriverStyle(team);
 
     return (
         <>
-            <StyledLink to={"/profile/team/" + team.constructorId}>
+            <StyledLink to={"/profile/team/" + team}>
                 <Cards bg={teamStyle.primary}>
                     <TeamName color={teamStyle.secondary}>
-                        {team.name} </TeamName>
+                        {formattedPeriod(team)} </TeamName>
                 </Cards>
             </StyledLink>
         </>

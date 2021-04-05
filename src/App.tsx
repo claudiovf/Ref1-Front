@@ -21,6 +21,7 @@ const App: React.FC = () => {
 
   const TRACKING_ID = "UA-192952368-1";
   ReactGA.initialize(TRACKING_ID);
+  
 
   return (
     <div className="App">
@@ -33,7 +34,7 @@ const App: React.FC = () => {
           <Standings />
           <ExploreDrivers />
           <LegendsPanel />
-          <ExploreTeams />
+          <ExploreTeams /> 
           <SkySportsPanel />
         </Route>
         <Route exact path="/profile/driver/:driverId">

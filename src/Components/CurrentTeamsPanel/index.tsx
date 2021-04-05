@@ -1,11 +1,6 @@
 import React from 'react';
 import { Section, Title, Scroll } from '../LayoutComponents';
-import Spinner from '../Common/Spinner';
 import CurrentTeamCards from './CurrentTeamCards';
-import { useQuery } from '@apollo/client';
-import { Team } from '../../types';
-import { GET_SEASON_TEAMS } from '../../queries';
-
 
 
 const CurrentTeamsPanel: React.FC = () => {
@@ -14,33 +9,19 @@ const CurrentTeamsPanel: React.FC = () => {
         'alpine', 'ferrari', 'alphatauri', 'alfa', 
         'haas', 'williams'
     ];
-    
-    const { loading, data } = useQuery<{ findManyTeams: Team[] }>(GET_SEASON_TEAMS,
-        { variables: { teamsList } });
-
-    
- 
-        
 
     return (
         <React.Fragment>
             <Section>  
                 <Title>2021 Teams</Title>
-                    { loading ? <Spinner /> : null}
                 <Scroll>
-                    { data ?  (
-                        teamsList.map(team => {
-                            const teamToDisplay = data.findManyTeams.find(t => t.constructorId === team);
-
-                            if(!teamToDisplay) return null;
-
+                    { teamsList.map(team => {
                             return (
                                 <CurrentTeamCards 
-                                    team={teamToDisplay} 
-                                    key={teamToDisplay.constructorId} />
+                                    team={team} 
+                                    key={team} />
                             );
                         })
-                        ) : null
                     }
                 </Scroll>
             </Section>

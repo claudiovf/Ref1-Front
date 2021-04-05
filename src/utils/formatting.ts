@@ -9,6 +9,7 @@ export const isDark = (stat: string): boolean => {
 };
 
 export const formattedPeriod = (teamName: string): string => {
+    if (teamName === "alfa") return "Alfa Romeo";
     return teamName.split("_").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 };
 
