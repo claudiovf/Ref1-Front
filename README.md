@@ -74,7 +74,7 @@ It also needed to be fun to look at and navigate. **It had to POP! I made it POP
 
 ### Relevant Search Results
 
-Enter GraphQL. With the use of GraphQL I was able to deliver only the information requested by the user in the same search result format used for all searches. That allows users to **quickly view the information that they are after in a very clear way**.
+Enter the API. With the use of GraphQL I was able to deliver only the information requested by the user in the same search result format used for all searches. That allows users to **quickly view the information that they are after in a very clear way**.
 
 
 ### Integrated Search & NextSearch
