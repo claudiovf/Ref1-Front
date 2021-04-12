@@ -1,96 +1,46 @@
+# Getting Started with Create React App
 
-# Ref1 App
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The new easy to use Formula 1 stats reference web app. Visit [Ref1.App](https://ref1.app) to see it live! :relaxed:
+## Available Scripts
 
-What has: 
-  * two thumbs 
-  * started as a personal project to practice **MERNG + Typescript skills**
-  * and has now over **7.5k page views in over 50 countries**? 
-  
-  :+1: THIS PROJECT :+1:
-![ref1_mockup_2](https://user-images.githubusercontent.com/64691675/113371172-710b6a00-93b1-11eb-90fd-d2e883a4a0c7.png)
-## Overview
+In the project directory, you can run:
 
-### About The Project
+### `npm start`
 
-The objective of the [Ref1.App](https://ref1.app) was to create an **engaging, visually appealing and easy to use mobile-first** web app for all Formula 1 fans through the use of a modern stack. I was inspired to create a tool that could benefit new and lifelong fans of the sport. The app aims to address some of the pain points within the online experience that fans have had up until this point in terms of finding the Formula 1 info they want.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
- 
-### Parts + Stack
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-This project has 3 parts:
+### `npm test`
 
- 1. The Frontend ( This repo ) *The good looking one*
- 
-    * React 
-    * Typescript
-    * Redux
-    * GraphQL
-    * Styled-Components
-     
- 2. The API  ( [Backend repo](https://github.com/claudiovf/ref1-Backend) ) *Feeds the App, will soon be open for everyone*
-    * NodeJS
-    * Typescript
-    * GraphQL
-    * Mongoose
-    * JWT
-    * MongoDB 
-    
- 3. The Admin Dashboard ( [Admin repo](https://github.com/claudiovf/ref1-admin) ) *Where the magic happens. Process over 70 years of F1 history through countless iterations to create the database*
-    * React
-    * Typescript
-    * GraphQL 
-    * Semantic-ui-css
-    
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## The Problem
+### `npm run build`
 
-Formula 1 fans needed an easy way to find the statistics they are after. So far, all that was available to fans were poorly formatted websites with lots of links and tables and lists. Add to that the obscene amount of ads and you have something almost unusable, specially during a race when you dont want to spend too long reading an entire Wikipedia article, or decrypting your way through bad websites just to find who had the most podiums in 2013 (it was Vettel by the way). 
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## The Challenges
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
- * Formula 1 has over 70 years of rich history. That makes it difficult to have all countless stats of over 1000 races, 850 drivers and 210 teams within a few clicks away.
- *  Removing all the unnecessary links, lists, tables, dropdown boxes, filters, etc.
- *  Making it intuitive, modern and beautiful.
+### `npm run eject`
 
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## The Solution
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Simple
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-The app has 3 main page views (Home, Profile, Search).
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-From the start, as a Formula 1 fan, I knew a few things necessary for achieving the desired result. One of them is that it needed **as few steps as possible to get anywhere**.
+## Learn More
 
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### Beautiful & Intuitive 
-
-It should be obvious. You see it, you tap it, something happens. The use of a standardized set of cards and buttons makes the app **intuitive, integrated** and it **feels familiar** to most smart-phone users.
-
-It also needed to be fun to look at and navigate. **It had to POP! I made it POP**. :sunglasses:  
-
-
-### Relevant Search Results
-
-Enter GraphQL. With the use of GraphQL I was able to deliver only the information requested by the user in the same search result format used for all searches. That allows users to **quickly view the information that they are after in a very clear way**.
-
-
-### Integrated Search & NextSearch
-
-Essentially, if the Search has all the necessary query variables, it will **open from anywhere in the app**. It works by storing search query variables on a Redux store, which are then used by the Search component to fulfill the query and present the results. 
-
-It worked great! It allowed me to create what I called **NextSearch** (nothing special though, I should warn). NextSearch is simply a suggested search based on the state of the profile and stat the user is most interested in. In short, the user sees a particular stat of a particular driver in a particular period, and fires up a search from there to view the driver rankings for that stat and period, instead of starting a whole new search.
-
-Technically, you can **cycle through all 850+ driver profiles, 210+ team profiles and 4000 search results by using the NextSearch only**. 
-
-The use of NextSearch also removed the need to create a menu on the home page. The most frequently searched information (such as driver standings, team standings, most wins, etc) are now cards with pre-defined search variables on the Home page. Up until now that kind of info required its own page view in almost any website and any sport. 
-
-
-## What's Next for Ref1 App?
-
-The app is currently up and running and has almost all the mechanics done. But Formula 1 has plenty more to be discovered. For next versions, I will be focusing on adding tracks, season calendar, race results, icons and a lot more stats. **Stay tuned!**:v: 
-
-
-
+To learn React, check out the [React documentation](https://reactjs.org/).

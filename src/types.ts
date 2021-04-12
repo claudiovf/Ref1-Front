@@ -157,3 +157,47 @@ export interface CurrTeamStyles {
     primary     : string;
     secondary   : string;
 }
+
+
+//////////////////////////////////
+//
+//  Circuit types
+//
+//
+
+export interface LapRecord {
+    time: string;
+    driver: string;
+    season: string;  
+}
+
+export interface CircuitResult {
+    raceName: string;
+    season: string;
+    round: string;
+    result: Pos[];
+}
+
+
+export interface Schedule {
+    practice_1: string;
+    practice_2: string;
+    practice_3: string;
+    qualifying: string;
+    race: string;
+}
+
+export interface CircuitType {
+    circuitId: string;
+    circuitName: string;
+    raceName: string;
+    scheduleTrack: Schedule;
+    scheduleUTC: Schedule;
+    firstGP: string;
+    laps: number;
+    length: number;
+    raceDistance: number;
+    location?: Location;
+    lapRecord?: LapRecord;
+    results: CircuitResult[];
+}

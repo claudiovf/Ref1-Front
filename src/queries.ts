@@ -207,6 +207,46 @@ export const GET_TEAM_RESULTS = gql`
     }
 `;
 
+export const GET_NEXT_RACES = gql`
+    query findingCircuit {
+        findAllCircuits {
+            circuitId
+            scheduleUTC {
+                race
+            }
+            location {
+                country
+                locality
+            }  
+            circuitName     
+            raceName  
+            scheduleUTC {
+                practice_1
+                race
+            }     
+        }
+    }
+`;
+
+export const GET_NEXT_RACE = gql`
+    query findCircuit($circuitId: String!){
+        findCircuit (
+            circuitId: $circuitId
+        ) {
+            circuitId
+            raceName
+
+            scheduleUTC {
+                race
+            }
+            location {
+                country
+                locality
+            }
+        }
+    }
+`;
+
 // {
 //     givenName
 //     familyName

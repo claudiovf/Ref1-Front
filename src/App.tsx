@@ -15,6 +15,7 @@ import ExploreTeams from './Components/ExploreTeams';
 import Standings from './Components/Standings';
 import ReactGA from 'react-ga';
 import RouteTracker from './RouteTracker';
+import HomeCircuits from './Components/HomeCircuits';
 
 
 const App: React.FC = () => {
@@ -29,6 +30,8 @@ const App: React.FC = () => {
       <Header />
       <Switch>
         <Route exact path="/">
+          <Spacer />
+          <HomeCircuits />
           <CurrentDriversPanel />
           <CurrentTeamsPanel />
           <Standings />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, Title, Spacer, Scroll } from '../LayoutComponents';
+import { Section, Title, Scroll } from '../LayoutComponents';
 import Spinner from '../Common/Spinner';
 import CurrentDriverCards from './CurrentDriverCards';
 import { useQuery } from '@apollo/client';
@@ -22,7 +22,6 @@ const CurrentDriversPanel: React.FC = () => {
 
     return (
         <React.Fragment>
-            <Spacer />
             <Section>  
                 <Title>2021 Drivers</Title>
                     { loading ? <Spinner /> : null}
