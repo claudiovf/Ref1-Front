@@ -171,14 +171,6 @@ export interface LapRecord {
     season: string;  
 }
 
-export interface CircuitResult {
-    raceName: string;
-    season: string;
-    round: string;
-    result: Pos[];
-}
-
-
 export interface Schedule {
     practice_1: string;
     practice_2: string;
@@ -199,5 +191,5 @@ export interface CircuitType {
     raceDistance: number;
     location?: Location;
     lapRecord?: LapRecord;
-    results: CircuitResult[];
+    results: string[];
 }

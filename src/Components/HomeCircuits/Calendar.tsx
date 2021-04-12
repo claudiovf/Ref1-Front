@@ -83,7 +83,7 @@ const getGP = (circuitId: string) => {
         case circuitId === 'portimao':
             return 'Portuguese';
         case circuitId === 'catalunya':
-            return 'Soanish';
+            return 'Spanish';
         case circuitId === 'monaco':
             return 'Monaco';
         case circuitId === 'BAK':
@@ -117,7 +117,7 @@ const getGP = (circuitId: string) => {
         case circuitId === 'interlagos':
             return 'Brazilian';
         case circuitId === 'albert_park':
-            return 'Autralian';
+            return 'Australian';
         case circuitId === 'jeddah':
             return 'Saudi Arabian';
         case circuitId === 'yas_marina':

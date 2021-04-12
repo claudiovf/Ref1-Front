@@ -36,12 +36,12 @@ const NextCountry = styled.span`
     color: #00c49a;
 `;
 
-const ExapandButton = styled(StyledButton)`
+const ExpandButton = styled(StyledButton)`
     background-color: rgb(0,0,0,0);
     color: white;
     font-size: 0.75rem;
     border: 1px solid white;
-    padding: 0.25rem 1rem;
+    padding: 0.5rem 1rem;
     font-family: "Work Sans Semi Bold";
     margin: 0.25rem 0 0.5rem 0;
     white-space: nowrap;
@@ -81,9 +81,9 @@ const HomeCircuits: React.FC = () => {
                     : null
                 }
                 
-                <ExapandButton onClick={() => setExpanded(!expanded)}>
+                <ExpandButton onClick={() => setExpanded(!expanded)}>
                     { !expanded ? "View Calendar" : "Collapse"}
-                </ExapandButton>
+                </ExpandButton>
             </CircuitsContainer>
             
         </React.Fragment>
