@@ -1,14 +1,15 @@
 import { useQuery } from '@apollo/client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { GET_NEXT_RACES } from '../../queries';
 import { CircuitType } from '../../types';
+import { getGP } from '../../utils/formatting';
 import Spinner from '../Common/Spinner';
 import { Section, Scroll } from '../LayoutComponents';
 
 const expanding = keyframes`
     0% { opacity: 0;}
-    45% { opacity: 0; height: 30%; width: 30%}
+    50% { opacity: 0; }
     100% { opacity: 1}
 `;
 
@@ -17,7 +18,7 @@ const RaceCard = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: white;
+    background-color: #fefefe;
     color: black;
     border-radius: 0.5rem;
     height: auto;
@@ -25,13 +26,22 @@ const RaceCard = styled.div`
     margin: 0.25rem;
     animation-name: ${expanding};
     animation-duration: 0.5s;
+
+    @media (min-width: 768px) {
+        flex-grow: 1;
+        min-width: 16rem;
+        
+        &:hover {
+            transform: scale(1.02);
+          }
+      }
 `;
 
-const TrackContainer = styled.div`
-    min-height: 7rem;
-    min-width: 7rem;
-    background-color: #efefef;
-`;
+// const TrackContainer = styled.div`
+//     min-height: 7rem;
+//     min-width: 7rem;
+//     background-color: #efefef;
+// `;
 
 const RaceName = styled.div`
     font-family: "Work Sans Bold";
@@ -60,8 +70,10 @@ const CircuitName = styled.div`
     align-items: center;
     font-family: "Work Sans Semi Bold";
     font-size: 0.75rem;
-    margin: 1rem 0 0 0;
     color: #2f2f2f;
+    @media (min-width: 768px) {
+        min-width: 14rem;
+      }
 `;
 const RaceDate = styled.div`
     display: flex;
@@ -74,77 +86,49 @@ const RaceDate = styled.div`
     color: #2f2f2f;
 `;
 
-const getGP = (circuitId: string) => {
-    switch(true) {
-        case circuitId === 'bahrain':
-            return 'Bahrain';
-        case circuitId === 'imola':
-            return 'Emilia Romagna';
-        case circuitId === 'portimao':
-            return 'Portuguese';
-        case circuitId === 'catalunya':
-            return 'Spanish';
-        case circuitId === 'monaco':
-            return 'Monaco';
-        case circuitId === 'BAK':
-            return 'Azerbaijan';
-        case circuitId === 'villeneuve':
-            return 'Canadian';
-        case circuitId === 'ricard':
-            return 'French';
-        case circuitId === 'red_bull_ring':
-            return 'Austrian';
-        case circuitId === 'silverstone':
-            return 'British';
-        case circuitId === 'hungaroring':
-            return 'Hungarian';
-        case circuitId === 'spa':
-            return 'Belgian';
-        case circuitId === 'zandvoort':
-            return 'Dutch';
-        case circuitId === 'monza':
-            return 'Italian';
-        case circuitId === 'sochi':
-            return 'Russian';
-        case circuitId === 'marina_bay':
-            return 'Singapore';
-        case circuitId === 'suzuka':
-            return 'Japanese';
-        case circuitId === 'americas':
-            return 'United States';
-        case circuitId === 'rodriguez':
-            return 'Mexican';
-        case circuitId === 'interlagos':
-            return 'Brazilian';
-        case circuitId === 'albert_park':
-            return 'Australian';
-        case circuitId === 'jeddah':
-            return 'Saudi Arabian';
-        case circuitId === 'yas_marina':
-            return 'Abu Dhabi';
-    }
-};
 
-const Calendar: React.FC = () => {
+const CalendarSection = styled(Section)`
+width: 100vw;
+    @media (min-width: 768px) {
+        width: auto;
+        margin: 3rem 10% 3rem 10%;
+    }
+`;
+
+
+interface Props {
+    nextCircuit: string;
+}
+
+const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
 
     const { loading, data } = useQuery<{ findAllCircuits: CircuitType[] }>(GET_NEXT_RACES);
 
     if ( loading ) return <Spinner />;
 
-    console.log(data);
+    const nextRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        if(nextRef && nextRef.current) {
+            nextRef.current.scrollIntoView({ behavior: "smooth", inline: "center", block: "end" });
+        }
+
+    }, [nextRef]);
+
 
     return (
-            <Section>  
+            <CalendarSection>  
                 <Scroll>
                     { data
                     ? data.findAllCircuits.map(race => {
                         const start = new Date(Date.parse(race.scheduleUTC.race) - 3600000);
                         return (
-                            <RaceCard key={race.circuitId}>
+                            <RaceCard 
+                                ref ={race.circuitId === nextCircuit ? nextRef : null}
+                                key={race.circuitId}
+                            >
                                 <RaceName>
                                     {getGP(race.circuitId)} GP
                                 </RaceName>
-                                <TrackContainer></TrackContainer>
                                 <CircuitName>
                                     {race.circuitName}
                                 </CircuitName>
@@ -161,7 +145,7 @@ const Calendar: React.FC = () => {
                          : null 
                     }
                 </Scroll>
-            </Section> 
+            </CalendarSection> 
     );
 };
 

@@ -21,6 +21,10 @@ const CircuitsContainer = styled.div<{ exp: boolean; }>`
     border-radius: ${ props => props.exp ? "0" : "0.5rem"};
     margin-bottom: 0;
     transition: all 0.5s ease-in-out;
+    @media (min-width: 768px) {
+        width: 80%;
+        margin: 3rem 5% 3rem 10%;
+      }
 `;
 
 const NextTitle = styled.div`
@@ -57,9 +61,10 @@ const ExpandButton = styled(StyledButton)`
 
 const HomeCircuits: React.FC = () => {
     const [expanded, setExpanded ] = useState<boolean>(false);
+    const nextCircuit = "imola";
 
     const { loading, data } = useQuery<{ findCircuit: CircuitType }>(GET_NEXT_RACE,
-        { variables: { circuitId: "imola"} });
+        { variables: { circuitId: nextCircuit} });
 
 
     if ( loading || !data ) return null;
@@ -77,12 +82,12 @@ const HomeCircuits: React.FC = () => {
                 
                 {
                     expanded
-                    ? <Calendar />
+                    ? <Calendar nextCircuit={nextCircuit} />
                     : null
                 }
                 
                 <ExpandButton onClick={() => setExpanded(!expanded)}>
-                    { !expanded ? "View Calendar" : "Collapse"}
+                    { !expanded ? "2021 Calendar" : "Collapse"}
                 </ExpandButton>
             </CircuitsContainer>
             

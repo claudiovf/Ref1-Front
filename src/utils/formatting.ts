@@ -128,3 +128,89 @@ export const formattedStat = (stat: string): string => {
             return stat;
     }
 };
+
+export const getGP = (circuitId: string): string => {
+    switch(true) {
+        case circuitId === 'bahrain':
+            return 'Bahrain';
+        case circuitId === 'imola':
+            return 'Emilia Romagna';
+        case circuitId === 'portimao':
+            return 'Portuguese';
+        case circuitId === 'catalunya':
+            return 'Spanish';
+        case circuitId === 'monaco':
+            return 'Monaco';
+        case circuitId === 'BAK':
+            return 'Azerbaijan';
+        case circuitId === 'villeneuve':
+            return 'Canadian';
+        case circuitId === 'ricard':
+            return 'French';
+        case circuitId === 'red_bull_ring':
+            return 'Austrian';
+        case circuitId === 'silverstone':
+            return 'British';
+        case circuitId === 'hungaroring':
+            return 'Hungarian';
+        case circuitId === 'spa':
+            return 'Belgian';
+        case circuitId === 'zandvoort':
+            return 'Dutch';
+        case circuitId === 'monza':
+            return 'Italian';
+        case circuitId === 'sochi':
+            return 'Russian';
+        case circuitId === 'marina_bay':
+            return 'Singapore';
+        case circuitId === 'suzuka':
+            return 'Japanese';
+        case circuitId === 'americas':
+            return 'United States';
+        case circuitId === 'rodriguez':
+            return 'Mexican';
+        case circuitId === 'interlagos':
+            return 'Brazilian';
+        case circuitId === 'albert_park':
+            return 'Australian';
+        case circuitId === 'jeddah':
+            return 'Saudi Arabian';
+        case circuitId === 'yas_marina':
+            return 'Abu Dhabi';
+        default:
+            return "";
+    }
+};
+
+export const handleCountdown = (UTCdate: string): {days: number; hours: number; mins: number; secs: number} => {
+    let diff = (Date.parse(UTCdate) - Date.parse(new Date().toUTCString())) / 1000;
+    const countDown = {
+        days: 0,
+        hours: 0,
+        mins: 0,
+        secs: 0
+    };
+
+    diff = diff - 3600; // daylight saving time. ends on 31/10/2021
+
+    if(diff >= 86400) {
+        const dayTotal = Math.floor( diff / 86400 );
+        countDown.days = dayTotal;
+        diff = diff - dayTotal * 86400;
+    }
+
+    if(diff >= 3600) {
+        const hourTotal = Math.floor( diff / 3600 );
+        countDown.hours = hourTotal;
+        diff = diff - hourTotal * 3600;
+    }
+
+    if(diff >= 60) {
+        const minTotal = Math.floor( diff / 60 );
+        countDown.mins = minTotal;
+        diff = diff - minTotal * 60;
+    }
+    countDown.secs = diff;
+
+    return countDown;
+};

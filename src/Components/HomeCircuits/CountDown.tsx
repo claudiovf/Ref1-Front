@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { handleCountdown } from '../../utils/formatting';
 
 const Table = styled.table`
     margin: 0.5rem 0; 
     width: 80%;
     height: auto;
+    @media (min-width: 768px) {
+        max-width: 24rem;
+      }
 `;
 
 const Th = styled.th`
@@ -21,40 +25,6 @@ const Td = styled.td`
     font-size: 0.75rem;
     padding: 0 0.75rem;
 `;
-
-
-const handleCountdown = (UTCdate: string) => {
-    let diff = (Date.parse(UTCdate) - Date.parse(new Date().toUTCString())) / 1000;
-    const countDown = {
-        days: 0,
-        hours: 0,
-        mins: 0,
-        secs: 0
-    };
-
-    diff = diff - 3600; // daylight saving time. ends on 31/10/2021
-
-    if(diff >= 86400) {
-        const dayTotal = Math.floor( diff / 86400 );
-        countDown.days = dayTotal;
-        diff = diff - dayTotal * 86400;
-    }
-
-    if(diff >= 3600) {
-        const hourTotal = Math.floor( diff / 3600 );
-        countDown.hours = hourTotal;
-        diff = diff - hourTotal * 3600;
-    }
-
-    if(diff >= 60) {
-        const minTotal = Math.floor( diff / 60 );
-        countDown.mins = minTotal;
-        diff = diff - minTotal * 60;
-    }
-    countDown.secs = diff;
-
-    return countDown;
-};
 
 
 interface Props {
