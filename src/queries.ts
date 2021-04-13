@@ -242,6 +242,8 @@ export const GET_NEXT_RACE = gql`
             location {
                 country
                 locality
+                lat
+                long
             }
         }
     }

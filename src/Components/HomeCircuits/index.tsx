@@ -6,6 +6,7 @@ import { CircuitType } from '../../types';
 import { StyledButton } from '../LayoutComponents';
 import Calendar from './Calendar';
 import CountDown from './CountDown';
+import Weather from './Weather';
 
 
 const CircuitsContainer = styled.div<{ exp: boolean; }>`
@@ -79,6 +80,7 @@ const HomeCircuits: React.FC = () => {
             <CircuitsContainer exp={expanded}>
                 <NextTitle>Up Next: <NextCountry>{nextRace.location.locality}, {nextRace.location.country}</NextCountry></NextTitle>
                 <CountDown nextRaceDate={nextRace.scheduleUTC.race} />
+                <Weather nextRaceLoc={nextRace.location} />
                 
                 {
                     expanded

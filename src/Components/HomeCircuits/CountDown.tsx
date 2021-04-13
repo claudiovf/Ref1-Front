@@ -45,7 +45,7 @@ const CountDown: React.FC<Props> = ({nextRaceDate}: Props) => {
             setMins(countDown.mins);
             setSecs(countDown.secs);
         });
-    });
+    }, [nextRaceDate]);
     
     
 
