@@ -18,7 +18,7 @@ const CircuitsContainer = styled.div<{ exp: boolean; }>`
     width: auto;
     min-height: auto;
     margin: ${ props => props.exp ? "0" : "1.25rem"};
-    padding: ${ props => props.exp ? "0.5rem 0" : "0"};
+    padding: ${ props => props.exp ? "0.75rem 0" : "0.5rem 0"};
     border-radius: ${ props => props.exp ? "0" : "0.5rem"};
     margin-bottom: 0;
     transition: all 0.5s ease-in-out;

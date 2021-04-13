@@ -10,14 +10,15 @@ const WeatherContainer = styled.div`
     align-items: top;
     height: auto;
     width: auto;
-    max-width: 85%;
+    max-width: 90%;
     margin: 0.25rem 0 1rem 0;
-    padding: 0.5rem;
     border-radius: 0.5rem;
     background-color: rgb(255, 255, 255, 0.1);
 
     @media (min-width: 768px) {
         width: 80%;
+        max-width: 36rem;
+        justify-content: left;
       }
 `;
 
@@ -27,12 +28,10 @@ const IconTextWrap = styled.div`
     justify-content: center;
     align-items: center;
     width: 6rem;
-
-    div:nth-child(2) {
-        font-family: "Work Sans Semi Bold";
-        color: #FFFFFF;
-        font-size: 0.75rem;
-   }
+    min-height: 100%;
+    background-color: #0b3142;
+    margin: 2px;
+    border-radius: 0.5rem;
 
    @media (min-width: 768px) {
         width: 10rem;
@@ -50,27 +49,36 @@ const MeasuresWrap = styled.div`
 `;
 
 const MeasureBox = styled.div`
-display: flex;
-flex-direction: column;
-align-items: left;
-margin: 0.25rem 0 ;
-font-family: "Work Sans Bold";
-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    font-family: "Work Sans Bold";
+    color: white;
+
+    @media (min-width: 768px) {
+        flex-grow: 2;
+        align-items: center;
+    }
 `;
 
 const MeasureRow = styled.div`
     display: flex;
     flex-direction: column;
     align-items: left;
-    margin: 0.5rem 0.25rem;
+    margin: 0.5rem 0.125rem;
     font-family: "Work Sans Bold";
     color: white;
+    width: 3.75rem;
 `;
 
 const Value = styled.div`
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-family: "Work Sans Bold";
     color: white;
+    @media (min-width: 768px) {
+        font-size: 1.5rem;
+    }
 
 `;
 const Unit = styled.span`
@@ -81,10 +89,13 @@ const Unit = styled.span`
 `;
 
 const WeatherTitle = styled.div`
-    font-size: 1rem;
+    font-size: 0.5rem;
     margin: 0.25rem;
     font-family: "Work Sans Bold";
     color: white;
+    @media (min-width: 768px) {
+        font-size: 0.75rem;
+    }
 `;
 const Description = styled.span`
     font-size: 0.5rem;
@@ -92,6 +103,9 @@ const Description = styled.span`
     justify-content: bottom;
     font-family: "Work Sans Semi Bold";
     color: white;
+    @media (min-width: 768px) {
+        font-size: 0.75rem;
+    }
 `;
 
 
@@ -162,10 +176,9 @@ const Weather: React.FC<Props> = ({nextRaceLoc}: Props) => {
         <WeatherContainer>
             <IconTextWrap>
                 <img src={process.env.PUBLIC_URL + `/${raceWeather.icon}`} />
-                <div>{raceWeather.condition_text}</div>   
             </IconTextWrap>
             <MeasureBox>
-            <WeatherTitle>Race Forecast</WeatherTitle>
+            <WeatherTitle>RACE FORECAST</WeatherTitle>
                 <MeasuresWrap>
                     <MeasureRow>
                         <Value>{raceWeather.temp}&#176;</Value>
