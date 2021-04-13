@@ -104,16 +104,16 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
 
     const { loading, data } = useQuery<{ findAllCircuits: CircuitType[] }>(GET_NEXT_RACES);
 
-    if ( loading ) return <Spinner />;
-
+    
     const nextRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         if(nextRef && nextRef.current) {
             nextRef.current.scrollIntoView({ behavior: "smooth", inline: "center", block: "end" });
         }
-
+        
     }, [nextRef]);
-
+    
+    if ( loading ) return <Spinner />;
 
     return (
             <CalendarSection>  
