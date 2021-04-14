@@ -5,12 +5,11 @@ import { SectionTitle, Section, SelectionButton } from '../LayoutComponents';
 import { getLocalTimes, getTrackTimes } from '../../utils/formatting';
 
 const ScheduleSection = styled(Section)`
-    @media (min-width: 768px) {
         width: 600px;
-        margin: 2rem 0 1rem 0;
+        margin: 1rem 0 1rem 0;
         justify-content: center;
         align-items: center;
-    }
+    
 `;
 const TitleRow = styled.div`
     padding: 0.75rem 1.25rem;
@@ -19,11 +18,9 @@ const TitleRow = styled.div`
 `;
 
 const ScheduleTitle = styled(SectionTitle)`
-    padding: 0.25rem 0;
+    padding: 0.25rem 0 0.5rem 0;
     vertical-align: bottom;
-    @media (min-width: 768px) {
-        text-align: center;
-    }
+    text-align: center;
 `;
 
 const TimeSelection = styled.div`
@@ -37,8 +34,8 @@ const TimeSelection = styled.div`
 `;
 
 const ScheduleTable = styled.table`
-    background-color: rgb(11, 49, 66, 0.075);
-    margin:  0 1.25rem;
+    background-color: rgb(11, 49, 66, 0.04);
+    width: 90vw;
     padding: 0.5rem 0.5rem 0.5rem 1.5rem;
     border-radius: 0.5rem;
     @media (min-width: 768px) {
