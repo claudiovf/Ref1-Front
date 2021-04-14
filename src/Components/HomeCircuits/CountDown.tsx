@@ -29,24 +29,35 @@ const Td = styled.td`
 
 interface Props {
     nextRaceDate: string;
+    handleTimeUp: (bool: boolean) => void;
 }
 
-const CountDown: React.FC<Props> = ({nextRaceDate}: Props) => {
+const CountDown: React.FC<Props> = ({nextRaceDate, handleTimeUp}: Props) => {
     const [days, setDays ] = useState<number>(0);
     const [hours, setHours ] = useState<number>(0);
     const [mins, setMins ] = useState<number>(0);
     const [secs, setSecs ] = useState<number>(0);
+    
 
     useEffect(() => {
-        setInterval(() => {
+        const interval = setInterval(() => {
             const countDown = handleCountdown(nextRaceDate);
             setDays(countDown.days);
             setHours(countDown.hours);
             setMins(countDown.mins);
             setSecs(countDown.secs);
+
+            if (countDown.days === 0
+                && countDown.hours === 0
+                && countDown.mins === 0
+                && countDown.secs === 0 ) {
+                    handleTimeUp(true);
+                }
         });
+
+ 
+        return () => clearInterval(interval);
     }, [nextRaceDate]);
-    
     
 
     return (

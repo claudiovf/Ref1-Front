@@ -108,7 +108,6 @@ export const ProfileContainer = styled.div`
     overflow:visible;
     @media (min-width: 768px) {
         background-color: #EdEDED;
-    
       }
 `;
 
@@ -162,10 +161,12 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledButton = styled.button`
-    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
 
     &:focus, &:hover, &:visited, &:link, &:active {
-        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        outline: 0;
     }
 `;
 

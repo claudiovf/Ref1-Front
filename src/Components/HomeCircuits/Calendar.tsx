@@ -5,7 +5,7 @@ import { GET_NEXT_RACES } from '../../queries';
 import { CircuitType } from '../../types';
 import { getGP } from '../../utils/formatting';
 import Spinner from '../Common/Spinner';
-import { Section, Scroll } from '../LayoutComponents';
+import { Section, Scroll, SelectionButton, StyledLink } from '../LayoutComponents';
 
 const expanding = keyframes`
     0% { opacity: 0;}
@@ -23,7 +23,8 @@ const RaceCard = styled.div`
     border-radius: 0.5rem;
     height: auto;
     min-width: 70vw;
-    margin: 0.25rem;
+    margin: 0.5rem;
+    padding-bottom: 1rem;
     animation-name: ${expanding};
     animation-duration: 0.5s;
 
@@ -122,24 +123,32 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
                     ? data.findAllCircuits.map(race => {
                         const start = new Date(Date.parse(race.scheduleUTC.race) - 3600000);
                         return (
-                            <RaceCard 
-                                ref ={race.circuitId === nextCircuit ? nextRef : null}
-                                key={race.circuitId}
-                            >
-                                <RaceName>
-                                    {getGP(race.circuitId)} GP
-                                </RaceName>
-                                <CircuitName>
-                                    {race.circuitName}
-                                </CircuitName>
-                                <RaceLocation>
-                                    {race.location?.locality}, {race.location?.country}
-                                </RaceLocation>
-                                <RaceDate>
-                                    { start.toDateString().substring(4, 10)}, { start.toLocaleTimeString().substring(0, 5)}
-                                    
-                                </RaceDate>
-                            </RaceCard> 
+                            <StyledLink to={"/profile/circuit/" + race.circuitId} key={race.circuitId}>
+                                <RaceCard 
+                                    ref ={race.circuitId === nextCircuit ? nextRef : null}
+                                >
+                                    <RaceName>
+                                        {getGP(race.circuitId)} GP
+                                    </RaceName>
+                                    <CircuitName>
+                                        {race.circuitName}
+                                    </CircuitName>
+                                    <RaceLocation>
+                                        {race.location?.locality}, {race.location?.country}
+                                    </RaceLocation>
+                                    <RaceDate>
+                                        { start.toDateString().substring(4, 10)}, { start.toLocaleTimeString().substring(0, 5)}
+                                    </RaceDate>
+                                    <SelectionButton 
+                                        color={"#FFF"} 
+                                        bg={"#00c49a"} 
+                                        border={"#00c49a"} 
+                                        selected={true}
+                                    >
+                                        View Event Info
+                                    </SelectionButton>
+                                </RaceCard> 
+                            </StyledLink>
                         );
                     })
                          : null 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Location } from '../../types';
+import { handleCountdown } from '../../utils/formatting';
 
 const WeatherContainer = styled.div`
     display: flex;
@@ -108,6 +109,13 @@ const Description = styled.span`
     }
 `;
 
+const Notif = styled.div`
+    font-family: "Work Sans Semi Bold";
+    color: #FFF;
+    font-size: 0.5rem;
+    margin: 0.5rem 0;
+`;
+
 
 interface Weather {
     chance_of_rain: string;
@@ -116,14 +124,16 @@ interface Weather {
     wind_dir: string;
     condition_text: string;
     icon: string;
+    locality: string;
 }
 
 interface Props {
     nextRaceLoc: Location;
+    raceTime: string;
 }
 
 
-const Weather: React.FC<Props> = ({nextRaceLoc}: Props) => {
+const Weather: React.FC<Props> = ({nextRaceLoc, raceTime}: Props) => {
     const [raceWeather, setRaceWeather] = useState<Weather | null>(null);
     const [isWeather, setIsWeather] = useState<boolean>(false);
 
@@ -131,17 +141,19 @@ const Weather: React.FC<Props> = ({nextRaceLoc}: Props) => {
         if (raceWeather) {
             setIsWeather(true);
         }
-    }, [raceWeather]);
+    }, [raceWeather, nextRaceLoc]);
+
+    if (handleCountdown(raceTime).days > 7 ) return <Notif>*Weather forecast is available during race week</Notif>;
+
 
     const lat = nextRaceLoc.lat;
     const long = nextRaceLoc.long;
-    
-    const nextRaceDate = "2021-04-18";
-    const nextRaceTime= "2021-04-18 15:00";
+
+    const nextRaceDate = raceTime.substring(0, 10);
+    const nextRaceTime= `${nextRaceDate} ${raceTime.substring(11, 16)}`;
 
 
-
-    if(!isWeather && !raceWeather) {
+    if((!isWeather && !raceWeather) ||  raceWeather?.locality !== nextRaceLoc.locality) {
         
         axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${lat},${long}&days=7&aqi=no&alerts=no`)
         .then(res => {
@@ -157,11 +169,11 @@ const Weather: React.FC<Props> = ({nextRaceLoc}: Props) => {
                         wind: raceStart.wind_kph,
                         wind_dir: raceStart.wind_dir,
                         condition_text: raceStart.condition.text,
-                        icon: raceStart.condition.icon.substring(21, raceStart.condition.icon.length)
+                        icon: raceStart.condition.icon.substring(21, raceStart.condition.icon.length),
+                        locality: nextRaceLoc.locality
                     };
     
                     setRaceWeather(raceForecast);
-                    console.log(raceForecast);
                     
                 }
             }

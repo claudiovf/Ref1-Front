@@ -249,47 +249,47 @@ export const GET_NEXT_RACE = gql`
     }
 `;
 
-// {
-//     givenName
-//     familyName
-//     code
-//     permanentNumber
-//     seasonsIn
-//     championships
-//     entries {
-//         period
-//         entries
-//         firstEntry {
-//             date
-//             race
-//         }
-//         lastEntry {
-//             date
-//             race
-//         }
-//         points
-//         avgPoints
-//         bestResult
-//         worstResult
-//         avgPosition
-//         championshipRank
-//         vsTeammates {
-//             driverAhead
-//             teammatesAhead
-//             pctAhead
-//         }
-//         stats {
-//             stat
-//             total
-//             pct
-//             first {
-//                 date
-//                 race
-//             }
-//             last {
-//                 date
-//                 race
-//             }
-//         }
-//     }
-// }
+export const CIRCUIT_PROFILE = gql`
+    query getCircuit(
+        $circuitId: String!
+    ) {
+        findCircuit(
+            circuitId: $circuitId
+        ) {
+            circuitId       
+            circuitName     
+            raceName        
+            scheduleTrack {
+                practice_1  
+                practice_2  
+                practice_3  
+                qualifying  
+                race        
+            }   
+            scheduleUTC  {
+                practice_1  
+                practice_2  
+                practice_3  
+                qualifying  
+                race   
+            }    
+            firstGP         
+            laps            
+            length          
+            raceDistance    
+            location {
+                lat
+                long
+                locality
+                country
+            }       
+            lapRecord {
+                time
+                driver
+                season
+            }   
+            results         
+        }
+    }
+`;
+

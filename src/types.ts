@@ -193,3 +193,17 @@ export interface CircuitType {
     lapRecord?: LapRecord;
     results: string[];
 }
+
+
+export interface DisplayDate {
+    date: string;
+    time: string;
+}
+
+export interface DisplaySchedule {
+    practice_1: DisplayDate;
+    practice_2: DisplayDate;
+    practice_3: DisplayDate;
+    qualifying: DisplayDate;
+    race: DisplayDate;
+}

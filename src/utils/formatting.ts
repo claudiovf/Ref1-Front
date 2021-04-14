@@ -1,5 +1,5 @@
 import { TeamNameId } from "../store/searchTypes";
-import { Driver, Team } from "../types";
+import { DisplaySchedule, Driver, Schedule, Team } from "../types";
 import { getDriverStyle, patchId } from "./currentInfo";
 
 
@@ -213,4 +213,47 @@ export const handleCountdown = (UTCdate: string): {days: number; hours: number; 
     countDown.secs = diff;
 
     return countDown;
+};
+
+export const getLocalTimes = (eventSchedule: Schedule): DisplaySchedule => {
+    const getLocalDateWith = (dateStr: string) => {
+        const date = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000).toLocaleString().substring(0, 5);
+        const time = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000).toLocaleString().substring(11, 17);
+    
+        return {
+            date,
+            time
+        };
+    };
+
+    //removes an hour for london day light saving. ends in october
+    return {
+        practice_1: getLocalDateWith(eventSchedule.practice_1),
+        practice_2: getLocalDateWith(eventSchedule.practice_2),
+        practice_3: getLocalDateWith(eventSchedule.practice_3),
+        qualifying: getLocalDateWith(eventSchedule.qualifying),
+        race: getLocalDateWith(eventSchedule.race),
+    };
+};
+
+export const getTrackTimes = (trackSchedule: Schedule): DisplaySchedule => {
+    const getDateWith = (date: string) => {
+        const day = date.substring(8, 10);
+        const month = date.substring(5, 7);
+        const hour = date.substring(11, 13);
+        const min = date.substring(14, 16);
+
+        return {
+            date: `${day}/${month}`,
+            time: `${hour}:${min}` 
+        };
+    };
+
+    return {
+        practice_1: getDateWith(trackSchedule.practice_1),
+        practice_2: getDateWith(trackSchedule.practice_2),
+        practice_3: getDateWith(trackSchedule.practice_3),
+        qualifying: getDateWith(trackSchedule.qualifying),
+        race: getDateWith(trackSchedule.race),
+    };
 };

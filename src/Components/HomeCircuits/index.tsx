@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { GET_NEXT_RACE } from '../../queries';
 import { CircuitType } from '../../types';
@@ -61,16 +61,31 @@ const ExpandButton = styled(StyledButton)`
 `;
 
 const HomeCircuits: React.FC = () => {
+    const [nextRace, setNextRace] = useState<CircuitType | null>(null);
     const [expanded, setExpanded ] = useState<boolean>(false);
+    const [timeUp, setTimeUp ] = useState<boolean>(false);
+
     const nextCircuit = "imola";
+    const circuitAfter = "portimao";
 
     const { loading, data } = useQuery<{ findCircuit: CircuitType }>(GET_NEXT_RACE,
-        { variables: { circuitId: nextCircuit} });
+        { variables: { circuitId: !timeUp ? nextCircuit : circuitAfter} });
 
+
+    const handleTimeUp = (bool: boolean) => {
+        setTimeUp(bool);
+    };
+
+
+    useEffect(() => {
+        if (data) {
+            setNextRace(data.findCircuit);
+        }
+    }, [data, timeUp]);
 
     if ( loading || !data ) return null;
 
-    const nextRace = data.findCircuit;
+
     if (!nextRace || !nextRace.location) return null;
     
 
@@ -79,8 +94,15 @@ const HomeCircuits: React.FC = () => {
 
             <CircuitsContainer exp={expanded}>
                 <NextTitle>Up Next: <NextCountry>{nextRace.location.locality}, {nextRace.location.country}</NextCountry></NextTitle>
-                <CountDown nextRaceDate={nextRace.scheduleUTC.race} />
-                <Weather nextRaceLoc={nextRace.location} />
+                <CountDown 
+                    nextRaceDate={nextRace.scheduleUTC.race} 
+                    handleTimeUp={handleTimeUp}
+                />
+                <Weather 
+                    nextRaceLoc={nextRace.location} 
+                    raceTime={nextRace.scheduleUTC.race}
+                />
+                   
                 
                 {
                     expanded

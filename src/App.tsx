@@ -16,6 +16,7 @@ import Standings from './Components/Standings';
 import ReactGA from 'react-ga';
 import RouteTracker from './RouteTracker';
 import HomeCircuits from './Components/HomeCircuits';
+import CircuitProfile from './Components/CircuitProfile';
 
 
 const App: React.FC = () => {
@@ -47,6 +48,10 @@ const App: React.FC = () => {
         <Route exact path="/profile/team/:constructorId">
           <Spacer />
           <TeamProfile />
+        </Route>
+        <Route exact path="/profile/circuit/:circuitId">
+          <Spacer />
+          <CircuitProfile />
         </Route>
       </Switch>
 
