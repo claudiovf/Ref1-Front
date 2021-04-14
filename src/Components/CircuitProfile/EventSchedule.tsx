@@ -5,7 +5,6 @@ import { SectionTitle, Section, SelectionButton } from '../LayoutComponents';
 import { getLocalTimes, getTrackTimes } from '../../utils/formatting';
 
 const ScheduleSection = styled(Section)`
-        width: 600px;
         margin: 1rem 0 1rem 0;
         justify-content: center;
         align-items: center;
@@ -74,11 +73,14 @@ const EventSchedule: React.FC<Props> = ({ scheduleTrack, scheduleUTC}: Props) =>
     const [timeSelected, setTimeSelected] = useState<string>("Your Time");
     const [displaySchedule, setDisplaySchedule] = useState<DisplaySchedule>(getLocalTimes(scheduleUTC));
 
+    const localTime = getLocalTimes(scheduleUTC);
+    const trackTime = getTrackTimes(scheduleTrack);
+
     useEffect(() => {
         if (timeSelected === "Your Time") {
-            setDisplaySchedule(getLocalTimes(scheduleUTC));
+            setDisplaySchedule(localTime);
         } else {
-            setDisplaySchedule(getTrackTimes(scheduleTrack));
+            setDisplaySchedule(trackTime);
         }
     }, [timeSelected]);
 

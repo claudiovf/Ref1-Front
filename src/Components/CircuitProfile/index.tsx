@@ -14,7 +14,6 @@ import EventSchedule from './EventSchedule';
 
 const ProfileBody = styled(ProfileWrap)`
     background-color: #FFF;
-    min-height: 100%;
     @media (min-width: 768px) {
         justify-content: center;
         align-items: center;
