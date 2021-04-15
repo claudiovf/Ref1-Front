@@ -47,10 +47,10 @@ const CountDown: React.FC<Props> = ({nextRaceDate, handleTimeUp}: Props) => {
             setMins(countDown.mins);
             setSecs(countDown.secs);
 
-            if (countDown.days === 0
-                && countDown.hours === 0
-                && countDown.mins === 0
-                && countDown.secs === 0 ) {
+            if (countDown.days < 1
+                && countDown.hours < 1
+                && countDown.mins < 1
+                && countDown.secs < 1 ) {
                     handleTimeUp(true);
                 }
         });

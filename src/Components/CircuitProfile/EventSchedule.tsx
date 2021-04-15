@@ -17,9 +17,10 @@ const TitleRow = styled.div`
 `;
 
 const ScheduleTitle = styled(SectionTitle)`
-    padding: 0.25rem 0 0.5rem 0;
+    padding: 0.25rem 0 0.75rem 0;
     vertical-align: bottom;
     text-align: center;
+    font-size: 1.25rem;
 `;
 
 const TimeSelection = styled.div`
@@ -48,19 +49,21 @@ const Td = styled.td`
     height: 1rem;
     padding: 0.5rem 0;
     color: #2f2f2f;
-    font-family: "Work Sans Semi Bold";
     font-size: 1rem;
 `;
 
 const Tr = styled.tr`
     ${Td}:nth-child(1) {
         text-align: left;
+        font-family: "Work Sans Bold";
     }
     ${Td}:nth-child(2) {
         width: 33%;
+        font-family: "Work Sans Reg";
     }
     ${Td}:nth-child(3) {
         width: 33%;
+        font-family: "Work Sans Semi Bold";
 `;
 
 interface Props {
@@ -90,7 +93,7 @@ const EventSchedule: React.FC<Props> = ({ scheduleTrack, scheduleUTC}: Props) =>
     return (
         <ScheduleSection>
             <TitleRow>
-                <ScheduleTitle color={"#2f2f2f"}>Weekend Schedule</ScheduleTitle>
+                <ScheduleTitle color={"#2f2f2f"}>Event Schedule</ScheduleTitle>
                 <TimeSelection>
                 {["Your Time", "Track Time"].map(option => option === timeSelected
                             ? <SelectionButton 

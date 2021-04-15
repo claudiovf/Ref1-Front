@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { GET_NEXT_RACE } from '../../queries';
 import { CircuitType } from '../../types';
+import { getGP } from '../../utils/formatting';
 import { StyledButton } from '../LayoutComponents';
 import Calendar from './Calendar';
 import CountDown from './CountDown';
@@ -93,7 +94,7 @@ const HomeCircuits: React.FC = () => {
         <React.Fragment>
 
             <CircuitsContainer exp={expanded}>
-                <NextTitle>Up Next: <NextCountry>{nextRace.location.locality}, {nextRace.location.country}</NextCountry></NextTitle>
+                <NextTitle>Up Next: <NextCountry>{getGP(nextRace.circuitId)} GP</NextCountry></NextTitle>
                 <CountDown 
                     nextRaceDate={nextRace.scheduleUTC.race} 
                     handleTimeUp={handleTimeUp}
