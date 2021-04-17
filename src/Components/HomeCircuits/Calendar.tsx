@@ -116,12 +116,44 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
     
     if ( loading ) return <Spinner />;
 
+    const calendarList = [
+        'bahrain',
+        'imola',
+        'portimao',
+        'catalunya',
+        'monaco',
+        'BAK',
+        'villeneuve',
+        'ricard',
+        'red_bull_ring',
+        'silverstone',
+        'hungaroring',
+        'spa',
+        'zandvoort',
+        'monza',
+        'sochi',
+        'marina_bay',
+        'suzuka',
+        'americas',
+        'rodriguez',
+        'interlagos',
+        'albert_park',
+        'jeddah',
+        'yas_marina' 
+    ];
+
     return (
             <CalendarSection>  
                 <Scroll>
                     { data
-                    ? data.findAllCircuits.map(race => {
+                    ? calendarList.map(id => {
+                        const race = data.findAllCircuits.find(race => race.circuitId === id);
+                        
+                        if (!race) return null;
+
                         const start = new Date(Date.parse(race.scheduleUTC.race) - 3600000);
+
+                        
                         return (
                             <StyledLink to={"/profile/circuit/" + race.circuitId} key={race.circuitId}>
                                 <RaceCard 

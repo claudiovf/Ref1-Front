@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { GET_NEXT_RACE } from '../../queries';
 import { CircuitType } from '../../types';
 import { getGP } from '../../utils/formatting';
-import { StyledButton } from '../LayoutComponents';
+import { SelectionButton, StyledButton, StyledLink } from '../LayoutComponents';
 import Calendar from './Calendar';
 import CountDown from './CountDown';
 import Weather from './Weather';
@@ -36,11 +36,11 @@ const NextTitle = styled.div`
     width: auto;
     margin: 0.25rem;
 `;
-const NextCountry = styled.span`
-    font-family: "Work Sans Bold";
-    font-size: 1.25rem;
-    color: #00c49a;
-`;
+// const NextCountry = styled.span`
+//     font-family: "Work Sans Bold";
+//     font-size: 1.25rem;
+//     color: #00c49a;
+// `;
 
 const ExpandButton = styled(StyledButton)`
     background-color: rgb(0,0,0,0);
@@ -94,7 +94,18 @@ const HomeCircuits: React.FC = () => {
         <React.Fragment>
 
             <CircuitsContainer exp={expanded}>
-                <NextTitle>Up Next: <NextCountry>{getGP(nextRace.circuitId)} GP</NextCountry></NextTitle>
+                <NextTitle>Up Next: 
+                    <StyledLink to={"/profile/circuit/" + nextRace.circuitId}>
+                        <SelectionButton 
+                            selected={true}
+                            bg={"#00c49a"}
+                            color={"#FFF"}
+                            border={"rgb(255,255,255, 0)"}
+                            >
+                                {getGP(nextRace.circuitId)} GP
+                        </SelectionButton> 
+                    </StyledLink>
+                </NextTitle>
                 <CountDown 
                     nextRaceDate={nextRace.scheduleUTC.race} 
                     handleTimeUp={handleTimeUp}

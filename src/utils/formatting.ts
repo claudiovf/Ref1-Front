@@ -217,12 +217,15 @@ export const handleCountdown = (UTCdate: string): {days: number; hours: number; 
 
 export const getLocalTimes = (eventSchedule: Schedule): DisplaySchedule => {
     const getLocalDateWith = (dateStr: string) => {
-        const date = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000).toLocaleString().substring(0, 5);
-        const time = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000).toLocaleString().substring(11, 17);
+
+        /// includes daylight saving UK. ends in october
+        const date = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000);
+        const time = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000);
     
+        
         return {
-            date,
-            time
+            date: `${date.getDate().toString().padStart(2,'0')}/${(date.getMonth() + 1).toString().padStart(2,'0')}`,
+            time: `${time.getHours().toString().padStart(2,'0')}:${time.getMinutes().toString().padStart(2,'0')}`
         };
     };
 
