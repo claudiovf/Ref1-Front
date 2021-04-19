@@ -20,8 +20,10 @@ const TeamProfile: React.FC = () => {
     
 
     const { constructorId } = useParams<{ constructorId: string }>();
-    const { loading, data } = useQuery<{ findTeam: Team }>(TEAM_PROFILE,
-          { variables: { constructorId } });
+    const { loading, data } = useQuery<{ findTeam: Team }>(TEAM_PROFILE, { 
+        variables: { constructorId },
+        fetchPolicy: "cache-and-network" 
+    });
     
     useEffect(() => {
         if ( data ) {

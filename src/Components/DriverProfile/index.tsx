@@ -20,8 +20,10 @@ const DriverProfile: React.FC = () => {
     
 
     const { driverId } = useParams<{ driverId: string }>();
-    const { loading, data } = useQuery<{ findDriver: Driver }>(DRIVER_PROFILE,
-          { variables: { driverId } });
+    const { loading, data } = useQuery<{ findDriver: Driver }>(DRIVER_PROFILE, { 
+        fetchPolicy: "cache-and-network",
+        variables: { driverId }
+    });
     
     useEffect(() => {
         if ( data ) {

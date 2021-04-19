@@ -66,11 +66,13 @@ const HomeCircuits: React.FC = () => {
     const [expanded, setExpanded ] = useState<boolean>(false);
     const [timeUp, setTimeUp ] = useState<boolean>(false);
 
-    const nextCircuit = "imola";
-    const circuitAfter = "portimao";
+    const nextCircuit = "portimao";
+    const circuitAfter = "catalunya";
 
-    const { loading, data } = useQuery<{ findCircuit: CircuitType }>(GET_NEXT_RACE,
-        { variables: { circuitId: !timeUp ? nextCircuit : circuitAfter} });
+    const { loading, data } = useQuery<{ findCircuit: CircuitType }>(GET_NEXT_RACE, { 
+        fetchPolicy: "cache-and-network", 
+        variables: { circuitId: !timeUp ? nextCircuit : circuitAfter} 
+    });
 
 
     const handleTimeUp = (bool: boolean) => {

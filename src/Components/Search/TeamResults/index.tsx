@@ -39,12 +39,15 @@ const TeamsResults: React.FC = () => {
     if (!search.selections.period || !search.selections.sortBy ) return null;
 
     const { loading, data } = useQuery<{ getTeamSearchResults: Team[] }>(GET_TEAM_RESULTS,
-        { variables: {
-            "period": getPeriod(search.selections.period),
-            "stat": splitStat(search.selections.sortBy).stat,
-            "skip": search.prevResults.length,
-            "pct": splitStat(search.selections.sortBy).isPct            
-          }});
+        { 
+            fetchPolicy: "cache-and-network", 
+            variables: {
+                "period": getPeriod(search.selections.period),
+                "stat": splitStat(search.selections.sortBy).stat,
+                "skip": search.prevResults.length,
+                "pct": splitStat(search.selections.sortBy).isPct            
+            }
+        });
         
   useEffect(() => {
       if ( data ) {

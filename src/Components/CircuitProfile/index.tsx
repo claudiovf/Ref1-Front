@@ -52,8 +52,10 @@ const CircuitProfile: React.FC = () => {
     
 
     const { circuitId } = useParams<{ circuitId: string }>();
-    const { loading, data } = useQuery<{ findCircuit: CircuitType }>(CIRCUIT_PROFILE,
-          { variables: { circuitId } });
+    const { loading, data } = useQuery<{ findCircuit: CircuitType }>(CIRCUIT_PROFILE, {
+        fetchPolicy: "cache-and-network", 
+        variables: { circuitId } 
+    });
     
     useEffect(() => {
         if ( data ) {
