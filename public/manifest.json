@@ -1,0 +1,22 @@
+{
+    "short_name": "Ref1 App",
+    "name": "Ref1 App",
+    "icons": [
+      {
+        "src": "/images/icon-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/images/icon-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/?source=pwa",
+    "background_color": "#2f2f2f",
+    "display": "fullscreen",
+    "scope": "/",
+    "theme_color": "#2f2f2f",
+    "description": "Browse F1 Calendar, Drivers, Teams and Circuits"
+  }
