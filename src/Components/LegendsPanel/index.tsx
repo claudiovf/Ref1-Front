@@ -1,45 +1,83 @@
 import React from 'react';
 import { Section, Title, Scroll } from '../LayoutComponents';
-import Spinner from '../Common/Spinner';
 import CurrentDriverCards from '../CurrentDriversPanel/CurrentDriverCards';
-import { useQuery } from '@apollo/client';
-import { Driver } from '../../types';
-import { GET_THIS_DRIVERS } from '../../queries';
 
 
 const LegendsPanel: React.FC = () => {
 
-    const driversList = [
-        "michael_schumacher", "senna", "prost", 
-        "mansell", "jack_brabham", "stewart", 
-        "lauda", "moss", "piquet", 
-        "fangio", "clark", "emerson_fittipaldi"
+    const legendsList = [
+        {
+            driverId: "michael_schumacher",
+            givenName: "Michael",
+            familyName: "Schumacher"
+        },
+        {
+            driverId: "senna",
+            givenName: "Ayrton",
+            familyName: "Senna"
+        },
+        {
+            driverId: "prost",
+            givenName: "Alain",
+            familyName: "Prost"
+        },
+        {
+            driverId: "mansell",
+            givenName: "Nigel",
+            familyName: "Mansell"
+        },
+        {
+            driverId: "jack_brabham",
+            givenName: "Jack",
+            familyName: "Brabham"
+        },
+        {
+            driverId: "stewart",
+            givenName: "Jackie",
+            familyName: "Stewart"
+        },
+        {
+            driverId: "lauda",
+            givenName: "Niki",
+            familyName: "Lauda"
+        },
+        {
+            driverId: "moss",
+            givenName: "Stirling",
+            familyName: "Moss"
+        },
+        {
+            driverId: "piquet",
+            givenName: "Nelson",
+            familyName: "Piquet"
+        },
+        {
+            driverId: "fangio",
+            givenName: "Juan",
+            familyName: "Fangio"
+        },
+        {
+            driverId: "clark",
+            givenName: "Jim",
+            familyName: "Clark"
+        },
+        {
+            driverId: "emerson_fittipaldi",
+            givenName: "Emerson",
+            familyName: "Fittipaldi"
+        },
     ];
-
-    const { loading, data } = useQuery<{ findManyDrivers: Driver[] }>(GET_THIS_DRIVERS,
-        { variables: { driversList } });
-
 
     return (
         <React.Fragment>
             <Section>  
                 <Title>Legends</Title>
-                    { loading ? <Spinner /> : null}
                 <Scroll>
-                    { data ?  (
-                        driversList.map(driver => {
-                            const driverToDisplay = data.findManyDrivers.find(d => d.driverId === driver);
-
-                            if(!driverToDisplay) return null;
-
-                            return (
+                    { legendsList.map(driver => 
                                 <CurrentDriverCards 
-                                    driver={driverToDisplay} 
-                                    key={driverToDisplay.driverId} />
-                            );
-                        })
-                        ) : null
-                    }
+                                    driver={driver} 
+                                    key={driver.driverId} />
+                    )}
                 </Scroll>
             </Section>
         </React.Fragment>

@@ -1,24 +1,20 @@
-import React from 'react';
+import { useQuery } from '@apollo/client';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { GET_TEAM_NAMES } from '../../queries';
 import { RootState } from '../../store';
-import { setSearch } from '../../store/actions';
+import { setSearch, setTeamNames } from '../../store/actions';
 import { SearchState } from '../../store/searchTypes';
+import { Team } from '../../types';
 import { getDriverStyle } from '../../utils/currentInfo';
 import { formattedPeriod } from '../../utils/formatting';
 import Spinner from '../Common/Spinner';
 import { SelectionButton, Title } from '../LayoutComponents';
 
-const overlayAnimation = keyframes`
-    0% { opacity: 0;}
-    100% { opacity: 1}
-`;
 
-const slideUpAnimation = keyframes`
-    0% { opacity: 0;}
-    50% { opacity: 0; top: 90%; }
-    100% { opacity: 1}
-`;
+
+
 
 const Overlay = styled.div`
     position: fixed;
@@ -26,9 +22,7 @@ const Overlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255,255,255,0.97);
-    animation-name: ${overlayAnimation};
-    animation-duration: 0.6s;
+    background-color: #FFF;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -38,16 +32,12 @@ const Overlay = styled.div`
 `;
 
 const ModalContainer = styled.div<{ teams: boolean }>`
-    width: 100%;
-    height: ${props => props.teams ? "82%" : "62vh"};
+    height: ${props => props.teams ? "78%" : "62vh"};
     padding-top: ${props => props.teams ? "0" : "5rem"};
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    animation-name: ${slideUpAnimation};
-    animation-duration: 0.5s;
-    overflow: scroll;
+    overflow: hidden;
     margin-bottom: 1rem;
     @media (min-width: 768px) {
         overflow: hidden;
@@ -107,6 +97,14 @@ const FilterModal: React.FC = () => {
     const search: SearchState = useSelector((state: RootState) => state.search);
     const dispatch = useDispatch();
 
+    const teamNames = useQuery<{ findManyTeams: Team[] }>(GET_TEAM_NAMES);
+
+    useEffect(() => {
+        if ( teamNames.data ) {
+            dispatch(setTeamNames(teamNames.data.findManyTeams));
+        }
+    }, [teamNames.data]);
+
     const handleClose = () => {
         const updatedSelection = search.selections;
         delete updatedSelection.filterBy;
@@ -137,19 +135,21 @@ const FilterModal: React.FC = () => {
                                     selected={false}
                                     bg={"#e4eced"}
                                     color={"#2F2F2F"}
-                                    border={"#e4eced"}
+                                    border={"rgb(0,0,0,0)"}
                                     onClick={() => dispatch(setSearch({...search.selections, period: option}))}
                                     >
                                         {formattedPeriod(option)}
                                 </OptionsButton>)}
                             </OptionsContainer>
 
-                            : <>
+                            : teamNames.loading 
+                                ? <Spinner /> 
+                                : <>
                                 <OptionsContainer>
                                 <TeamTitle>Current Teams</TeamTitle>
                                 { 
                                     search.teamNames.length === 0
-                                        ? <Spinner />
+                                        ? null
                                         : currentTeams.map(option => {
                                             const optionTeam = getDriverStyle(option.constructorId);
                                             return (
@@ -158,7 +158,7 @@ const FilterModal: React.FC = () => {
                                                     selected={false}
                                                     bg={optionTeam.primary}
                                                     color={optionTeam.secondary}
-                                                    border={optionTeam.primary}
+                                                    border={"rgb(0,0,0,0)"}
                                                     onClick={() => dispatch(setSearch({...search.selections, period: option}))}
                                                     >
                                                         {formattedPeriod(option.name)}
@@ -169,14 +169,14 @@ const FilterModal: React.FC = () => {
                                 <TeamTitle>All Teams</TeamTitle>
                                 { 
                                     search.teamNames.length === 0
-                                        ? <Spinner />
+                                        ? null
                                         : sortedTeams.map(option => 
                                             <OptionsButton 
                                                 key={option.constructorId}
                                                 selected={false}
                                                 bg={"#e4eced"}
                                                 color={"#2F2F2F"}
-                                                border={"#e4eced"}
+                                                border={"rgb(0,0,0,0)"}
                                                 onClick={() => dispatch(setSearch({...search.selections, period: option}))}
                                                 >
                                                     {formattedPeriod(option.name)}
@@ -190,9 +190,9 @@ const FilterModal: React.FC = () => {
                     <CloseContainer>
                         <OptionsButton
                             selected={false}
-                            bg={"#FFF"}
+                            bg={"rgb(0,0,0,0)"}
                             color={"#2F2F2F"}
-                            border={"#FFF"}
+                            border={"rgb(0,0,0,0)"}
                             onClick={() => handleClose()}                       
                         >
                             Close &#x2715;

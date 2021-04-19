@@ -36,8 +36,8 @@ const App: React.FC = () => {
           <CurrentDriversPanel />
           <CurrentTeamsPanel />
           <Standings />
-          <ExploreDrivers />
           <LegendsPanel />
+          <ExploreDrivers />
           <ExploreTeams /> 
           <SkySportsPanel />
         </Route>

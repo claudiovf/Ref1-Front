@@ -23,7 +23,7 @@ const SearchCard = styled.div`
     cursor: pointer;
     @media (min-width: 768px) {
         &:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
           }
     }
 `;
@@ -42,35 +42,34 @@ const StatTitle = styled.div`
 
 const Standings: React.FC = () => {
 
-    const seasons = [
-        '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010' 
-    ];
 
     const dispatch = useDispatch();
+
+    const handleSelection = (type: string) => {
+        dispatch( setSearch({
+            resultsFor: type,
+            sortBy: "points",
+            filterBy: "Season",
+            period: "2021"
+        }) );
+        dispatch( toggleOpen() );
+        eventGa("Standings", `${type} - points - Period: 2021`, `${type}`);
+    };
 
 
     return (
         <React.Fragment>
             <Section>  
-                <Title>Driver Standings</Title>
+                <Title>2021 Standings</Title>
                 <Scroll>
                     {
-                        seasons.map(season => 
+                        ["drivers", "teams"].map(type => 
                             <SearchCard 
-                                key={season}
-                                onClick={() => {
-                                    dispatch( setSearch({
-                                        resultsFor: "drivers",
-                                        sortBy: "points",
-                                        filterBy: "Season",
-                                        period: season
-                                    }) );
-                                    dispatch( toggleOpen() );
-                                    eventGa("Standings", `Drivers - points - Period: ${season}`, 'Drivers');
-                                }}
+                                key={type}
+                                onClick={() => handleSelection(type)}
                                 >
-                                    <StatTitle>{season}</StatTitle>
-                                    <StatDescription>Driver Standings</StatDescription>
+                                    <StatTitle>{type.charAt(0).toUpperCase() + type.slice(1)}</StatTitle>
+                                    <StatDescription>Standings</StatDescription>
                             </SearchCard>)
                     }
                 </Scroll>

@@ -24,7 +24,7 @@ const SearchCard = styled.div`
     cursor: pointer;
     @media (min-width: 768px) {
         &:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
           }
     }
 `;

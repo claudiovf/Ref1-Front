@@ -49,8 +49,9 @@ const Team = styled.div`
 `;
 
 
+type DriverCard = Pick<Driver, "driverId" | "givenName" | "familyName" | "code" | "permanentNumber">;
 
-const CurrentDriverCards: React.FC<{ driver: Driver }> = ({driver}: {driver: Driver}) => {
+const CurrentDriverCards: React.FC<{ driver: DriverCard }> = ({driver}: {driver: DriverCard}) => {
     const driverStyle = getDriverStyle(driver.driverId);
 
 

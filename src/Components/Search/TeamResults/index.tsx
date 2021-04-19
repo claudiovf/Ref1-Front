@@ -25,6 +25,7 @@ const CloseContainer = styled.div`
 
 const OptionsButton = styled(SelectionButton)`
     min-width: 4.25rem;
+    margin-bottom: 4rem;
 `;
 
 
