@@ -5,17 +5,19 @@
       {
         "src": "/images/icon-192.png",
         "type": "image/png",
-        "sizes": "192x192"
+        "sizes": "192x192",
+        "purpose": "any maskable"
       },
       {
         "src": "/images/icon-512.png",
         "type": "image/png",
-        "sizes": "512x512"
+        "sizes": "512x512",
+        "purpose": "any maskable"
       }
     ],
     "start_url": "/?source=pwa",
     "background_color": "#2f2f2f",
-    "display": "fullscreen",
+    "display": "standalone",
     "scope": "/",
     "theme_color": "#2f2f2f",
     "description": "Browse F1 Calendar, Drivers, Teams and Circuits"
