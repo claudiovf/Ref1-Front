@@ -28,7 +28,7 @@ const Overlay = styled.div`
     justify-content: flex-start;
     align-items: center;
     border-radius: 1rem 1rem 0 0;
-    padding-top: 3rem;
+    padding-top: 1rem;
 `;
 
 const ModalContainer = styled.div<{ teams: boolean }>`
