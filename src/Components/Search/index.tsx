@@ -60,7 +60,6 @@ const ModalContainer = styled.div<{ closing: boolean }>`
     border-radius:1rem 1rem 0 0;
     animation-name: ${props => props.closing ? slideDownAnimation : slideUpAnimation};
     animation-duration: 0.5s;
-    background-color: tomato;
     @media (min-width: 768px) {
         max-width: 40rem;
         min-width: 40rem;

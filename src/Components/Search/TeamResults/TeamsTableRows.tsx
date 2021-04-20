@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { RootState } from '../../../store';
 import { setCurrResults, setPrevResults, setSearch, toggleOpen } from '../../../store/actions';
 import { SearchState } from '../../../store/searchTypes';
-import { Team } from '../../../types';
+import { TeamResult } from '../../../types';
 import { getDriverStyle, patchId } from '../../../utils/currentInfo';
 import { resultItemStyle, splitStat, getDisplayStat } from '../../../utils/formatting';
 import { SelectionButton, StyledLink } from '../../LayoutComponents';
@@ -22,7 +22,7 @@ const ResultLink = styled(StyledLink)`
 
 
 interface Props {
-    resultList: Team[];
+    resultList: TeamResult[];
     rankPrev: boolean;
 }
 
@@ -71,11 +71,11 @@ const TeamsTableRows: React.FC<Props> = ({ resultList, rankPrev }: Props) => {
 
                         <Td>{search.selections.filterBy !== "Season" 
                             && splitStat(search.selections.sortBy).stat !== "entries"
-                            ? team.entries[0].entries
+                            ? team.reqEntry.entries
                             : splitStat(search.selections.sortBy).stat !== "entries"
                                 ? splitStat(search.selections.sortBy).stat === "points"
-                                    ? team.entries[0].bestResult
-                                    : team.entries[0].entries
+                                    ? team.reqEntry.bestResult
+                                    : team.reqEntry.entries
                                 : null
                         }</Td>
                     </>

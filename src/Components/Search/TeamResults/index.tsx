@@ -3,11 +3,11 @@ import { useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { GET_TEAM_RESULTS } from '../../../queries';
+import { GET_TEAM_RESULTS_MONGO } from '../../../queries';
 import { RootState } from '../../../store';
 import { setCurrResults, setPrevResults } from '../../../store/actions';
 import { SearchState } from '../../../store/searchTypes';
-import { Team } from '../../../types';
+import { TeamResult } from '../../../types';
 import { getPeriod, splitStat, getSecondSort } from '../../../utils/formatting';
 import Spinner from '../../Common/Spinner';
 import { SelectionButton, Spacer } from '../../LayoutComponents';
@@ -39,7 +39,7 @@ const TeamsResults: React.FC = () => {
     
     if (!search.selections.period || !search.selections.sortBy ) return null;
 
-    const { loading, data } = useQuery<{ getTeamSearchResults: Team[] }>(GET_TEAM_RESULTS,
+    const { loading, data } = useQuery<{ findTeamResultsMongo: TeamResult[] }>(GET_TEAM_RESULTS_MONGO,
         { 
             fetchPolicy: "cache-and-network", 
             variables: {
@@ -53,14 +53,14 @@ const TeamsResults: React.FC = () => {
   useEffect(() => {
       if ( data ) {
           
-        if ( data.getTeamSearchResults.length === 26 ) {
-            let spliced: Team[] = [];
-            spliced = spliced.concat(data.getTeamSearchResults);
+        if ( data.findTeamResultsMongo.length === 26 ) {
+            let spliced: TeamResult[] = [];
+            spliced = spliced.concat(data.findTeamResultsMongo);
             spliced.splice(-1, 1);
             dispatch(setCurrResults(spliced));
             setHasNextPage(true);
         } else {
-            dispatch(setCurrResults(data.getTeamSearchResults));
+            dispatch(setCurrResults(data.findTeamResultsMongo));
             setHasNextPage(false);
         }
       }
@@ -86,13 +86,13 @@ const TeamsResults: React.FC = () => {
                         }</Th>
                     </Tr>
                     <TeamsTableRows 
-                            resultList={(search.prevResults as Team[])}
+                            resultList={(search.prevResults as TeamResult[])}
                             rankPrev={true}/>
                     
                     {loading && search.prevResults.length !== 0
                         ? null
                         : <TeamsTableRows 
-                            resultList={(search.currResults as Team[])}
+                            resultList={(search.currResults as TeamResult[])}
                             rankPrev={false}/>
                     }
                 </Tbody>

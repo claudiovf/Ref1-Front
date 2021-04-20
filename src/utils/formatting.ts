@@ -1,5 +1,5 @@
 import { TeamNameId } from "../store/searchTypes";
-import { DisplaySchedule, Driver, Schedule, Team } from "../types";
+import { DisplaySchedule, DriverResult, Schedule, TeamResult } from "../types";
 import { getDriverStyle, patchId } from "./currentInfo";
 
 
@@ -41,21 +41,21 @@ export const splitStat = (stateStat: string): SplitStat => {
 };
 
 
-export const getDisplayStat = (obj: Driver | Team, splitStat: SplitStat): number | null => {
+export const getDisplayStat = (obj: DriverResult | TeamResult, splitStat: SplitStat): number | null => {
         
-    if (splitStat.isPct) return Number(obj.entries[0].stats[0].pct.toFixed(2));
+    if (splitStat.isPct) return Number(obj.reqRaceStat.pct.toFixed(2));
 
-    else if (!splitStat.isPct && !splitStat.isPeriodLevel) return obj.entries[0].stats[0].total;
+    else if (!splitStat.isPct && !splitStat.isPeriodLevel) return obj.reqRaceStat.total;
     
     switch(true) {
         case splitStat.stat === "points":
-            return obj.entries[0].points;
+            return obj.reqEntry.points;
         case splitStat.stat === "avgPoints":
-            return obj.entries[0].avgPoints;
+            return obj.reqEntry.avgPoints;
         case splitStat.stat === "avgPosition":
-            return obj.entries[0].avgPosition;
+            return obj.reqEntry.avgPosition;
         case splitStat.stat === "entries":
-            return obj.entries[0].entries;
+            return obj.reqEntry.entries;
         default:
             return null;
     }

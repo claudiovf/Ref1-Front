@@ -1,4 +1,4 @@
-import { Driver, Team } from "../types";
+import { DriverResult, TeamResult } from "../types";
 
 export interface TeamNameId {
     name: string;
@@ -12,7 +12,7 @@ export interface Search {
     period?: TeamNameId | string;
 }
 
-export type Results = Driver | Team;
+export type Results = DriverResult | TeamResult;
 
 export interface SearchState {
     selections: Search;

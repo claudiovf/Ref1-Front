@@ -36,9 +36,9 @@ const App: React.FC = () => {
           <CurrentDriversPanel />
           <CurrentTeamsPanel />
           <Standings />
-          <LegendsPanel />
           <ExploreDrivers />
           <ExploreTeams /> 
+          <LegendsPanel />
           <SkySportsPanel />
         </Route>
         <Route exact path="/profile/driver/:driverId">

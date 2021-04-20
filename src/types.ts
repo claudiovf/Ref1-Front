@@ -69,6 +69,34 @@ export interface Driver extends BaseInfo {
     entries         : DriverPeriod[];
 }
 
+//////////////////////////////
+//
+//
+//  DRIVER SEARCH RESULT TYPES
+//
+export interface RequestEntry {
+    entries     : number;
+    points      : number;
+    avgPoints   : number;
+    avgPosition : number;
+    bestResult  : number;
+}
+
+export interface RequestRaceStat {
+    stat    : string;
+    total   : number;
+    pct     : number;
+    first   : Occasion;
+    last    : Occasion;
+}
+
+export interface DriverResult {
+    givenName   : string;
+    familyName  : string;
+    driverId    : string;
+    reqEntry    : RequestEntry;
+    reqRaceStat : RequestRaceStat;
+}
 
 
 ///////////////////////
@@ -93,6 +121,20 @@ export interface Team extends TeamBaseInfo {
     seasonsIn       : string[];
     entries         : TeamPeriod[];
 }
+
+//////////////////////////////
+//
+//
+//  TEAM SEARCH RESULT TYPES
+//
+
+export interface TeamResult {
+    name             : string;
+    constructorId    : string;
+    reqEntry         : RequestEntry;
+    reqRaceStat      : RequestRaceStat;
+}
+
 
 ///////////////////////
 //

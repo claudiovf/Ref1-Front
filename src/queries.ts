@@ -155,9 +155,14 @@ export const GET_TEAM_NAMES = gql`
     }
 `;
 
-export const GET_DRIVER_RESULTS = gql`
-    query getResults($period: String!, $stat: String!, $skip: Int!, $pct: Boolean!){
-        findDriverResults(
+
+export const GET_DRIVER_RESULTS_MONGO = gql`
+    query getDriverResultsMONGO(
+            $period: String!, 
+            $stat: String!, 
+            $skip: Int!,
+            $pct: Boolean!) {
+        findDriverResultsMongo(
             period: $period
             stat: $stat
             skip: $skip
@@ -166,24 +171,31 @@ export const GET_DRIVER_RESULTS = gql`
             driverId
             givenName
             familyName
-            entries{
+            reqEntry {
                 entries
-                points
                 avgPosition
                 avgPoints
                 bestResult
-                stats {
-                    stat
-                    total
-                    pct
-                }
+                points
+            }
+            reqRaceStat {
+                stat
+                total
+                pct
             }
         }
     }
 `;
-export const GET_TEAM_RESULTS = gql`
-    query getResults($period: String!, $stat: String!, $skip: Int!, $pct: Boolean!){
-        getTeamSearchResults(
+
+
+
+export const GET_TEAM_RESULTS_MONGO = gql`
+    query getTeamResultsMONGO(
+            $period: String!, 
+            $stat: String!, 
+            $skip: Int!,
+            $pct: Boolean!){
+        findTeamResultsMongo(
             period: $period
             stat: $stat
             skip: $skip
@@ -191,17 +203,17 @@ export const GET_TEAM_RESULTS = gql`
         ) {
             constructorId
             name
-            entries{
+            reqEntry {
                 entries
-                points
                 avgPosition
                 avgPoints
                 bestResult
-                stats {
-                    stat
-                    total
-                    pct
-                }
+                points
+            }
+            reqRaceStat {
+                stat
+                total
+                pct
             }
         }
     }

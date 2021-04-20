@@ -3,11 +3,11 @@ import { useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { GET_DRIVER_RESULTS } from '../../../queries';
+import { GET_DRIVER_RESULTS_MONGO } from '../../../queries';
 import { RootState } from '../../../store';
 import { setCurrResults, setPrevResults } from '../../../store/actions';
 import { SearchState } from '../../../store/searchTypes';
-import { Driver } from '../../../types';
+import { DriverResult } from '../../../types';
 import { getPeriod, splitStat, getSecondSort } from '../../../utils/formatting';
 import Spinner from '../../Common/Spinner';
 import { SelectionButton, Spacer } from '../../LayoutComponents';
@@ -39,7 +39,7 @@ const DriverResults: React.FC = () => {
     
     if (!search.selections.period || !search.selections.sortBy ) return null;
 
-    const { loading, data } = useQuery<{ findDriverResults: Driver[] }>(GET_DRIVER_RESULTS,
+    const { loading, data } = useQuery<{ findDriverResultsMongo: DriverResult[] }>(GET_DRIVER_RESULTS_MONGO,
         { 
             fetchPolicy: "cache-and-network", 
             variables: {
@@ -53,14 +53,14 @@ const DriverResults: React.FC = () => {
   useEffect(() => {
       if ( data ) {
           
-        if ( data.findDriverResults.length === 26 ) {
-            let spliced: Driver[] = [];
-            spliced = spliced.concat(data.findDriverResults);
+        if ( data.findDriverResultsMongo.length === 26 ) {
+            let spliced: DriverResult[] = [];
+            spliced = spliced.concat(data.findDriverResultsMongo);
             spliced.splice(-1, 1);
             dispatch(setCurrResults(spliced));
             setHasNextPage(true);
         } else {
-            dispatch(setCurrResults(data.findDriverResults));
+            dispatch(setCurrResults(data.findDriverResultsMongo));
             setHasNextPage(false);
         }
       }
@@ -86,13 +86,13 @@ const DriverResults: React.FC = () => {
                         }</Th>
                     </Tr>
                     <DriversResultsRow 
-                            resultList={(search.prevResults as Driver[])} 
+                            resultList={(search.prevResults as DriverResult[])} 
                             rankPrev={true}/>
                     
                     {loading && search.prevResults.length !== 0
                         ? null
                         : <DriversResultsRow 
-                            resultList={(search.currResults as Driver[])} 
+                            resultList={(search.currResults as DriverResult[])} 
                             rankPrev={false}/>
                         }
                 </Tbody>

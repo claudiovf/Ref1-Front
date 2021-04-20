@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { RootState } from '../../../store';
 import { setCurrResults, setPrevResults, setSearch, toggleOpen } from '../../../store/actions';
 import { SearchState } from '../../../store/searchTypes';
-import { Driver } from '../../../types';
+import { DriverResult } from '../../../types';
 import { getDriverStyle, patchId } from '../../../utils/currentInfo';
 import { resultItemStyle, splitStat, getDisplayStat } from '../../../utils/formatting';
 import { SelectionButton, StyledLink } from '../../LayoutComponents';
@@ -22,7 +22,7 @@ const ResultLink = styled(StyledLink)`
 
 
 interface Props {
-    resultList: Driver[];
+    resultList: DriverResult[];
     rankPrev: boolean;
 }
 
@@ -72,11 +72,11 @@ const DriversTableRows: React.FC<Props> = ({resultList, rankPrev}: Props) => {
 
                         <Td>{search.selections.filterBy !== "Season" 
                             && splitStat(search.selections.sortBy).stat !== "entries"
-                            ? driver.entries[0].entries
+                            ? driver.reqEntry.entries
                             : splitStat(search.selections.sortBy).stat !== "entries"
                                 ? splitStat(search.selections.sortBy).stat === "points"
-                                    ? driver.entries[0].bestResult
-                                    : driver.entries[0].entries
+                                    ? driver.reqEntry.bestResult
+                                    : driver.reqEntry.entries
                                 : null
                         }</Td>
                     </>
