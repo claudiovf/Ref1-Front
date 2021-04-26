@@ -8,9 +8,6 @@ import { setSearch, toggleOpen, setCurrResults, setPrevResults } from '../../sto
 import FilterBy from './FilterBy';
 import SortBy from './SortBy';
 import ResutsFor from './ResultsFor';
-// import { useQuery } from '@apollo/client';
-// import { GET_TEAM_NAMES } from '../../queries';
-// import { Team } from '../../types';
 import TeamResults from './TeamResults';
 import DriverResults from './DriverResults';
 
@@ -85,6 +82,7 @@ const ModalOverflow = styled.div`
         height: 100%;
         min-height: 100vh;
         margin-top: 0;
+        
     }
 `;
 

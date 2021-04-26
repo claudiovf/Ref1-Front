@@ -249,3 +249,37 @@ export interface DisplaySchedule {
     qualifying: DisplayDate;
     race: DisplayDate;
 }
+
+/////////////////////
+//
+//
+// CIRCUIT RESULTS TYPES
+//
+export interface TeamCircuit {
+    name            : string;
+    constructorId   : string;
+}
+
+export interface DriverCircuit {
+    familyName      : string;
+    givenName       : string;
+    driverId        : string;
+}
+
+export interface CircuitPos{
+    grid            : string;
+    position        : string;
+    positionText    : string;
+    status          : string;
+    Time            : { millis: string; time: string; }
+    Driver          : DriverCircuit;
+    Constructor     : TeamCircuit;
+}
+
+export interface CircuitEvent {
+    round   : string;
+    season  : string;
+    date    : string;
+    raceName: string;
+    results : CircuitPos[];
+}

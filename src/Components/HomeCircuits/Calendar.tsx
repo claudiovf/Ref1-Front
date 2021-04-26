@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { GET_NEXT_RACES } from '../../queries';
 import { CircuitType } from '../../types';
-import { getGP } from '../../utils/formatting';
+import { getGP, getLocalTimes } from '../../utils/formatting';
 import Spinner from '../Common/Spinner';
 import { Section, Scroll, SelectionButton, StyledLink } from '../LayoutComponents';
 
@@ -89,10 +89,14 @@ const RaceDate = styled.div`
 
 
 const CalendarSection = styled(Section)`
-width: 100vw;
+    width: 100vw;
     @media (min-width: 768px) {
         width: auto;
         margin: 3rem 10% 3rem 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
@@ -142,7 +146,10 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
         'yas_marina' 
     ];
 
+
+
     return (
+        <React.Fragment>
             <CalendarSection>  
                 <Scroll>
                     { data
@@ -151,42 +158,45 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
                         
                         if (!race) return null;
 
-                        const start = new Date(Date.parse(race.scheduleUTC.race) - 3600000);
+                        const start = getLocalTimes(race.scheduleUTC);
 
                         
                         return (
-                            <StyledLink to={"/profile/circuit/" + race.circuitId} key={race.circuitId}>
-                                <RaceCard 
-                                    ref ={race.circuitId === nextCircuit ? nextRef : null}
-                                >
-                                    <RaceName>
-                                        {getGP(race.circuitId)} GP
-                                    </RaceName>
-                                    <CircuitName>
-                                        {race.circuitName}
-                                    </CircuitName>
-                                    <RaceLocation>
-                                        {race.location?.locality}, {race.location?.country}
-                                    </RaceLocation>
-                                    <RaceDate>
-                                        { start.toDateString().substring(4, 10)}, { start.toLocaleTimeString().substring(0, 5)}
-                                    </RaceDate>
-                                    <SelectionButton 
-                                        color={"#FFF"} 
-                                        bg={"#00c49a"} 
-                                        border={"#00c49a"} 
-                                        selected={true}
+                            <React.Fragment key={race.circuitId}>
+                                <StyledLink to={"/profile/circuit/" + race.circuitId}>
+                                    <RaceCard 
+                                        ref ={race.circuitId === nextCircuit ? nextRef : null}
                                     >
-                                        View Event Info
-                                    </SelectionButton>
-                                </RaceCard> 
-                            </StyledLink>
+                                        <RaceName>
+                                            {getGP(race.circuitId)} GP
+                                        </RaceName>
+                                        <CircuitName>
+                                            {race.circuitName}
+                                        </CircuitName>
+                                        <RaceLocation>
+                                            {race.location?.locality}, {race.location?.country}
+                                        </RaceLocation>
+                                        <RaceDate>
+                                            { start.race.date}, {start.race.time}
+                                        </RaceDate>
+                                        <SelectionButton 
+                                            color={"#FFF"} 
+                                            bg={"#00c49a"} 
+                                            border={"#00c49a"} 
+                                            selected={true}
+                                        >
+                                            View Event Info
+                                        </SelectionButton>
+                                    </RaceCard> 
+                                </StyledLink>
+                            </React.Fragment>
                         );
                     })
                          : null 
                     }
                 </Scroll>
             </CalendarSection> 
+        </React.Fragment>
     );
 };
 

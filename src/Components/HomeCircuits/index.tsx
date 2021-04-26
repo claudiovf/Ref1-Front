@@ -7,7 +7,6 @@ import { getGP } from '../../utils/formatting';
 import { SelectionButton, StyledButton, StyledLink } from '../LayoutComponents';
 import Calendar from './Calendar';
 import CountDown from './CountDown';
-import Weather from './Weather';
 
 
 const CircuitsContainer = styled.div<{ exp: boolean; }>`
@@ -47,7 +46,7 @@ const ExpandButton = styled(StyledButton)`
     color: white;
     font-size: 0.75rem;
     border: 1px solid white;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
     font-family: "Work Sans Semi Bold";
     margin: 0.25rem 0 0.5rem 0;
     white-space: nowrap;
@@ -66,6 +65,7 @@ const HomeCircuits: React.FC = () => {
     const [expanded, setExpanded ] = useState<boolean>(false);
     const [timeUp, setTimeUp ] = useState<boolean>(false);
 
+
     const nextCircuit = "portimao";
     const circuitAfter = "catalunya";
 
@@ -73,6 +73,13 @@ const HomeCircuits: React.FC = () => {
         fetchPolicy: "cache-and-network", 
         variables: { circuitId: !timeUp ? nextCircuit : circuitAfter} 
     });
+    
+    useEffect(() => {
+        if (data) {
+            setNextRace(data.findCircuit);
+        }
+    }, [data, timeUp]);
+    
 
 
     const handleTimeUp = (bool: boolean) => {
@@ -80,15 +87,7 @@ const HomeCircuits: React.FC = () => {
     };
 
 
-    useEffect(() => {
-        if (data) {
-            setNextRace(data.findCircuit);
-        }
-    }, [data, timeUp]);
-
     if ( loading || !data ) return null;
-
-
     if (!nextRace || !nextRace.location) return null;
     
 
@@ -108,15 +107,12 @@ const HomeCircuits: React.FC = () => {
                         </SelectionButton> 
                     </StyledLink>
                 </NextTitle>
+                
                 <CountDown 
-                    nextRaceDate={nextRace.scheduleUTC.race} 
+                    nextRaceDates={nextRace.scheduleUTC} 
                     handleTimeUp={handleTimeUp}
-                />
-                <Weather 
                     nextRaceLoc={nextRace.location} 
-                    raceTime={nextRace.scheduleUTC.race}
                 />
-                   
                 
                 {
                     expanded

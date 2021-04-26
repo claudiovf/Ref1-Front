@@ -91,62 +91,64 @@ const EventSchedule: React.FC<Props> = ({ scheduleTrack, scheduleUTC}: Props) =>
 
 
     return (
-        <ScheduleSection>
-            <TitleRow>
-                <ScheduleTitle color={"#2f2f2f"}>Event Schedule</ScheduleTitle>
-                <TimeSelection>
-                {["Your Time", "Track Time"].map(option => option === timeSelected
-                            ? <SelectionButton 
-                                selected={true}
-                                bg={"#00c49a"}
-                                color={"#FFF"}
-                                border={"rgb(255,255,255, 0)"}
-                                key={option}>
-                                    {option}
-                            </SelectionButton> 
-                            : <SelectionButton 
-                                selected={false}
-                                bg={"#fff"}
-                                color={"#828282"}
-                                border={"rgb(255,255,255, 0)"}
-                                key={option}
-                                onClick={() => setTimeSelected(option)}>
-                                    {option}
-                            </SelectionButton> 
-                        )
-                    } 
-                </TimeSelection>
-            </TitleRow>
-            <ScheduleTable>
-                <tbody>
-                    <Tr>
-                        <Td>Practice 1</Td>
-                        <Td>{displaySchedule.practice_1.date}</Td>
-                        <Td>{displaySchedule.practice_1.time}</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>Practice 2</Td>
-                        <Td>{displaySchedule.practice_2.date}</Td>
-                        <Td>{displaySchedule.practice_2.time}</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>Practice 3</Td>
-                        <Td>{displaySchedule.practice_3.date}</Td>
-                        <Td>{displaySchedule.practice_3.time}</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>Qualifying</Td>
-                        <Td>{displaySchedule.qualifying.date}</Td>
-                        <Td>{displaySchedule.qualifying.time}</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>Race</Td>
-                        <Td>{displaySchedule.race.date}</Td>
-                        <Td>{displaySchedule.race.time}</Td>
-                    </Tr>
-                </tbody>
-            </ScheduleTable>
-        </ScheduleSection>
+        <React.Fragment>
+            <ScheduleSection>
+                <TitleRow>
+                    <ScheduleTitle color={"#2f2f2f"}>Event Schedule</ScheduleTitle>
+                    <TimeSelection>
+                    {["Your Time", "Track Time"].map(option => option === timeSelected
+                                ? <SelectionButton 
+                                    selected={true}
+                                    bg={"#00c49a"}
+                                    color={"#FFF"}
+                                    border={"rgb(255,255,255, 0)"}
+                                    key={option}>
+                                        {option}
+                                </SelectionButton> 
+                                : <SelectionButton 
+                                    selected={false}
+                                    bg={"#fff"}
+                                    color={"#828282"}
+                                    border={"rgb(255,255,255, 0)"}
+                                    key={option}
+                                    onClick={() => setTimeSelected(option)}>
+                                        {option}
+                                </SelectionButton> 
+                            )
+                        } 
+                    </TimeSelection>
+                </TitleRow>
+                <ScheduleTable>
+                    <tbody>
+                        <Tr>
+                            <Td>Practice 1</Td>
+                            <Td>{displaySchedule.practice_1.date}</Td>
+                            <Td>{displaySchedule.practice_1.time}</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>Practice 2</Td>
+                            <Td>{displaySchedule.practice_2.date}</Td>
+                            <Td>{displaySchedule.practice_2.time}</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>Practice 3</Td>
+                            <Td>{displaySchedule.practice_3.date}</Td>
+                            <Td>{displaySchedule.practice_3.time}</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>Qualifying</Td>
+                            <Td>{displaySchedule.qualifying.date}</Td>
+                            <Td>{displaySchedule.qualifying.time}</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>Race</Td>
+                            <Td>{displaySchedule.race.date}</Td>
+                            <Td>{displaySchedule.race.time}</Td>
+                        </Tr>
+                    </tbody>
+                </ScheduleTable>
+            </ScheduleSection>
+        </React.Fragment>
     );
 };
 

@@ -12,7 +12,13 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/c
 import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist';
 
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache({
+  typePolicies: {
+    CircuitType: {
+      merge: true,
+    },
+  },
+});
 
 const setPersistant = async () => {
   await persistCache({

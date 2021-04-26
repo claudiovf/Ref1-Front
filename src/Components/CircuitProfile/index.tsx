@@ -12,13 +12,21 @@ import { getGP } from '../../utils/formatting';
 import styled from 'styled-components';
 import EventSchedule from './EventSchedule';
 import RaceInfo from './RaceInfo';
+import PreviousResults from './PreviousResults/PreviousResults';
 
 const ProfileBody = styled(ProfileWrap)`
     background-color: #FFF;
-    @media (min-width: 768px) {
-        justify-content: center;
-        align-items: center;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    @media (min-width: 960px) {
+        width: 80%;
+        margin: 0 10% 0 10%;
+      }
 `;
 
 const RaceName = styled.div`
@@ -34,12 +42,14 @@ const CircuitName = styled.div`
     color: #2f2f2f;
     font-size: 1rem;
     margin: 1rem 1rem 0 1rem;
+    white-space: nowrap;
 `;
 
 const Local = styled.div`
     font-family: "Work Sans Bold";
     font-size: 1rem;
     color: #00c49a;
+    white-space: nowrap;
 `;
 
 const ProfileGP = styled(ProfileName)`
@@ -66,7 +76,7 @@ const CircuitProfile: React.FC = () => {
     
     if ( loading ) return <> <Spacer /><Spinner /> </>;
 
-    if ( !circuit || !circuit.location ) return null;
+    if ( !circuit) return null;
     
     return (
         <React.Fragment>
@@ -82,7 +92,7 @@ const CircuitProfile: React.FC = () => {
                         {getGP(circuit.circuitId).toUpperCase()} GP</ProfileGP>
                     <RaceName>{circuit.raceName}</RaceName>
                     <CircuitName>{circuit.circuitName}</CircuitName>
-                    <Local>{circuit.location?.locality}, {circuit.location.country}</Local>
+                    <Local>{circuit.location?.locality}, {circuit.location?.country}</Local>
                     
                     <EventSchedule 
                         scheduleTrack={circuit.scheduleTrack}
@@ -91,6 +101,7 @@ const CircuitProfile: React.FC = () => {
                     <RaceInfo 
                         circuit={circuit}
                     />
+                    <PreviousResults circuitId={circuit.circuitId}/>
                 </ProfileBody>
             </ProfileContainer>
         </React.Fragment>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Location } from '../../types';
-import { handleCountdown } from '../../utils/formatting';
+import { Location, Schedule } from '../../types';
+import { getSessionInfo, handleCountdown } from '../../utils/formatting';
 
 const WeatherContainer = styled.div`
     display: flex;
@@ -12,7 +12,7 @@ const WeatherContainer = styled.div`
     height: auto;
     width: auto;
     max-width: 90%;
-    margin: 0.25rem 0 1rem 0;
+    margin: 0.5rem 0 1.5rem 0;
     border-radius: 0.5rem;
     background-color: rgb(255, 255, 255, 0.1);
 
@@ -125,88 +125,109 @@ interface Weather {
     condition_text: string;
     icon: string;
     locality: string;
+    session: string;
 }
 
 interface Props {
     nextRaceLoc: Location;
-    raceTime: string;
+    raceTime: Schedule;
+    sessionSelected: string;
 }
 
 
-const Weather: React.FC<Props> = ({nextRaceLoc, raceTime}: Props) => {
+const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Props) => {
     const [raceWeather, setRaceWeather] = useState<Weather | null>(null);
+    const [weekendForecast, setWeekendForecast] = useState<Weather[] | null>(null);
     const [isWeather, setIsWeather] = useState<boolean>(false);
 
-    useEffect(() => {
-        if (raceWeather) {
-            setIsWeather(true);
-        }
-    }, [raceWeather, nextRaceLoc]);
-
-    if (handleCountdown(raceTime).days > 7 ) return <Notif>*Weather forecast is available during race week</Notif>;
-
+    if (handleCountdown(raceTime.race).days > 7 ) return <Notif>*Weather forecast is available during race week</Notif>;
 
     const lat = nextRaceLoc.lat;
     const long = nextRaceLoc.long;
 
-    const nextRaceDate = raceTime.substring(0, 10);
-    const nextRaceTime= `${nextRaceDate} ${raceTime.substring(11, 16)}`;
+    // const nextRaceDate = getSessionInfo(raceTime, sessionSelected).substring(0, 10);
+    // const nextRaceTime= `${nextRaceDate} ${getSessionInfo(raceTime, sessionSelected).substring(11, 16)}`;
+
+   
+    useEffect(() => {
+        if (raceWeather) {
+            setIsWeather(true);
+        }
+        if (weekendForecast) {
+            const displayForecast = weekendForecast.find(forecast => forecast.session === sessionSelected);
+            if(displayForecast) {
+                setRaceWeather(displayForecast);
+            }
+        }
+    }, [raceWeather, nextRaceLoc, sessionSelected, weekendForecast]);
 
 
-    if((!isWeather && !raceWeather) ||  raceWeather?.locality !== nextRaceLoc.locality) {
+
+    if((!isWeather && !weekendForecast)) {
         
         axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${lat},${long}&days=7&aqi=no&alerts=no`)
         .then(res => {
-            const raceDay = res.data.forecast.forecastday.find((day: { date: string; }) => day.date === nextRaceDate);
-    
-            if(raceDay) {
-                const raceStart = raceDay.hour.find((hour: { time: string; }) => hour.time === nextRaceTime);
-    
-                if (raceStart) {
-                    const raceForecast = {
-                        chance_of_rain: raceStart.chance_of_rain,
-                        temp: raceStart.temp_c,
-                        wind: raceStart.wind_kph,
-                        wind_dir: raceStart.wind_dir,
-                        condition_text: raceStart.condition.text,
-                        icon: raceStart.condition.icon.substring(21, raceStart.condition.icon.length),
-                        locality: nextRaceLoc.locality
-                    };
-    
-                    setRaceWeather(raceForecast);
-                    
+            const sessionsWeather = ["FP1", "FP2", "FP3", "qualifying", "race"].map(session => {
+                const nextRaceDate = getSessionInfo(raceTime, session).substring(0, 10);
+                const nextRaceTime = `${nextRaceDate} ${getSessionInfo(raceTime, session).substring(11, 14)}00`;
+        
+                const sessionDay = res.data.forecast.forecastday.find((day: { date: string; }) => day.date === nextRaceDate);
+         
+                if(sessionDay) {
+                    const sessionStart = sessionDay.hour.find((hour: { time: string; }) => hour.time === nextRaceTime);
+        
+                    if (sessionStart) {
+                        const sessionForecast = {
+                            chance_of_rain: sessionStart.chance_of_rain,
+                            temp: sessionStart.temp_c,
+                            wind: sessionStart.wind_kph,
+                            wind_dir: sessionStart.wind_dir,
+                            condition_text: sessionStart.condition.text,
+                            icon: sessionStart.condition.icon.substring(21, sessionStart.condition.icon.length),
+                            locality: nextRaceLoc.locality,
+                            session: session,
+                        };
+        
+                        return sessionForecast;
+                        
+                    }
                 }
+            });
+            if(sessionsWeather) {
+                setWeekendForecast(sessionsWeather as Weather[]);
             }
+           
         }); 
     }
 
     if(!isWeather || !raceWeather) return null;
 
-    
 
     return (
-        <WeatherContainer>
-            <IconTextWrap>
-                <img src={process.env.PUBLIC_URL + `/${raceWeather.icon}`} />
-            </IconTextWrap>
-            <MeasureBox>
-            <WeatherTitle>RACE FORECAST</WeatherTitle>
-                <MeasuresWrap>
-                    <MeasureRow>
-                        <Value>{raceWeather.temp}&#176;</Value>
-                        <Description>Celcius</Description>
-                    </MeasureRow>
-                    <MeasureRow>
-                        <Value>{raceWeather.chance_of_rain}<Unit>%</Unit></Value> 
-                        <Description>Chance of rain</Description>
-                    </MeasureRow>
-                    <MeasureRow>
-                        <Value>{raceWeather.wind}<Unit>kph</Unit></Value>
-                        <Description>Wind speed</Description>
-                    </MeasureRow>
-                </MeasuresWrap>
-            </MeasureBox>
-        </WeatherContainer>
+        <React.Fragment>
+            <WeatherContainer>
+                <IconTextWrap>
+                    <img src={process.env.PUBLIC_URL + `/${raceWeather.icon}`} />
+                </IconTextWrap>
+                <MeasureBox>
+                <WeatherTitle>SESSION FORECAST</WeatherTitle>
+                    <MeasuresWrap>
+                        <MeasureRow>
+                            <Value>{raceWeather.temp.toFixed(0)}&#176;</Value>
+                            <Description>Celcius</Description>
+                        </MeasureRow>
+                        <MeasureRow>
+                            <Value>{raceWeather.chance_of_rain}<Unit>%</Unit></Value> 
+                            <Description>Chance of rain</Description>
+                        </MeasureRow>
+                        <MeasureRow>
+                            <Value>{raceWeather.wind.toFixed(0)}<Unit>kph</Unit></Value>
+                            <Description>Wind speed</Description>
+                        </MeasureRow>
+                    </MeasuresWrap>
+                </MeasureBox>
+            </WeatherContainer>
+        </React.Fragment>
     );
 };
 

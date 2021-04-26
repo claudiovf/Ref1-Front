@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { handleCountdown } from '../../utils/formatting';
+import { Schedule, Location } from '../../types';
+import { handleCountdown, getSessionInfo } from '../../utils/formatting';
+import SessionSelection from './SessionSelection';
+import Weather from './Weather';
 
 const Table = styled.table`
-    margin: 0.5rem 0; 
+    margin: 0.25rem 0 0.75rem 0; 
     width: 80%;
     height: auto;
     @media (min-width: 768px) {
@@ -13,8 +16,8 @@ const Table = styled.table`
 
 const Th = styled.th`
     font-family: "Work Sans Bold";
-    color: white;
-    font-size: 1.5rem;
+    color: #00c49a;
+    font-size: 1.75rem;
     padding: 0 0.75rem;
     width: 25%;
 `;
@@ -28,55 +31,108 @@ const Td = styled.td`
 
 
 interface Props {
-    nextRaceDate: string;
+    nextRaceDates: Schedule;
     handleTimeUp: (bool: boolean) => void;
+    nextRaceLoc: Location;
 }
 
-const CountDown: React.FC<Props> = ({nextRaceDate, handleTimeUp}: Props) => {
+const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: Props) => {
+    const [sessionSelected, setSessionSelected] = useState<string>("race");
+    const [sessionsOver, setSessionsOver] = useState<string[]>([]);
+
     const [days, setDays ] = useState<number>(0);
     const [hours, setHours ] = useState<number>(0);
     const [mins, setMins ] = useState<number>(0);
     const [secs, setSecs ] = useState<number>(0);
-    
+
+
+//    const test = {
+//        practice_1: "2021-04-26T06:27:00.000Z",
+//        practice_2: "2021-04-26T06:27:30.000Z",
+//        practice_3: "2021-04-26T06:28:00.000Z",
+//        qualifying: "2021-04-26T06:28:30.000Z",
+//        race: "2021-04-26T06:29:00.000Z",
+//    };
 
     useEffect(() => {
+        const zeroedSessions: string[] = [];
+
         const interval = setInterval(() => {
-            const countDown = handleCountdown(nextRaceDate);
-            setDays(countDown.days);
-            setHours(countDown.hours);
-            setMins(countDown.mins);
-            setSecs(countDown.secs);
-
-            if (countDown.days < 1
-                && countDown.hours < 1
-                && countDown.mins < 1
-                && countDown.secs < 1 ) {
-                    handleTimeUp(true);
+            
+            
+            ["FP1", "FP2", "FP3", "qualifying", "race"].map(session => {
+                //const sessionCountdown = handleCountdown(getSessionInfo(nextRaceDates.practice_1 === "2021-05-07T10:30:00.000Z" ? nextRaceDates : test, session));
+                const sessionCountdown = handleCountdown(getSessionInfo(nextRaceDates, session));
+                if(session === sessionSelected) {
+                    setDays(sessionCountdown.days);
+                    setHours(sessionCountdown.hours);
+                    setMins(sessionCountdown.mins);
+                    setSecs(sessionCountdown.secs);
                 }
-        });
+                if (sessionCountdown.days < 1
+                    && sessionCountdown.hours < 1
+                    && sessionCountdown.mins < 1
+                    && sessionCountdown.secs < 1) {
+                        if(session === "race") {
+                            handleTimeUp(true);
+                            zeroedSessions.push(session);
+                        }
+                        else {
+                            zeroedSessions.push(session);
 
- 
+                            if(session === sessionSelected) {
+                                setSessionSelected("race");
+                            }
+                        }
+                    }
+            });
+        });
+        if(zeroedSessions.includes("race")) {
+            setSessionsOver([]);
+
+        } else {
+            setSessionsOver(zeroedSessions);
+        }
+
+
         return () => clearInterval(interval);
-    }, [nextRaceDate]);
+
+    }, [nextRaceDates, sessionSelected]);
     
 
+    const handleSessionSelection = (session: string) => {
+        setSessionSelected(session);
+    };
+
     return (
-        <Table>
-            <tbody>
-                <tr>
-                    <Th>{days.toString().padStart(2, "0")}</Th>
-                    <Th>{hours.toString().padStart(2, "0")}</Th>
-                    <Th>{mins.toString().padStart(2, "0")}</Th>
-                    <Th>{secs.toString().padStart(2, "0")}</Th>
-                </tr>
-                <tr>
-                    <Td>Days</Td>
-                    <Td>hours</Td>
-                    <Td>Mins</Td>
-                    <Td>Secs</Td>
-                </tr>
-            </tbody>
-        </Table>
+        <React.Fragment>
+            <SessionSelection 
+                handleSessionSelection={handleSessionSelection}
+                sessionSelected={sessionSelected}
+                sessionsOver={sessionsOver}
+            />
+            <Table>
+                <tbody>
+                    <tr>
+                        <Th>{days.toString().padStart(2, "0")}</Th>
+                        <Th>{hours.toString().padStart(2, "0")}</Th>
+                        <Th>{mins.toString().padStart(2, "0")}</Th>
+                        <Th>{secs.toString().padStart(2, "0")}</Th>
+                    </tr>
+                    <tr>
+                        <Td>Days</Td>
+                        <Td>hours</Td>
+                        <Td>Mins</Td>
+                        <Td>Secs</Td>
+                    </tr>
+                </tbody>
+            </Table>
+            <Weather 
+                    nextRaceLoc={nextRaceLoc} 
+                    raceTime={nextRaceDates}
+                    sessionSelected={sessionSelected}
+                />
+        </React.Fragment>
     );
 };
 

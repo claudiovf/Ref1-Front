@@ -66,7 +66,7 @@ interface Props {
 const RaceInfo: React.FC<Props> = ({circuit}: Props ) => {
 
     return (
-        <>
+        <React.Fragment>
             <Title color={"#2f2f2f"}>Circuit Information</Title>
             <Table>
                 <tbody>
@@ -111,7 +111,7 @@ const RaceInfo: React.FC<Props> = ({circuit}: Props ) => {
                     }
                 </tbody>
             </Table>
-        </>
+        </React.Fragment>
         );
     };
     

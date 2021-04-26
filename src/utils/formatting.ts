@@ -182,6 +182,21 @@ export const getGP = (circuitId: string): string => {
     }
 };
 
+export const getSessionInfo = (schedule: Schedule, sessionSel: string): string => {
+    switch(true) {
+        case sessionSel === "FP1":
+            return schedule.practice_1;
+        case sessionSel === "FP2":
+            return schedule.practice_2;
+        case sessionSel === "FP3":
+            return schedule.practice_3;
+        case sessionSel === "qualifying":
+            return schedule.qualifying;
+        default:
+            return schedule.race;
+    }
+};
+
 export const handleCountdown = (UTCdate: string): {days: number; hours: number; mins: number; secs: number} => {
     let diff = (Date.parse(UTCdate) - Date.parse(new Date().toUTCString())) / 1000;
     const countDown = {
@@ -215,16 +230,21 @@ export const handleCountdown = (UTCdate: string): {days: number; hours: number; 
     return countDown;
 };
 
+export const getMonthStr = (month: number): string => {
+    const months = ["Jan", "Fev", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    return months[month];
+};
+
 export const getLocalTimes = (eventSchedule: Schedule): DisplaySchedule => {
     const getLocalDateWith = (dateStr: string) => {
 
         /// includes daylight saving UK. ends in october
         const date = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000);
         const time = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000);
-    
         
         return {
-            date: `${date.getDate().toString().padStart(2,'0')}/${(date.getMonth() + 1).toString().padStart(2,'0')}`,
+            date: `${getMonthStr(date.getMonth())} ${date.getDate().toString().padStart(2,'0')}`,
             time: `${time.getHours().toString().padStart(2,'0')}:${time.getMinutes().toString().padStart(2,'0')}`
         };
     };
@@ -247,7 +267,7 @@ export const getTrackTimes = (trackSchedule: Schedule): DisplaySchedule => {
         const min = date.substring(14, 16);
 
         return {
-            date: `${day}/${month}`,
+            date: `${getMonthStr(Number(month) - 1)} ${day}`,
             time: `${hour}:${min}` 
         };
     };
