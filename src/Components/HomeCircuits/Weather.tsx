@@ -202,7 +202,6 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
 
     if(!isWeather || !raceWeather) return null;
 
-
     return (
         <React.Fragment>
             <WeatherContainer>
@@ -213,7 +212,7 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
                 <WeatherTitle>SESSION FORECAST</WeatherTitle>
                     <MeasuresWrap>
                         <MeasureRow>
-                            <Value>{raceWeather.temp.toFixed(0)}&#176;</Value>
+                            <Value>{raceWeather.temp}&#176;</Value>
                             <Description>Celcius</Description>
                         </MeasureRow>
                         <MeasureRow>
@@ -221,7 +220,7 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
                             <Description>Chance of rain</Description>
                         </MeasureRow>
                         <MeasureRow>
-                            <Value>{raceWeather.wind.toFixed(0)}<Unit>kph</Unit></Value>
+                            <Value>{raceWeather.wind}<Unit>kph</Unit></Value>
                             <Description>Wind speed</Description>
                         </MeasureRow>
                     </MeasuresWrap>

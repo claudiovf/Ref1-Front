@@ -19,11 +19,15 @@ const Wrap = styled.div`
     font-family: "Work Sans Reg";
     font-size: 0.75rem;
     margin: 0.25rem 0.75rem;
+
 `;
 
 const SelButton = styled(SelectionButton)`
     padding: 0.5rem 0.75rem;
     margin: 0rem;
+    @media (max-width: 330px) {
+        padding: 0.25rem 0.5rem;
+      }
 `;
 const Scratched = styled.div`
     color: #dadada;
@@ -31,6 +35,9 @@ const Scratched = styled.div`
     text-decoration: line-through;
     padding: 0.25rem 0.5rem;
     margin: 0rem;
+    @media (max-width: 330px) {
+        padding: 0.25rem 0.5rem;
+      }
 `;
 
 interface Props {
