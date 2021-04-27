@@ -75,12 +75,12 @@ const Tr = styled.tr`
 
 const ResultButton = styled(SelectionButton)`
     margin: 0;
-    padding: 0.25rem 1rem;
+    padding: 0rem 0.5rem;
     font-size: 1rem;
 `;
 const ResultButtonTeam = styled(SelectionButton)`
     margin: 0;
-    padding: 0.25rem 1rem;
+    padding: 0rem 0.5rem;
     font-size: 0.75rem;
 `;
 
@@ -118,7 +118,7 @@ const EventResult: React.FC<Props> = ({displayEvent}: Props) => {
                                             <StyledLinkDriver to={"/profile/driver/" + pos.Driver.driverId}>
                                                 <ResultButton
                                                     color={"#2f2f2f"}
-                                                    bg={"rgb(47, 47, 47,0.05)"}
+                                                    bg={"rgb(0,0,0,0)"}
                                                     border={"rgb(0,0,0,0)"}
                                                     selected={true}
                                                 >
@@ -134,11 +134,11 @@ const EventResult: React.FC<Props> = ({displayEvent}: Props) => {
                                             <StyledLinkTeam to={"/profile/team/" + pos.Constructor.constructorId}>
                                                 <ResultButtonTeam
                                                     color={"#00c49a"}
-                                                    bg={"rgb(0, 196, 154, 0.2)"}
+                                                    bg={"rgb(0,0,0,0)"}
                                                     border={"rgb(0,0,0,0)"}
                                                     selected={true}
                                                 >
-                                                    {pos.Constructor.name}
+                                                    {pos.Constructor.name.toUpperCase()}
                                                 </ResultButtonTeam>
                                             </StyledLinkTeam>
                                         </TdTeam>

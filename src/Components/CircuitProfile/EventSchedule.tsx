@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Schedule, DisplaySchedule } from '../../types';
 import { SectionTitle, Section, SelectionButton } from '../LayoutComponents';
-import { getLocalTimes, getTrackTimes } from '../../utils/formatting';
+import { convertToAmPm, getLocalTimes, getTrackTimes } from '../../utils/formatting';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 
 const ScheduleSection = styled(Section)`
         margin: 1rem 0 1rem 0;
@@ -79,6 +82,8 @@ const EventSchedule: React.FC<Props> = ({ scheduleTrack, scheduleUTC}: Props) =>
     const localTime = getLocalTimes(scheduleUTC);
     const trackTime = getTrackTimes(scheduleTrack);
 
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
+    
     useEffect(() => {
         if (timeSelected === "Your Time") {
             setDisplaySchedule(localTime);
@@ -123,27 +128,37 @@ const EventSchedule: React.FC<Props> = ({ scheduleTrack, scheduleUTC}: Props) =>
                         <Tr>
                             <Td>Practice 1</Td>
                             <Td>{displaySchedule.practice_1.date}</Td>
-                            <Td>{displaySchedule.practice_1.time}</Td>
+                            <Td>{settings.timeFormat === '24hour' 
+                                    ? displaySchedule.practice_1.time 
+                                    : convertToAmPm(displaySchedule.practice_1.time)}</Td>
                         </Tr>
                         <Tr>
                             <Td>Practice 2</Td>
                             <Td>{displaySchedule.practice_2.date}</Td>
-                            <Td>{displaySchedule.practice_2.time}</Td>
+                            <Td>{settings.timeFormat === '24hour' 
+                                    ? displaySchedule.practice_2.time 
+                                    : convertToAmPm(displaySchedule.practice_2.time)}</Td>
                         </Tr>
                         <Tr>
                             <Td>Practice 3</Td>
                             <Td>{displaySchedule.practice_3.date}</Td>
-                            <Td>{displaySchedule.practice_3.time}</Td>
+                            <Td>{settings.timeFormat === '24hour' 
+                                    ? displaySchedule.practice_3.time 
+                                    : convertToAmPm(displaySchedule.practice_3.time)}</Td>
                         </Tr>
                         <Tr>
                             <Td>Qualifying</Td>
                             <Td>{displaySchedule.qualifying.date}</Td>
-                            <Td>{displaySchedule.qualifying.time}</Td>
+                            <Td>{settings.timeFormat === '24hour' 
+                                    ? displaySchedule.qualifying.time 
+                                    : convertToAmPm(displaySchedule.qualifying.time)}</Td>
                         </Tr>
                         <Tr>
                             <Td>Race</Td>
                             <Td>{displaySchedule.race.date}</Td>
-                            <Td>{displaySchedule.race.time}</Td>
+                            <Td>{settings.timeFormat === '24hour' 
+                                    ? displaySchedule.race.time 
+                                    : convertToAmPm(displaySchedule.race.time)}</Td>
                         </Tr>
                     </tbody>
                 </ScheduleTable>

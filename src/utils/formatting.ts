@@ -236,6 +236,15 @@ export const getMonthStr = (month: number): string => {
     return months[month];
 };
 
+export const convertToAmPm = (time: string): string | number => {
+    const hour24 = Number(time.substring(0,2));
+    const mins = time.substring(3,5);
+    
+    if (hour24 === 0) return `12:${mins}am`;
+    else if (hour24 > 0 && hour24 <= 12) return `${hour24.toString().padStart(2,'0')}:${mins}am`;
+    else return `${(hour24 - 12).toString().padStart(2,'0')}:${mins}pm`;
+};
+
 export const getLocalTimes = (eventSchedule: Schedule): DisplaySchedule => {
     const getLocalDateWith = (dateStr: string) => {
 

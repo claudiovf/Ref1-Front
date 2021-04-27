@@ -1,5 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { CircuitType } from '../../types';
 import { SectionTitle } from '../LayoutComponents';
 
@@ -62,9 +65,14 @@ const DriverName = styled.span`
 interface Props {
     circuit: CircuitType;
 }
+export const distanceConverter = (distance: number): number => {
+    return  distance * 0.621371 ;
+};
 
 const RaceInfo: React.FC<Props> = ({circuit}: Props ) => {
-
+    
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
+  
     return (
         <React.Fragment>
             <Title color={"#2f2f2f"}>Circuit Information</Title>
@@ -74,22 +82,22 @@ const RaceInfo: React.FC<Props> = ({circuit}: Props ) => {
                         <TdBorder rowSpan={2}></TdBorder>
                         <td>{circuit.laps}</td>
                         <TdBorder rowSpan={2}></TdBorder>
-                        <td>{circuit.length}</td>
+                        <td>{settings.distance === 'k' ? circuit.length : (circuit.length * 0.621371).toFixed(3) }</td>
                     </Tr>
                     <Tr>
                         <td><Label>Laps</Label></td>
-                        <td><Label>Length (Km)</Label></td>
+                        <td><Label>Length ({settings.distance === 'k' ? "Km" : "Miles" })</Label></td>
                     </Tr>
                     <TrSpacer></TrSpacer>
                     <Tr>
                         <TdBorder rowSpan={2}></TdBorder>
                         <td>{circuit.firstGP}</td>
                         <TdBorder rowSpan={2}></TdBorder>
-                        <td>{circuit.raceDistance}</td>
+                        <td>{settings.distance === 'k' ? circuit.raceDistance : (circuit.raceDistance * 0.621371).toFixed(3) }</td>
                     </Tr>
                     <Tr>
                         <td><Label>First Grand Prix</Label></td>
-                        <td><Label>Race Distance (Km)</Label></td>
+                        <td><Label>Race Distance ({settings.distance === 'k' ? "Km" : "Miles" })</Label></td>
                     </Tr>
                     {
                         circuit.lapRecord 

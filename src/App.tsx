@@ -17,6 +17,7 @@ import ReactGA from 'react-ga';
 import RouteTracker from './RouteTracker';
 import HomeCircuits from './Components/HomeCircuits';
 import CircuitProfile from './Components/CircuitProfile';
+import SettingsModal from './Components/SettingsModal';
 
 
 const App: React.FC = () => {
@@ -55,6 +56,7 @@ const App: React.FC = () => {
         </Route>
       </Switch>
 
+      <SettingsModal />
       <SearchModal />
       <RouteTracker />
 

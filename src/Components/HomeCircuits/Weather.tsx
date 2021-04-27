@@ -119,8 +119,10 @@ const Notif = styled.div`
 
 interface Weather {
     chance_of_rain: string;
-    temp: number;
-    wind: number;
+    temp_c: number;
+    temp_f: number;
+    wind_k: number;
+    wind_m: number;
     wind_dir: string;
     condition_text: string;
     icon: string;
@@ -179,8 +181,10 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
                     if (sessionStart) {
                         const sessionForecast = {
                             chance_of_rain: sessionStart.chance_of_rain,
-                            temp: sessionStart.temp_c,
-                            wind: sessionStart.wind_kph,
+                            temp_c: sessionStart.temp_c,
+                            temp_f: sessionStart.temp_f,
+                            wind_k: sessionStart.wind_kph,
+                            wind_m: sessionStart.wind_mph,
                             wind_dir: sessionStart.wind_dir,
                             condition_text: sessionStart.condition.text,
                             icon: sessionStart.condition.icon.substring(21, sessionStart.condition.icon.length),
@@ -212,15 +216,18 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
                 <WeatherTitle>SESSION FORECAST</WeatherTitle>
                     <MeasuresWrap>
                         <MeasureRow>
-                            <Value>{raceWeather.temp}&#176;</Value>
-                            <Description>Celcius</Description>
+                            <Value>{localStorage.getItem('temp') ? raceWeather.temp_f : raceWeather.temp_c}&#176;</Value>
+                            <Description>{localStorage.getItem('temp') ? "Fahrenheit" : "Celcius"}</Description>
                         </MeasureRow>
                         <MeasureRow>
                             <Value>{raceWeather.chance_of_rain}<Unit>%</Unit></Value> 
                             <Description>Chance of rain</Description>
                         </MeasureRow>
                         <MeasureRow>
-                            <Value>{raceWeather.wind}<Unit>kph</Unit></Value>
+                            <Value>
+                                {localStorage.getItem('distUnit') ? raceWeather.wind_m : raceWeather.wind_k}
+                                <Unit>{localStorage.getItem('distUnit') ? "mph" : "kph"}</Unit>
+                            </Value>
                             <Description>Wind speed</Description>
                         </MeasureRow>
                     </MeasuresWrap>

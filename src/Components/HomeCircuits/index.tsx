@@ -35,11 +35,6 @@ const NextTitle = styled.div`
     width: auto;
     margin: 0.25rem;
 `;
-// const NextCountry = styled.span`
-//     font-family: "Work Sans Bold";
-//     font-size: 1.25rem;
-//     color: #00c49a;
-// `;
 
 const ExpandButton = styled(StyledButton)`
     background-color: rgb(0,0,0,0);

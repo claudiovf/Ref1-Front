@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { useDispatch } from 'react-redux';
 import { toggleOpen } from '../../store/actions';
 import { eventGa } from '../../RouteTracker';
+import { Settings } from '@styled-icons/fluentui-system-regular/Settings';
+import { toggleSettingsOpen } from '../../store/SettingsStore/actions';
 
 export const HeaderStyled = styled.div`
 
@@ -58,6 +60,20 @@ const Mag = styled.div`
   transform: rotate(45deg);
 `;
 
+const SettingsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const RightItems = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -68,11 +84,24 @@ const Header: React.FC = () => {
           <StyledLink to={"/"}>
             <LogoStyled>REF1</LogoStyled> 
           </StyledLink>
+
+          <RightItems>
+            <SettingsContainer>
+              <Settings 
+                size={28} 
+                onClick={ () => {
+                  dispatch( toggleSettingsOpen() );
+                  eventGa("SettingsOpened", 'default', 'default');
+    
+                }}
+              />
+            </SettingsContainer>
             <MagBox onClick={ () => {
               dispatch( toggleOpen() );
               eventGa("HeaderSearch", 'default', 'default');
-
             }} ><Mag>&#9906;</Mag></MagBox> 
+          </RightItems>
+
         </HeaderStyled>
       </React.Fragment>
   );

@@ -37,7 +37,7 @@ interface Props {
 }
 
 const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: Props) => {
-    const [sessionSelected, setSessionSelected] = useState<string>("race");
+    const [sessionSelected, setSessionSelected] = useState<string>(localStorage.getItem('countdownSession') || "race");
     const [sessionsOver, setSessionsOver] = useState<string[]>([]);
 
     const [days, setDays ] = useState<number>(0);
@@ -47,11 +47,11 @@ const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: 
 
 
 //    const test = {
-//        practice_1: "2021-04-26T06:27:00.000Z",
-//        practice_2: "2021-04-26T06:27:30.000Z",
-//        practice_3: "2021-04-26T06:28:00.000Z",
-//        qualifying: "2021-04-26T06:28:30.000Z",
-//        race: "2021-04-26T06:29:00.000Z",
+//        practice_1: "2021-04-27T06:58:00.000Z",
+//        practice_2: "2021-04-27T06:58:30.000Z",
+//        practice_3: "2021-04-27T06:59:00.000Z",
+//        qualifying: "2021-04-27T06:59:30.000Z",
+//        race: "2021-04-27T07:00:00.000Z",
 //    };
 
     useEffect(() => {
@@ -76,9 +76,13 @@ const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: 
                         if(session === "race") {
                             handleTimeUp(true);
                             zeroedSessions.push(session);
+                            localStorage.removeItem('countdownSession');
                         }
                         else {
                             zeroedSessions.push(session);
+                            if(localStorage.getItem('countdownSession') === session ) {
+                                localStorage.removeItem('countdownSession');
+                            }
 
                             if(session === sessionSelected) {
                                 setSessionSelected("race");
@@ -102,6 +106,10 @@ const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: 
 
     const handleSessionSelection = (session: string) => {
         setSessionSelected(session);
+        if (localStorage.getItem('countdownSession') ) {
+            localStorage.removeItem('countdownSession');
+        }
+        localStorage.setItem('countdownSession', session);
     };
 
     return (

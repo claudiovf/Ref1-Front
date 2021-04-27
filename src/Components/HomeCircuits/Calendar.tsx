@@ -1,9 +1,12 @@
 import { useQuery } from '@apollo/client';
 import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import { GET_NEXT_RACES } from '../../queries';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { CircuitType } from '../../types';
-import { getGP, getLocalTimes } from '../../utils/formatting';
+import { getGP, getLocalTimes, convertToAmPm } from '../../utils/formatting';
 import Spinner from '../Common/Spinner';
 import { Section, Scroll, SelectionButton, StyledLink } from '../LayoutComponents';
 
@@ -108,7 +111,7 @@ interface Props {
 const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
 
     const { loading, data } = useQuery<{ findAllCircuits: CircuitType[] }>(GET_NEXT_RACES);
-
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
     
     const nextRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
@@ -117,7 +120,8 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
         }
         
     }, [nextRef]);
-    
+
+
     if ( loading ) return <Spinner />;
 
     const calendarList = [
@@ -147,7 +151,6 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
     ];
 
 
-
     return (
         <React.Fragment>
             <CalendarSection>  
@@ -160,7 +163,6 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
 
                         const start = getLocalTimes(race.scheduleUTC);
 
-                        
                         return (
                             <React.Fragment key={race.circuitId}>
                                 <StyledLink to={"/profile/circuit/" + race.circuitId}>
@@ -177,7 +179,7 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
                                             {race.location?.locality}, {race.location?.country}
                                         </RaceLocation>
                                         <RaceDate>
-                                            { start.race.date}, {start.race.time}
+                                            { start.race.date}, {settings.timeFormat === '24hour' ? start.race.time : convertToAmPm(start.race.time)}
                                         </RaceDate>
                                         <SelectionButton 
                                             color={"#FFF"} 

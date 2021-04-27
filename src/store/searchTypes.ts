@@ -28,6 +28,7 @@ export const SET_TEAM_NAMES = 'SET_TEAM_NAMES';
 export const SET_CURR_RESULTS = 'SET_CURR_RESULTS';
 export const SET_PREV_RESULTS = 'SET_PREV_RESULTS';
 
+
 export interface SetSearchAction {
     type: typeof SET_SEARCH
     payload: Search
