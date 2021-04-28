@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
+import { eventGa } from '../../RouteTracker';
 import { RootState } from '../../store';
 import { toggleSettingsOpen } from '../../store/SettingsStore/actions';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
@@ -123,6 +124,11 @@ const SettingsModal: React.FC = () => {
             dispatch( toggleSettingsOpen() );
             setClosing(false);
         }, 500);
+        eventGa("Preferences", 
+            'Preferences',
+            `${localStorage.getItem('temp') || 'Celcius'} 
+            - ${localStorage.getItem('distUnit') || 'km'} 
+            - ${localStorage.getItem('timeFormat') || '24hour'}`);
     };
 
     if (settings.isOpen) {

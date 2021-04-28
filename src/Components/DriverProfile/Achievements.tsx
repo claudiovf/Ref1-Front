@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Driver } from '../../types';
 import { getDriverStyle } from '../../utils/currentInfo';
-import { AchIcon } from '../LayoutComponents';
+import { Check } from '@styled-icons/bootstrap';
 
 const AchieveContainer = styled.div<{ bg: string }>`
     background: ${props => props.bg};
@@ -44,6 +44,10 @@ const AchieveCard = styled.div`
       }
 `;
 
+const CheckBoot = styled(Check)`
+    margin-right: 0.5rem;
+    color: rgb(255,255,255, 0.7);
+`;
 
 
 
@@ -102,11 +106,11 @@ const Achievements: React.FC<{driver: Driver}> = ({ driver }: { driver: Driver }
                 <AchieveCard>
                 <Title>Achievements</Title>
                 { driver.championships.length > 0 
-                    ? <div><AchIcon>&#10003;</AchIcon> World Champion</div>
+                    ? <div><CheckBoot size={28} /> World Champion</div>
                     : null
                 }
                 { resultsAchievements.map(a => a !== null 
-                    ? <div key={a}><AchIcon>&#10003;</AchIcon> {a}</div>
+                    ? <div key={a}><CheckBoot size={28} /> {a}</div>
                     : null
                 )}
         

@@ -3,6 +3,7 @@ import { DisplaySchedule, DriverResult, Schedule, TeamResult } from "../types";
 import { getDriverStyle, patchId } from "./currentInfo";
 
 
+
 export const isDark = (stat: string): boolean => {
     if ( stat === "wins" || stat === "pointsFinish" || stat === "entries") return false;
     else return true;

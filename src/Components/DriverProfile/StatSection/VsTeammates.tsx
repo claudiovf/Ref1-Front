@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CurrTeamStyles, DriverPeriod } from '../../../types';
-import { InfoRow, InfoBox, Value, Label, SectionTitle } from '../../LayoutComponents';
-
+import { InfoRow, InfoBox, Value, Label, SectionTitle, Icon } from '../../LayoutComponents';
+import { PercentOutline } from '@styled-icons/evaicons-outline';
+import { ArrowUpShort, ArrowDownShort } from '@styled-icons/bootstrap';
 
 const StatsContainer = styled.div<{ bg: string }>`
     background-color: ${props => props.bg};
@@ -43,14 +44,21 @@ const DarkLabel = styled(Label)`
 
 const CenterInfoBox = styled(InfoBox)`
     min-width: 5rem;
+    margin: 0;
+    padding: 0.25rem 0.5rem 0.25rem 0;
 `;
 
 
 const PctBarIncrement = styled.div<{ bginc: boolean }>`
     background-color: ${props => props.bginc ? "#2F2F2F" : "#DFDFDF"};
-    min-width: 0.175rem;
+    min-width: 1%;
     min-height: 0.2rem;
     display: block;
+`;
+
+const IconTeammate = styled(Icon)`
+      padding: 0.25rem 0.25rem 0 0;
+      margin: 0;
 `;
 
 
@@ -77,10 +85,12 @@ const VsTeammates: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => 
                 <SectionTitle color={driverStyle.secondary} >Teammates Comparison</SectionTitle>
                 <TopStats>
                         <InfoRow>
+                            <IconTeammate><ArrowUpShort size={32} /></IconTeammate>
                             <CenterInfoBox>
                                 <DarkValue>{displayPeriod.vsTeammates.driverAhead}</DarkValue>
                                 <DarkLabel>Driver Ahead</DarkLabel>
                             </CenterInfoBox>
+                            <IconTeammate><ArrowDownShort size={32} /></IconTeammate>
                             <CenterInfoBox>
                                 <DarkValue>{displayPeriod.vsTeammates.teammatesAhead}</DarkValue>
                                 <DarkLabel>Teammates Ahead</DarkLabel>
@@ -90,6 +100,7 @@ const VsTeammates: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => 
                                 {incArr.map(inc => <PctBarIncrement bginc={inc.pct} key={inc.key}> </PctBarIncrement>)}
                         </InfoRow>
                         <InfoRow>
+                            <IconTeammate><PercentOutline size={24} /></IconTeammate>
                             <CenterInfoBox>
                                 <DarkValue>{displayPeriod.vsTeammates.pctAhead}</DarkValue>
                                 <DarkLabel>Driver Percentage Ahead</DarkLabel>

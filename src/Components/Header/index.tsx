@@ -74,6 +74,10 @@ const RightItems = styled.div`
   align-items: center;
 `;
 
+const SettingsIcon = styled(Settings)`
+  color: #2f2f2f;
+`;
+
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -87,11 +91,10 @@ const Header: React.FC = () => {
 
           <RightItems>
             <SettingsContainer>
-              <Settings 
+              <SettingsIcon 
                 size={28} 
                 onClick={ () => {
                   dispatch( toggleSettingsOpen() );
-                  eventGa("SettingsOpened", 'default', 'default');
     
                 }}
               />

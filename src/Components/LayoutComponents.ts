@@ -235,6 +235,7 @@ export const Value = styled.div`
     font-family: "Work Sans Bold";
     color: #FFFFFF;
     font-size: 1rem;
+    
 `;
 
 export const AchIcon = styled.span`
@@ -244,13 +245,14 @@ export const AchIcon = styled.span`
 `;
 
 export const Icon = styled.div`
-    color: #bfc8c9;
+    color: #b4bebf;
     display: flex;
+    min-width: 2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem 0.5rem 0.25rem 0.5rem;
 `;
 
 // #bfc8c9; ICON

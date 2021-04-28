@@ -4,7 +4,7 @@ import { CurrTeamStyles, TeamPeriod } from '../../../types';
 import { formattedPeriod, formattedDate } from '../../../utils/formatting';
 import NextSearchOverlay from '../../Common/NextSearchOverlay';
 import { InfoRow, InfoBox, Value, Label, Icon, SectionTitle } from '../../LayoutComponents';
-
+import { Calendar } from '@styled-icons/zondicons';
 
 const StatsContainer = styled.div<{ bg: string }>`
     background-color: ${props => props.bg};
@@ -160,7 +160,7 @@ const TeamPeriodStats: React.FC<Props> = ({ displayPeriod, teamStyle }: Props) =
                             </CenterInfoBox>
                         </InfoRowWithBorder>
                         <InfoRow>
-                            <Icon>&#10066;</Icon>
+                            <Icon><Calendar size={24} /></Icon>
                             <CenterInfoBox>
                                 <RaceValue>{displayPeriod.firstEntry.race}</RaceValue>
                                 <DateValue>{formattedDate(displayPeriod.firstEntry.date)}</DateValue>
@@ -168,7 +168,7 @@ const TeamPeriodStats: React.FC<Props> = ({ displayPeriod, teamStyle }: Props) =
                             </CenterInfoBox>
                         </InfoRow>
                         <InfoRowWithBorder>
-                            <Icon>&#10066;</Icon>
+                            <Icon><Calendar size={24} /></Icon>
                             <CenterInfoBox>
                                 <RaceValue>{displayPeriod.lastEntry.race}</RaceValue>
                                 <DateValue>{formattedDate(displayPeriod.lastEntry.date)}</DateValue>

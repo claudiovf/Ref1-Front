@@ -4,6 +4,11 @@ import { Stat } from '../../types';
 import { InfoRow, InfoBox, Icon } from '../LayoutComponents';
 import { formattedDate, formattedPeriod, isDark } from '../../utils/formatting';
 import NextSearchOverlay from './NextSearchOverlay';
+import { Flag } from '@styled-icons/remix-line';
+import { TrendingUpOutline, PercentOutline } from '@styled-icons/evaicons-outline';
+import { Podium } from '@styled-icons/ionicons-outline';
+import { Stop } from '@styled-icons/octicons';
+import { Calendar } from '@styled-icons/zondicons';
 
 
 const StatCardStyle = styled.div<{ dark: boolean, rad: string }>`
@@ -79,6 +84,14 @@ const StatLabel = styled.div`
     color: rgb(150, 150, 150, 0.5)
 `;
 
+export const InfoBoxLoc = styled(InfoBox)`
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    padding: 0.5rem 1rem 0.25rem 1rem;
+`;
+
 
 
 interface Props {
@@ -88,10 +101,18 @@ interface Props {
     type: string;
 }
 
+
 const StatCard: React.FC<Props> = ({s, rad, period, type}: Props) => {
     const [ overlay, setOverlay ] = useState<boolean>(false);
 
     const handleOverlay = (bool: boolean) => setOverlay(bool);
+
+    const getIcon = (stat: string) => {
+        if (stat === 'wins') return <Flag size={28} />;
+        else if (stat === 'podiums') return <Podium size={24} />;
+        else if (stat === 'pointsFinish') return <TrendingUpOutline size={28} />;
+        else return <Stop size={24} />;
+    };
 
 
     return (
@@ -104,36 +125,36 @@ const StatCard: React.FC<Props> = ({s, rad, period, type}: Props) => {
                         : formattedPeriod(s.stat)}
                 </StatTitle>
                 <InfoRow>
-                    <Icon>&#10066;</Icon>
-                    <InfoBox>
+                    <Icon>{getIcon(s.stat)}</Icon>
+                    <InfoBoxLoc>
                         <StatValue colorDark={!isDark(s.stat)}>{s.total}</StatValue>
                         <StatLabel>{formattedPeriod(s.stat)}</StatLabel>
-                    </InfoBox>
+                    </InfoBoxLoc>
                 </InfoRow>
                 <InfoRow>
-                <Icon>&#10066;</Icon>
-                    <InfoBox>
+                <Icon><PercentOutline size={28} /></Icon>
+                    <InfoBoxLoc>
                         <StatValue colorDark={!isDark(s.stat)}>{s.pct}</StatValue>
                         <StatLabel>{`${formattedPeriod(s.stat)}/Entries`}</StatLabel>
-                    </InfoBox>
+                    </InfoBoxLoc>
                 </InfoRow>
                 { s.total !== 0 
                 ? <>
                 <InfoRow>
-                    <Icon>&#10066;</Icon>
-                    <InfoBox>
+                    <Icon><Calendar size={24} /></Icon>
+                    <InfoBoxLoc>
                         <StatValueRace colorDark={!isDark(s.stat)}>{s.first.race}</StatValueRace>
                         <StatValueDate colorDark={!isDark(s.stat)}>{formattedDate(s.first.date)}</StatValueDate>
                         <StatLabel>First</StatLabel>
-                    </InfoBox>
+                    </InfoBoxLoc>
                 </InfoRow>
                 <InfoRow>
-                    <Icon>&#10066;</Icon>
-                    <InfoBox>
+                    <Icon><Calendar size={24} /></Icon>
+                    <InfoBoxLoc>
                         <StatValueRace colorDark={!isDark(s.stat)}>{s.last.race}</StatValueRace>
                         <StatValueDate colorDark={!isDark(s.stat)}>{formattedDate(s.last.date)}</StatValueDate>
                         <StatLabel>Last</StatLabel>
-                    </InfoBox>
+                    </InfoBoxLoc>
                 </InfoRow>
                 </>
                 : null }
