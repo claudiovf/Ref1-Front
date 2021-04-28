@@ -16,7 +16,8 @@ export const Section = styled.div`
     width: 100%;
     @media (min-width: 768px) {
         width: 80%;
-        margin: 3rem 5% 3rem 10%;
+        margin: 0;
+        align-items: center;
       }
 `;
 
@@ -55,6 +56,7 @@ export const Scroll = styled.div`
 
     @media (min-width: 768px) {
         flex-flow: row wrap;
+        justify-content: center;
       }
 `;
 
@@ -104,7 +106,7 @@ export const ProfileContainer = styled.div`
     ill-change: transform;
     animation-name: ${popOutAnimation};
     animation-duration: 1s;
-    width: auto;
+    width: 100%;
     overflow:visible;
     @media (min-width: 768px) {
         background-color: #EdEDED;

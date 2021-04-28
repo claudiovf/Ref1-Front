@@ -5,7 +5,11 @@ The new easy to use Formula 1 stats reference web app. Visit [Ref1.App](https://
 What has: 
   * two thumbs 
   * started as a personal project to practice **MERNG + Typescript skills**
+<<<<<<< HEAD
   * and has now over **~~7k~~ ~~40k~~ ~~60k~~ 80k page views in over 50 countries**? 
+=======
+  * and has now over **~~7.5k~~ ~~40k~~ 60k page views in over 50 countries**? 
+>>>>>>> 96579b9757fe5d6d0e025507c1ee7c838d572ae1
   
   :+1: THIS PROJECT :+1:
 ![ref1_mockup_2](https://user-images.githubusercontent.com/64691675/113371172-710b6a00-93b1-11eb-90fd-d2e883a4a0c7.png)

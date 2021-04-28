@@ -2,8 +2,18 @@
   text-align: center;
   margin: 0;
   overflow: visible;
+
 }
 
+@media only screen and (min-width: 768px) {
+  .App {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  
+  }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

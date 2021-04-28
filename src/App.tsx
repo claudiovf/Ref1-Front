@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import CurrentDriversPanel from './Components/CurrentDriversPanel';
@@ -18,9 +18,24 @@ import RouteTracker from './RouteTracker';
 import HomeCircuits from './Components/HomeCircuits';
 import CircuitProfile from './Components/CircuitProfile';
 import SettingsModal from './Components/SettingsModal';
+import DesktopSwitch from './Components/DesktopSwitch';
 
 
 const App: React.FC = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if(window.innerWidth < 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const TRACKING_ID = "UA-192952368-1";
   ReactGA.initialize(TRACKING_ID);
@@ -32,15 +47,23 @@ const App: React.FC = () => {
       <Header />
       <Switch>
         <Route exact path="/">
-          <Spacer />
-          <HomeCircuits />
-          <CurrentDriversPanel />
-          <CurrentTeamsPanel />
-          <Standings />
-          <ExploreDrivers />
-          <ExploreTeams /> 
-          <LegendsPanel />
-          <SkySportsPanel />
+          {isMobile
+            ? <>
+              <HomeCircuits />
+              <CurrentDriversPanel />
+              <CurrentTeamsPanel />
+              <Standings />
+              <ExploreDrivers />
+              <ExploreTeams /> 
+              <LegendsPanel />
+              <SkySportsPanel />
+            </>
+            : <>
+              <HomeCircuits />
+              <DesktopSwitch />
+            </>
+          }
+
         </Route>
         <Route exact path="/profile/driver/:driverId">
           <Spacer />

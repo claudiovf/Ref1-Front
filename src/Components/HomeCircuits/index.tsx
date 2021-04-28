@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { GET_NEXT_RACE } from '../../queries';
 import { CircuitType } from '../../types';
 import { getGP } from '../../utils/formatting';
-import { SelectionButton, StyledButton, StyledLink } from '../LayoutComponents';
+import { SelectionButton, StyledButton, StyledLink, Spacer } from '../LayoutComponents';
 import Calendar from './Calendar';
 import CountDown from './CountDown';
 
@@ -23,8 +23,7 @@ const CircuitsContainer = styled.div<{ exp: boolean; }>`
     margin-bottom: 0;
     transition: all 0.5s ease-in-out;
     @media (min-width: 768px) {
-        width: 80%;
-        margin: 3rem 5% 3rem 10%;
+        width: ${ props => props.exp ? "auto" : "600px"};
       }
 `;
 
@@ -60,6 +59,7 @@ const HomeCircuits: React.FC = () => {
     const [expanded, setExpanded ] = useState<boolean>(false);
     const [timeUp, setTimeUp ] = useState<boolean>(false);
 
+    const topRef = useRef<HTMLDivElement | null>(null);
 
     const nextCircuit = "portimao";
     const circuitAfter = "catalunya";
@@ -81,6 +81,13 @@ const HomeCircuits: React.FC = () => {
         setTimeUp(bool);
     };
 
+    const handleExpand = (expanded: boolean) => {
+        setExpanded(!expanded);
+        if(topRef && topRef.current) {
+            topRef.current.scrollIntoView({ block: "start", behavior: "smooth", inline: "center" });
+        }
+    };
+
 
     if ( loading || !data ) return null;
     if (!nextRace || !nextRace.location) return null;
@@ -88,7 +95,7 @@ const HomeCircuits: React.FC = () => {
 
     return (
         <React.Fragment>
-
+            <Spacer ref={topRef} />
             <CircuitsContainer exp={expanded}>
                 <NextTitle>Up Next: 
                     <StyledLink to={"/profile/circuit/" + nextRace.circuitId}>
@@ -115,7 +122,7 @@ const HomeCircuits: React.FC = () => {
                     : null
                 }
                 
-                <ExpandButton onClick={() => setExpanded(!expanded)}>
+                <ExpandButton onClick={() => handleExpand(expanded)}>
                     { !expanded ? "2021 Calendar" : "Collapse"}
                 </ExpandButton>
             </CircuitsContainer>

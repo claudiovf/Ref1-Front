@@ -29,7 +29,7 @@ const ScrollCover = styled.div`
     overflow: hidden;
     animation-name: ${slideUpAnimation};
     animation-duration: 0.3s;
-
+    
     @media (max-width: 767px) {
         max-height: 5.175rem;
         animation-name: ${slideUpAnimation};
@@ -42,9 +42,24 @@ const SectionSearch = styled(Section)`
     @media (min-width: 768px) {
         width: 80%;
         margin: 0;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 `;
 
+const SearchScrollNotSelected = styled(Scroll)`
+    @media (min-width: 768px) {
+        justify-content: flex-start;
+    }
+`;
+const SearchScroll = styled(Scroll)`
+    @media (min-width: 768px) {
+        justify-content: flex-start;
+        align-items: flex-start;
+        max-height: 3rem;
+        overflow:hidden;
+    }
+`;
 
 
 
@@ -64,7 +79,7 @@ const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handle
                 <ScrollCover>
                     <SectionSearch>
                         <FilterTitle>{title}</FilterTitle>
-                        <Scroll>
+                        <SearchScrollNotSelected>
                             {
                                 optionsArr.map(item => 
                                     <SelectionButton 
@@ -78,7 +93,7 @@ const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handle
                                             {formattedPeriod(formattedStat(item))} 
                                     </SelectionButton> )
                             }
-                        </Scroll>
+                        </SearchScrollNotSelected>
                     </SectionSearch>
                 </ScrollCover>
             </React.Fragment>
@@ -89,7 +104,7 @@ const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handle
         <React.Fragment>
                 <SectionSearch>
                     <FilterTitle>{title}</FilterTitle>
-                    <Scroll>
+                    <SearchScroll>
                         <SelectionButton 
                             selected={true}
                             bg={"#2F2F2F"}
@@ -106,7 +121,7 @@ const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handle
                                     &#x2715;</Unselect>
                         </SelectionButton> 
           
-                    </Scroll>
+                    </SearchScroll>
                 </SectionSearch>
             </React.Fragment>
     );

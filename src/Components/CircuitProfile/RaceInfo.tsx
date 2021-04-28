@@ -54,6 +54,9 @@ const Title = styled(SectionTitle)`
     vertical-align: bottom;
     text-align: left;
     font-size: 1.25rem;
+    @media (min-width: 768px) {
+        padding-bottom: 1rem;
+    }
 `;
 
 const DriverName = styled.span`

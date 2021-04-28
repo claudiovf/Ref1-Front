@@ -54,11 +54,8 @@ const ModalContainer = styled.div<{ closing: boolean }>`
     animation-name: ${props => props.closing ? slideDownAnimation : slideUpAnimation};
     animation-duration: 0.5s;
     @media (min-width: 768px) {
-        max-width: 40rem;
-        min-width: 40rem;
-        min-height: 100vh;
-        margin: 0;
-        overflow: hidden;
+        max-width: 20rem;
+        min-width: 20rem;
     }
 `;
 

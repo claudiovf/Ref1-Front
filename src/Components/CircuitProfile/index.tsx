@@ -14,6 +14,8 @@ import EventSchedule from './EventSchedule';
 import RaceInfo from './RaceInfo';
 import PreviousResults from './PreviousResults/PreviousResults';
 
+
+
 const ProfileBody = styled(ProfileWrap)`
     background-color: #FFF;
     display: flex;
@@ -24,8 +26,12 @@ const ProfileBody = styled(ProfileWrap)`
     height: auto;
     overflow: hidden;
     @media (min-width: 960px) {
-        width: 80%;
+        max-width: 80%;
         margin: 0 10% 0 10%;
+      }
+    @media (min-width: 1200px) {
+        max-width: 60%;
+        margin: 0 20% 0 20%;
       }
 `;
 

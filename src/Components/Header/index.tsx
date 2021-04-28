@@ -76,6 +76,12 @@ const RightItems = styled.div`
 
 const SettingsIcon = styled(Settings)`
   color: #2f2f2f;
+  cursor: pointer;
+  @media (min-width: 768px) {
+      &:hover {
+          transform: scale(1.1);
+        }
+  }
 `;
 
 
