@@ -5,6 +5,7 @@ import { eventGa } from '../../RouteTracker';
 import { RootState } from '../../store';
 import { toggleSettingsOpen } from '../../store/SettingsStore/actions';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
+import Donate from '../Donate';
 import { Title } from '../LayoutComponents';
 import FormatSelection from './FormatSelection';
 
@@ -44,7 +45,8 @@ const Overlay = styled.div<{ overlayClosing: boolean }>`
 
 const ModalContainer = styled.div<{ closing: boolean }>`
     background-color: white;
-    min-width: 80%;
+    width: 80%;
+    max-width: 20rem;
     height: auto;
     position:absolute;                        
     top: 50%;                        
@@ -156,6 +158,7 @@ const SettingsModal: React.FC = () => {
                                 storageKey={'timeFormat'}
                             />
                         </SelectionContainer>
+                        <Donate />
 
                     </ModalContainer>
                 </Overlay>

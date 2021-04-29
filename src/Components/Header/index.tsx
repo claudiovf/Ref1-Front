@@ -6,6 +6,7 @@ import { toggleOpen } from '../../store/actions';
 import { eventGa } from '../../RouteTracker';
 import { Settings } from '@styled-icons/fluentui-system-regular/Settings';
 import { toggleSettingsOpen } from '../../store/SettingsStore/actions';
+import { Search } from '@styled-icons/fluentui-system-filled';
 
 export const HeaderStyled = styled.div`
 
@@ -54,10 +55,10 @@ export const MagBox = styled.div`
   }
 `;
 const Mag = styled.div`
-  -webkit-transform: rotate(45deg); 
-  -moz-transform: rotate(45deg); 
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
+  -webkit-transform: rotate(90deg); 
+  -moz-transform: rotate(90deg); 
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
 `;
 
 const SettingsContainer = styled.div`
@@ -84,6 +85,11 @@ const SettingsIcon = styled(Settings)`
   }
 `;
 
+const SearchIcon = styled(Search)`
+      padding: 0;
+      margin: 0.5rem 0 ;
+`;
+
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -108,7 +114,7 @@ const Header: React.FC = () => {
             <MagBox onClick={ () => {
               dispatch( toggleOpen() );
               eventGa("HeaderSearch", 'default', 'default');
-            }} ><Mag>&#9906;</Mag></MagBox> 
+            }} ><Mag><SearchIcon size={20} /></Mag></MagBox> 
           </RightItems>
 
         </HeaderStyled>
