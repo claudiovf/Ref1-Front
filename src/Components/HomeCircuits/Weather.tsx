@@ -217,7 +217,7 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
                     <MeasuresWrap>
                         <MeasureRow>
                             <Value>{localStorage.getItem('temp') ? raceWeather.temp_f : raceWeather.temp_c}&#176;</Value>
-                            <Description>{localStorage.getItem('temp') ? "Fahrenheit" : "Celcius"}</Description>
+                            <Description>{localStorage.getItem('temp') ? "Fahrenheit" : "Celsius"}</Description>
                         </MeasureRow>
                         <MeasureRow>
                             <Value>{raceWeather.chance_of_rain}<Unit>%</Unit></Value> 

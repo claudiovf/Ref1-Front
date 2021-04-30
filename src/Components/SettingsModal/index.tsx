@@ -125,7 +125,7 @@ const SettingsModal: React.FC = () => {
         }, 500);
         eventGa("Preferences", 
             'Preferences',
-            `${localStorage.getItem('temp') || 'Celcius'} 
+            `${localStorage.getItem('temp') || 'Celsius'} 
             - ${localStorage.getItem('distUnit') || 'km'} 
             - ${localStorage.getItem('timeFormat') || '24hour'}`);
     };
@@ -141,7 +141,7 @@ const SettingsModal: React.FC = () => {
                         <SelectionContainer>
                             <FormatSelection 
                                 title={"Temperature"}
-                                defaultFormat={"Celcius"}
+                                defaultFormat={"Celsius"}
                                 altFormat={"Fahrenheit"}
                                 storageKey={'temp'}
                             />
