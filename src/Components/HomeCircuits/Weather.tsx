@@ -156,7 +156,9 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
             setIsWeather(true);
         }
         if (weekendForecast) {
-            const displayForecast = weekendForecast.find(forecast => forecast.session === sessionSelected);
+            const displayForecast = weekendForecast.find(forecast => forecast &&
+                forecast.session === sessionSelected );
+                
             if(displayForecast) {
                 setRaceWeather(displayForecast);
             }
@@ -174,7 +176,7 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
                 const nextRaceTime = `${nextRaceDate} ${getSessionInfo(raceTime, session).substring(11, 14)}00`;
         
                 const sessionDay = res.data.forecast.forecastday.find((day: { date: string; }) => day.date === nextRaceDate);
-         
+               
                 if(sessionDay) {
                     const sessionStart = sessionDay.hour.find((hour: { time: string; }) => hour.time === nextRaceTime);
         
