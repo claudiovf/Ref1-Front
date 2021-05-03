@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Location, Schedule } from '../../types';
 import { getSessionInfo, handleCountdown } from '../../utils/formatting';
+
+const slowAppearAnimation = keyframes`
+    0% { opacity: 0;}
+    20% { opacity: 0;}
+    100% { opacity: 1;}
+`;
 
 const WeatherContainer = styled.div`
     display: flex;
@@ -15,6 +21,8 @@ const WeatherContainer = styled.div`
     margin: 0.5rem 0 1.5rem 0;
     border-radius: 0.5rem;
     background-color: rgb(255, 255, 255, 0.1);
+    animation-name: ${slowAppearAnimation};
+    animation-duration: 0.7s;
 
     @media (min-width: 768px) {
         width: 80%;

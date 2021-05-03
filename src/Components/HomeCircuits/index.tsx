@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { GET_NEXT_RACE } from '../../queries';
 import { CircuitType } from '../../types';
 import { getGP } from '../../utils/formatting';
@@ -8,6 +8,11 @@ import { SelectionButton, StyledButton, StyledLink, Spacer } from '../LayoutComp
 import Calendar from './Calendar';
 import CountDown from './CountDown';
 
+const slowAppearAnimation = keyframes`
+    0% { opacity: 0;}
+    20% { opacity: 0;}
+    100% { opacity: 1;}
+`;
 
 const CircuitsContainer = styled.div<{ exp: boolean; }>`
     display: flex;
@@ -22,6 +27,8 @@ const CircuitsContainer = styled.div<{ exp: boolean; }>`
     border-radius: ${ props => props.exp ? "0" : "0.5rem"};
     margin-bottom: 0;
     transition: all 0.5s ease-in-out;
+    animation-name: ${slowAppearAnimation};
+    animation-duration: 0.7s;
     @media (min-width: 768px) {
         width: ${ props => props.exp ? "auto" : "600px"};
       }
@@ -61,17 +68,22 @@ const HomeCircuits: React.FC = () => {
 
     const topRef = useRef<HTMLDivElement | null>(null);
 
-    const nextCircuit = "portimao";
-    const circuitAfter = "catalunya";
+    const nextCircuit = "catalunya";
+    const circuitAfter = "monaco";
 
     const { loading, data } = useQuery<{ findCircuit: CircuitType }>(GET_NEXT_RACE, { 
         fetchPolicy: "cache-and-network", 
         variables: { circuitId: !timeUp ? nextCircuit : circuitAfter} 
     });
+
     
     useEffect(() => {
         if (data) {
-            setNextRace(data.findCircuit);
+            if (Date.parse(data.findCircuit.scheduleUTC.race) > Date.parse(new Date().toUTCString())) {
+                setNextRace(data.findCircuit);
+            } else {
+                setTimeUp(true);
+            }
         }
     }, [data, timeUp]);
     
@@ -89,8 +101,7 @@ const HomeCircuits: React.FC = () => {
     };
 
 
-    if ( loading || !data ) return null;
-    if (!nextRace || !nextRace.location) return null;
+    if ( loading || !data || !nextRace || !nextRace.location) return null;
     
 
     return (

@@ -47,11 +47,11 @@ const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: 
 
 
 //    const test = {
-//        practice_1: "2021-04-27T06:58:00.000Z",
-//        practice_2: "2021-04-27T06:58:30.000Z",
-//        practice_3: "2021-04-27T06:59:00.000Z",
-//        qualifying: "2021-04-27T06:59:30.000Z",
-//        race: "2021-04-27T07:00:00.000Z",
+//        practice_1: "2021-05-03T05:03:00.000Z",
+//        practice_2: "2021-05-03T05:03:30.000Z",
+//        practice_3: "2021-05-03T05:04:00.000Z",
+//        qualifying: "2021-05-03T05:04:30.000Z",
+//        race: "2021-05-03T05:05:00.000Z",
 //    };
 
     useEffect(() => {
@@ -61,7 +61,7 @@ const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: 
             
             
             ["FP1", "FP2", "FP3", "qualifying", "race"].map(session => {
-                //const sessionCountdown = handleCountdown(getSessionInfo(nextRaceDates.practice_1 === "2021-05-07T10:30:00.000Z" ? nextRaceDates : test, session));
+                //const sessionCountdown = handleCountdown(getSessionInfo(nextRaceDates.practice_1 === "2021-05-20T10:30:00.000Z" ? nextRaceDates : test, session));
                 const sessionCountdown = handleCountdown(getSessionInfo(nextRaceDates, session));
                 if(session === sessionSelected) {
                     setDays(sessionCountdown.days);
