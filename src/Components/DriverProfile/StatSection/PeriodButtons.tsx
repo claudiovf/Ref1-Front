@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../../store';
+import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
 import { CurrTeamStyles, DriverPeriod } from '../../../types';
+import { invertStyle } from '../../../utils/currentInfo';
 import { formattedPeriod } from '../../../utils/formatting';
 import { SelectionButton, Scroll } from '../../LayoutComponents';
 
@@ -37,7 +41,10 @@ interface Props {
 const PeriodButtons: React.FC<Props> = ({periods, handlePeriodChange, style, periodSelected}: Props) => {
     if(!periods) return null;
 
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
+
     const selRef = useRef<HTMLButtonElement | null>(null);
+    
 
     useEffect(() => {
         if(selRef && selRef.current) {
@@ -61,25 +68,25 @@ const PeriodButtons: React.FC<Props> = ({periods, handlePeriodChange, style, per
 
     return (
         <React.Fragment>
-            <ScrollWrapper bg={style.primary}>
+            <ScrollWrapper bg={invertStyle(settings.isDarkMode, style).primary}>
                 <ProfileScroll>
                     {displayPeriods.map(period => period !== null
                         ? period === periodSelected
                             ? <SelectionButton 
                                 ref={selRef}
                                 selected={true}
-                                bg={style.secondary}
+                                bg={invertStyle(settings.isDarkMode, style).secondary}
                                 color={style.secondary === "#FFFFFF" || style.secondary === '#FFF500' ? "#2F2F2F" : "#FFFFFF"}
-                                border={style.secondary}
+                                border={invertStyle(settings.isDarkMode, style).secondary}
                                 key={period}
                                 onClick={() => handlePeriodChange(period)}>
                                     {formattedPeriod(period)}
                             </SelectionButton> 
                             : <SelectionButton 
                                 selected={false}
-                                bg={style.primary}
-                                color={style.secondary}
-                                border={style.secondary}
+                                bg={invertStyle(settings.isDarkMode, style).primary}
+                                color={invertStyle(settings.isDarkMode, style).secondary}
+                                border={invertStyle(settings.isDarkMode, style).secondary}
                                 key={period}
                                 onClick={() => handlePeriodChange(period)}>
                                     {formattedPeriod(period)}

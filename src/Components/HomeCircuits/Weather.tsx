@@ -3,6 +3,9 @@ import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 import { Location, Schedule } from '../../types';
 import { getSessionInfo, handleCountdown } from '../../utils/formatting';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 
 const slowAppearAnimation = keyframes`
     0% { opacity: 0;}
@@ -22,7 +25,7 @@ const WeatherContainer = styled.div`
     border-radius: 0.5rem;
     background-color: rgb(255, 255, 255, 0.1);
     animation-name: ${slowAppearAnimation};
-    animation-duration: 0.7s;
+    animation-duration: 0.5s;
 
     @media (min-width: 768px) {
         width: 80%;
@@ -31,14 +34,14 @@ const WeatherContainer = styled.div`
       }
 `;
 
-const IconTextWrap = styled.div`
+const IconTextWrap = styled.div<{ darkMode: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 6rem;
     min-height: 100%;
-    background-color: #0b3142;
+    background-color: ${props => props.darkMode ? "#2f2f2f" : "#0b3142" };
     margin: 2px;
     border-radius: 0.5rem;
 
@@ -150,6 +153,8 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
     const [weekendForecast, setWeekendForecast] = useState<Weather[] | null>(null);
     const [isWeather, setIsWeather] = useState<boolean>(false);
 
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
+    
     if (handleCountdown(raceTime.race).days > 7 ) return <Notif>*Weather forecast is available during race week</Notif>;
 
     const lat = nextRaceLoc.lat;
@@ -219,7 +224,7 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
     return (
         <React.Fragment>
             <WeatherContainer>
-                <IconTextWrap>
+                <IconTextWrap darkMode={settings.isDarkMode}>
                     <img src={process.env.PUBLIC_URL + `/${raceWeather.icon}`} />
                 </IconTextWrap>
                 <MeasureBox>

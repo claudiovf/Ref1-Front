@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Team, TeamPeriod } from '../../../types';
-import { getDriverStyle } from '../../../utils/currentInfo';
+import { getDriverStyle, invertStyle } from '../../../utils/currentInfo';
 import TeamPeriodButtons from './TeamPeriodButtons';
 import TeamPeriodStats from './TeamPeriodStats';
 import TeamPeriodRaceStats from './TeamPeriodRaceStats';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
+import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
 
 
 interface Props {
@@ -13,7 +16,9 @@ interface Props {
 const TeamStatInfo: React.FC<Props> = ({ team }: Props) => {
     const [ periodSelected, setPeriodSelected] = useState<string>("All Time");
     const [ displayPeriod, setDisplayPeriod ] = useState<TeamPeriod | null>(null);
-    const teamStyle = getDriverStyle(team.constructorId);
+
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
+    const teamStyle = invertStyle(settings.isDarkMode, getDriverStyle(team.constructorId));
     
     useEffect(() => {
         const correctedPeriod = (period: string): string => period === 'All Time' ? 'Career' : period;

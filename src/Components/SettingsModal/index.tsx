@@ -5,7 +5,7 @@ import { eventGa } from '../../RouteTracker';
 import { RootState } from '../../store';
 import { toggleSettingsOpen } from '../../store/SettingsStore/actions';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
-import Donate from '../Donate';
+import Donate from './Donate';
 import { Title } from '../LayoutComponents';
 import FormatSelection from './FormatSelection';
 
@@ -42,9 +42,17 @@ const Overlay = styled.div<{ overlayClosing: boolean }>`
     animation-duration: 0.6s;
     z-index: 2000;
 `;
+const CloseOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+`;
 
-const ModalContainer = styled.div<{ closing: boolean }>`
-    background-color: white;
+const ModalContainer = styled.div<{ closing: boolean; darkMode: boolean; }>`
+    background-color: ${props => props.darkMode ? "#3f3f3f" : "#FFF"};
     width: 80%;
     max-width: 20rem;
     height: auto;
@@ -55,6 +63,7 @@ const ModalContainer = styled.div<{ closing: boolean }>`
     border-radius: 1rem;
     animation-name: ${props => props.closing ? slideDownAnimation : slideUpAnimation};
     animation-duration: 0.5s;
+    z-index: 3000;
     @media (min-width: 768px) {
         max-width: 20rem;
         min-width: 20rem;
@@ -81,7 +90,7 @@ const SearchTitle = styled(Title)`
 `;
 
 const CloseX = styled.div`
-    background-color: #e4eced;
+    background-color: rgb(218, 226, 227, 0.5);
     display: flex;
     flex-direction: column;
     justify-contents: center;
@@ -116,8 +125,21 @@ const SettingsModal: React.FC = () => {
     const settings: SettingsState = useSelector((state: RootState) => state.settings);
     const dispatch = useDispatch();
 
+    const initialMode = localStorage.getItem('darkMode');
+
+    
+
+    const darkModeEvent = (initialMode: string | null, atClose: string | null): string | null => {
+        if(initialMode !== atClose) {
+            if (atClose === "On") return "Dark Mode ON";
+            return "Dark Mode OFF";
+        }
+        return null;
+    };
 
     const handleSettingsClose = () => {
+        if (closing) return null;
+
         setClosing(true);
         setTimeout(() => {
             dispatch( toggleSettingsOpen() );
@@ -128,17 +150,28 @@ const SettingsModal: React.FC = () => {
             `${localStorage.getItem('temp') || 'Celsius'} 
             - ${localStorage.getItem('distUnit') || 'km'} 
             - ${localStorage.getItem('timeFormat') || '24hour'}`);
+        
+        if ( darkModeEvent(initialMode, localStorage.getItem('darkMode')) ) {
+            eventGa("Preferences", `${darkModeEvent(initialMode, localStorage.getItem('darkMode'))}`, 'Dark Mode' );
+        }
     };
 
     if (settings.isOpen) {
         return (
                 <Overlay overlayClosing={closing}>
-                    <ModalContainer closing={closing}>
+                    <CloseOverlay onClick={() => handleSettingsClose()}></CloseOverlay>
+                    <ModalContainer closing={closing} darkMode={settings.isDarkMode}>
                         <Header>
-                            <SearchTitle> Settings </SearchTitle>
+                            <SearchTitle darkMode={settings.isDarkMode}> Settings </SearchTitle>
                             <CloseX onClick={() => handleSettingsClose()}> &#x2715; </CloseX>
                         </Header>
                         <SelectionContainer>
+                            <FormatSelection 
+                                title={"Dark Mode"}
+                                defaultFormat={"Off"}
+                                altFormat={"On"}
+                                storageKey={'darkMode'}
+                            />
                             <FormatSelection 
                                 title={"Temperature"}
                                 defaultFormat={"Celsius"}

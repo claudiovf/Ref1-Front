@@ -1,10 +1,13 @@
 import { useQuery } from '@apollo/client';
 import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import { GET_NEXT_RACE } from '../../queries';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { CircuitType } from '../../types';
 import { getGP } from '../../utils/formatting';
-import { SelectionButton, StyledButton, StyledLink, Spacer } from '../LayoutComponents';
+import { SelectionButton, StyledButton, StyledLink } from '../LayoutComponents';
 import Calendar from './Calendar';
 import CountDown from './CountDown';
 
@@ -14,12 +17,13 @@ const slowAppearAnimation = keyframes`
     100% { opacity: 1;}
 `;
 
-const CircuitsContainer = styled.div<{ exp: boolean; }>`
+const CircuitsContainer = styled.div<{ exp: boolean; darkMode: boolean;}>`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: #0b3142;
+    background-color: ${props => props.darkMode ? "#2f2f2f" : "#0b3142" };
+    scroll-margin-top: 3rem;
     width: auto;
     min-height: auto;
     margin: ${ props => props.exp ? "0" : "1.25rem"};
@@ -28,7 +32,7 @@ const CircuitsContainer = styled.div<{ exp: boolean; }>`
     margin-bottom: 0;
     transition: all 0.5s ease-in-out;
     animation-name: ${slowAppearAnimation};
-    animation-duration: 0.7s;
+    animation-duration: 0.5s;
     @media (min-width: 768px) {
         width: ${ props => props.exp ? "auto" : "600px"};
       }
@@ -66,6 +70,8 @@ const HomeCircuits: React.FC = () => {
     const [expanded, setExpanded ] = useState<boolean>(false);
     const [timeUp, setTimeUp ] = useState<boolean>(false);
 
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
+    
     const topRef = useRef<HTMLDivElement | null>(null);
 
     const nextCircuit = "catalunya";
@@ -106,8 +112,7 @@ const HomeCircuits: React.FC = () => {
 
     return (
         <React.Fragment>
-            <Spacer ref={topRef} />
-            <CircuitsContainer exp={expanded}>
+            <CircuitsContainer exp={expanded} darkMode={settings.isDarkMode} ref={topRef}>
                 <NextTitle>Up Next: 
                     <StyledLink to={"/profile/circuit/" + nextRace.circuitId}>
                         <SelectionButton 
@@ -129,7 +134,7 @@ const HomeCircuits: React.FC = () => {
                 
                 {
                     expanded
-                    ? <Calendar nextCircuit={nextCircuit} />
+                    ? <Calendar nextCircuit={!timeUp ? nextCircuit : circuitAfter} />
                     : null
                 }
                 

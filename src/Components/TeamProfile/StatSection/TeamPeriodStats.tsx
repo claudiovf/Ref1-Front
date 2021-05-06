@@ -5,9 +5,11 @@ import { formattedPeriod, formattedDate } from '../../../utils/formatting';
 import NextSearchOverlay from '../../Common/NextSearchOverlay';
 import { InfoRow, InfoBox, Value, Label, Icon, SectionTitle } from '../../LayoutComponents';
 import { Calendar } from '@styled-icons/zondicons';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
+import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
 
-const StatsContainer = styled.div<{ bg: string }>`
-    background-color: ${props => props.bg};
+const StatsContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -20,45 +22,25 @@ const StatsContainer = styled.div<{ bg: string }>`
     }
 `;
 
-const TopStats = styled.div`
-    background-color: rgb(255,255,255);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 0rem 1.5rem 1.5rem 1.5rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    position: relative;
-    @media (min-width: 768px) {
-        max-width: 35rem;
-        margin-left: 3.5rem;
-    }
-`;
-
 const TeamSectionTitle = styled(SectionTitle)`
     @media (min-width: 768px) {
-        margin-left: 2rem;
+        margin-left: 2.5rem;
     }
 `;
 
 const DarkValue = styled(Value)`
-    font-size: 1rem;
-    color: #2F2F2F;
+    font-size: 1.25rem;
 `;
 
 const DarkLabel = styled(Label)`
-    color: #AFAFAF;
     font-size: 0.75rem;
 `;
 
 const RaceValue = styled(Value)`
     font-size: 1rem;
-    color: #2F2F2F;
 `;
 const DateValue = styled(Value)`
     font-size: 0.75rem;
-    color: #2F2F2F;
 `;
 
 
@@ -107,6 +89,34 @@ const ExpandButton = styled.div`
     }
 `;
 
+const TopStats = styled.div<{darkMode: boolean}>`
+    background-color: ${props => props.darkMode ? "rgb(255,255,255,0.1)" : "#FFF"};
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0rem 1.5rem 1.5rem 1.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    position: relative;
+
+
+    ${DateValue}, ${RaceValue}, ${DarkValue} {
+        color: ${props => props.darkMode ? "rgb(255,255,255, 0.9)" : "#2F2F2F" };
+    }
+    ${DarkLabel}, ${DriversLabel} {
+        color: ${props => props.darkMode ? "rgb(255,255,255, 0.5)" : "#a2a2a2" };
+    }
+    ${InfoRowWithBorder} {
+        border-bottom: ${props => props.darkMode ? "1px solid rgb(255,255,255, 0.25)" : "1px solid #DDDDDD" };
+    }
+    
+    @media (min-width: 768px) {
+        max-width: 35rem;
+        margin-left: 4rem;
+    }
+`;
+
 
 
 
@@ -118,15 +128,17 @@ const TeamPeriodStats: React.FC<Props> = ({ displayPeriod, teamStyle }: Props) =
     const [ expandedDrivers, setExpandedDrivers ] = useState<boolean>(false);
     const [ overlay, setOverlay ] = useState<boolean>(false);
 
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
+
     const handleOverlay = (bool: boolean) => setOverlay(bool);
 
    const correctedPeriod = (period: string): string => period === 'Career' ? 'All Time' : period;
 
     return (
         <React.Fragment>
-            <StatsContainer bg={teamStyle.primary}>
+            <StatsContainer>
                 <TeamSectionTitle color={teamStyle.secondary}>Summary</TeamSectionTitle>
-                <TopStats>
+                <TopStats darkMode={settings.isDarkMode}>
                         <InfoRowWithBorder>
                             <CenterInfoBox>
                                 <DarkValue>{displayPeriod.entries}</DarkValue>

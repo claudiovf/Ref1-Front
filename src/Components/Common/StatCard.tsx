@@ -9,11 +9,18 @@ import { TrendingUpOutline, PercentOutline } from '@styled-icons/evaicons-outlin
 import { Podium } from '@styled-icons/ionicons-outline';
 import { Stop } from '@styled-icons/octicons';
 import { Calendar } from '@styled-icons/zondicons';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 
 
-const StatCardStyle = styled.div<{ dark: boolean, rad: string }>`
-    background-color: ${props => props.dark ? '#2F2F2F' : '#FFFFFF'};
-    color: ${props => props.dark ? '#FFFFFF' : '#2F2F2F'};
+const StatCardStyle = styled.div<{ dark: boolean, rad: string; darkMode: boolean; }>`
+    ${props => props.darkMode 
+        ? `background-color: ${props.dark ? "rgb(255,255,255, 0.2)" : "rgb(255,255,255, 0.1)"};`
+        : `background-color: ${props.dark ? '#2F2F2F' : '#FFFFFF'};`}
+    ${props => props.darkMode 
+        ? `color: ${props.dark ? "rgb(255,255,255, 0.9)" : "rgb(255,255,255, 0.8)"};`
+        : `color: ${props.dark ? '#FFFFFF' : '#2F2F2F'};`}
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -25,63 +32,47 @@ const StatCardStyle = styled.div<{ dark: boolean, rad: string }>`
         width: 48%;
         border-radius: 0.5rem;
         margin-bottom: 4%;
-        background-color: #FFFFFF;
-        color: #2F2F2F;
+        background-color: ${props => props.darkMode ? "rgb(255,255,255, 0.1)" : "#FFF"};
+        color: ${props => props.darkMode ? "rgb(255,255,255, 0.9)" : "#2F2F2F"};
     }
 `;
 
-const StatTitle = styled.div<{ colorTitle: boolean }>`
+const StatTitle = styled.div`
     text-align: left;
-    color: ${props => props.colorTitle ? "#2F2F2F" : "#FFFFFF" };
     font-family: "Work Sans Bold";
     font-size: 1rem;
     padding: 0.5rem 0.5rem;
-    @media (min-width: 768px) {
-        color: #2F2F2F;
-    }
 `;
 
-const StatValue = styled.div<{ colorDark: boolean }>`
+const StatValue = styled.div`
     font-family: "Work Sans Semi Bold";
     display: flex;
     display-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     font-size: 1.25rem;
-    color: ${props => props.colorDark ? "#2F2F2F" : "#FFFFFF" };
-    @media (min-width: 768px) {
-        color: #2F2F2F;
-    }
 `;
-const StatValueRace = styled.div<{ colorDark: boolean }>`
+const StatValueRace = styled.div`
     font-family: "Work Sans Semi Bold";
     display: flex;
     display-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     font-size: 1rem;
-    color: ${props => props.colorDark ? "#2F2F2F" : "#FFFFFF" };
-    @media (min-width: 768px) {
-        color: #2F2F2F;
-    }
 `;
-const StatValueDate = styled.div<{ colorDark: boolean }>`
+const StatValueDate = styled.div`
     font-family: "Work Sans Semi Bold";
     display: flex;
     display-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     font-size: 0.75rem;
-    color: ${props => props.colorDark ? "#2F2F2F" : "#FFFFFF" };
-    @media (min-width: 768px) {
-        color: #2F2F2F;
-    }
 `;
 
 const StatLabel = styled.div`
     font-family: "Work Sans Semi Bold";
     font-size: 0.75rem;
-    color: rgb(150, 150, 150, 0.5)
+    color: rgb(255,255,255, 0.5);
 `;
 
 export const InfoBoxLoc = styled(InfoBox)`
@@ -104,6 +95,7 @@ interface Props {
 
 const StatCard: React.FC<Props> = ({s, rad, period, type}: Props) => {
     const [ overlay, setOverlay ] = useState<boolean>(false);
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     const handleOverlay = (bool: boolean) => setOverlay(bool);
 
@@ -116,9 +108,9 @@ const StatCard: React.FC<Props> = ({s, rad, period, type}: Props) => {
 
 
     return (
-        <StatCardStyle dark={isDark(s.stat)} rad={rad}>
+        <StatCardStyle dark={isDark(s.stat)} rad={rad} darkMode={settings.isDarkMode}>
             <InfoBox>
-                <StatTitle colorTitle={!isDark(s.stat)}>{s.stat === "pointsFinish" 
+                <StatTitle>{s.stat === "pointsFinish" 
                     ? "Point Finishes" 
                     : s.stat === "dnfs" 
                         ? "DNFs"
@@ -127,14 +119,14 @@ const StatCard: React.FC<Props> = ({s, rad, period, type}: Props) => {
                 <InfoRow>
                     <Icon>{getIcon(s.stat)}</Icon>
                     <InfoBoxLoc>
-                        <StatValue colorDark={!isDark(s.stat)}>{s.total}</StatValue>
+                        <StatValue>{s.total}</StatValue>
                         <StatLabel>{formattedPeriod(s.stat)}</StatLabel>
                     </InfoBoxLoc>
                 </InfoRow>
                 <InfoRow>
                 <Icon><PercentOutline size={28} /></Icon>
                     <InfoBoxLoc>
-                        <StatValue colorDark={!isDark(s.stat)}>{s.pct}</StatValue>
+                        <StatValue>{s.pct}</StatValue>
                         <StatLabel>{`${formattedPeriod(s.stat)}/Entries`}</StatLabel>
                     </InfoBoxLoc>
                 </InfoRow>
@@ -143,16 +135,16 @@ const StatCard: React.FC<Props> = ({s, rad, period, type}: Props) => {
                 <InfoRow>
                     <Icon><Calendar size={24} /></Icon>
                     <InfoBoxLoc>
-                        <StatValueRace colorDark={!isDark(s.stat)}>{s.first.race}</StatValueRace>
-                        <StatValueDate colorDark={!isDark(s.stat)}>{formattedDate(s.first.date)}</StatValueDate>
+                        <StatValueRace>{s.first.race}</StatValueRace>
+                        <StatValueDate>{formattedDate(s.first.date)}</StatValueDate>
                         <StatLabel>First</StatLabel>
                     </InfoBoxLoc>
                 </InfoRow>
                 <InfoRow>
                     <Icon><Calendar size={24} /></Icon>
                     <InfoBoxLoc>
-                        <StatValueRace colorDark={!isDark(s.stat)}>{s.last.race}</StatValueRace>
-                        <StatValueDate colorDark={!isDark(s.stat)}>{formattedDate(s.last.date)}</StatValueDate>
+                        <StatValueRace>{s.last.race}</StatValueRace>
+                        <StatValueDate>{formattedDate(s.last.date)}</StatValueDate>
                         <StatLabel>Last</StatLabel>
                     </InfoBoxLoc>
                 </InfoRow>

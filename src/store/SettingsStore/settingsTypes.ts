@@ -8,13 +8,14 @@ export interface SettingsState {
     distance: Distance;
     timeFormat: TimeFormat;
     isOpen: boolean;
+    isDarkMode: boolean;
 }
 
 export const TOGGLE_SETTINGS_OPEN = 'TOGGLE_SETTINGS_OPEN';
 export const SET_TEMP = 'SET_TEMP';
 export const SET_DISTANCE = 'SET_DISTANCE';
 export const SET_TIME_FORMAT = 'SET_TIME_FORMAT';
-
+export const SET_DARK_MODE = 'SET_DARK_MODE';
 
 
 export interface ToggleSettingsOpenAction {
@@ -35,4 +36,8 @@ export interface SetTimeFormatAction {
     payload: TimeFormat
 }
 
-export type SettingsActionTypes = ToggleSettingsOpenAction | SetTempAction | SetDistanceAction | SetTimeFormatAction;
+export interface SetDarkMode {
+    type: typeof SET_DARK_MODE
+}
+
+export type SettingsActionTypes = ToggleSettingsOpenAction | SetTempAction | SetDistanceAction | SetTimeFormatAction | SetDarkMode;

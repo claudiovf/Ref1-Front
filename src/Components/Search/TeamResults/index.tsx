@@ -7,6 +7,7 @@ import { GET_TEAM_RESULTS_MONGO } from '../../../queries';
 import { RootState } from '../../../store';
 import { setCurrResults, setPrevResults } from '../../../store/actions';
 import { SearchState } from '../../../store/searchTypes';
+import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
 import { TeamResult } from '../../../types';
 import { getPeriod, splitStat, getSecondSort } from '../../../utils/formatting';
 import Spinner from '../../Common/Spinner';
@@ -34,6 +35,7 @@ const OptionsButton = styled(SelectionButton)`
 const TeamsResults: React.FC = () => {
     const [ hasNextPage, setHasNextPage ] = useState<boolean>(false);
     const search: SearchState = useSelector((state: RootState) => state.search);
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
     const dispatch = useDispatch();
 
     
@@ -72,7 +74,7 @@ const TeamsResults: React.FC = () => {
 
     return (
         <React.Fragment>
-            <Table>
+            <Table darkMode={settings.isDarkMode}>
                 <Tbody>
                     <Tr>
                         <Th></Th>

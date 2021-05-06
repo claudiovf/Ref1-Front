@@ -2,6 +2,21 @@ import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 
 
+export const AppStyled = styled.div<{darkMode: boolean}>`
+    -webkit-tap-highlight-color: transparent;
+    text-align: center;
+    margin: 0;
+    overflow: visible;
+    background-color: ${props => props.darkMode ? "#1f1f1f" : "none"};
+    min-height: 100vh;
+    @media (min-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+      }
+`;
+
 export const Spacer = styled.div`
     min-height: 3rem;
 `;
@@ -22,10 +37,10 @@ export const Section = styled.div`
 `;
 
 
-export const Title = styled.div`
+export const Title = styled.div<{darkMode: boolean}>`
     // background-color: #EF435C;
     text-align: left;
-    color: #2F2F2F;
+    color: ${props => props.darkMode ? "rgb(255, 255, 255, 0.9)" : "#2F2F2F"};
     font-family: "Work Sans Bold";
     font-size: 1.25rem;
     padding: 1.25rem;
@@ -108,14 +123,13 @@ export const ProfileContainer = styled.div`
     width: auto;
     overflow:visible;
     @media (min-width: 768px) {
-        background-color: #EdEDED;
+        background-color: #4f4f4f;
         width: 100%;
       }
 `;
 
-export const ProfileName = styled.div<{ bg: string; color: string}>`
+export const ProfileName = styled.div<{ color: string}>`
     color: ${props => props.color};
-    background-color: ${props => props.bg};
     font-family: "Work Sans Extra Bold";
     align-text: center;
     font-size: 2rem;
@@ -138,8 +152,7 @@ export const ProfileWrap = styled.div`
       }
 `;
 
-export const GenAchContainer = styled.div<{contBg: string}>`
-    background-color: ${props => props.contBg};
+export const GenAchContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: top;
@@ -190,18 +203,18 @@ export const SelectionButton = styled(StyledButton)<{ bg: string; color: string;
     }
 `;
 
-export const BackHome = styled.div`
+export const BackHome = styled.div<{ darkMode: boolean}>`
     font-family: "Work Sans Semi Bold";
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    color: #2E2E2E;
-    background-color: #FFFFFF;
+    color: ${props => props.darkMode ? "rgb(255,255,255, 0.9)" : "#2E2E2E" }; 
+    background-color: ${props => props.darkMode ? "#1f1f1f" : "#FFFFFF" };
     font-size: 1rem;
     padding: 1rem 1rem;
-    box-shadow: 0px 1px 1px #DDDDDD;
+    box-shadow: 0px 1px 1px ${props => props.darkMode ? "#3f3f3f" : "#EEE" };
     position: fixed;
     z-index: 1000;
 `;

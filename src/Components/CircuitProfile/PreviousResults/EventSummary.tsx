@@ -49,7 +49,7 @@ const EventSummary: React.FC<Props> = ({displayEvent}: Props) => {
             <Container>
                 <SummaryWrap>
                     <EventName color={"#00c49a"}>{displayEvent.season} {displayEvent.raceName}</EventName>
-                    <EventDate color={"#828282"}>{new Date(displayEvent.date).toDateString()}</EventDate>
+                    <EventDate color={"#a2a2a2"}>{new Date(displayEvent.date).toDateString()}</EventDate>
  
                 </SummaryWrap>
             </Container>

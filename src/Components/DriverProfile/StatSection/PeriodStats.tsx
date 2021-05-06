@@ -5,10 +5,12 @@ import { formattedDate } from '../../../utils/formatting';
 import NextSearchOverlay from '../../Common/NextSearchOverlay';
 import { InfoRow, InfoBox, Value, Label, Icon, SectionTitle } from '../../LayoutComponents';
 import { Calendar } from '@styled-icons/zondicons';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
+import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
 
 
-const StatsContainer = styled.div<{ bg: string }>`
-    background-color: ${props => props.bg};
+const StatsContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -20,39 +22,21 @@ const StatsContainer = styled.div<{ bg: string }>`
     }
 `;
 
-const TopStats = styled.div`
-    background-color: rgb(255,255,255);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 0rem 1.5rem 1.5rem 1.5rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    position: relative;
-    
-`;
 
 const DarkValue = styled(Value)`
     font-size: 1.25rem;
-    color: #2F2F2F;
 `;
 
 const DarkLabel = styled(Label)`
-    color: #AFAFAF;
     font-size: 0.75rem;
 `;
 
 const RaceValue = styled(Value)`
     font-size: 1rem;
-    color: #2F2F2F;
 `;
 const DateValue = styled(Value)`
     font-size: 0.75rem;
-    color: #2F2F2F;
 `;
-
-
 
 const CenterInfoBox = styled(InfoBox)`
     min-width: 5rem;
@@ -62,6 +46,28 @@ const InfoRowWithBorder = styled(InfoRow)`
     border-bottom: 1px solid #DDDDDD;
 `;
 
+const TopStats = styled.div<{darkMode: boolean}>`
+    background-color: ${props => props.darkMode ? "rgb(255,255,255,0.1)" : "#FFF"};
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0rem 1.5rem 1.5rem 1.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    position: relative;
+
+    ${DarkValue}, ${DateValue}, ${RaceValue} {
+        color: ${props => props.darkMode ? "rgb(255,255,255, 0.9)" : "#2F2F2F" };
+    }
+    ${DarkLabel} {
+        color: ${props => props.darkMode ? "rgb(255,255,255, 0.5)" : "#a2a2a2" };
+    }
+    ${InfoRowWithBorder} {
+        border-bottom: ${props => props.darkMode ? "1px solid rgb(255,255,255, 0.25)" : "1px solid #DDDDDD" };
+    }
+    
+`;
 
 
 
@@ -71,15 +77,17 @@ interface Props {
 }
 const PeriodStats: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => {
     const [ overlay, setOverlay ] = useState<boolean>(false);
+    
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     const handleOverlay = (bool: boolean) => setOverlay(bool);
 
    
     return (
         <React.Fragment>
-            <StatsContainer bg={driverStyle.primary}>
+            <StatsContainer>
                 <SectionTitle color={driverStyle.secondary}>Summary</SectionTitle>
-                <TopStats>
+                <TopStats darkMode={settings.isDarkMode}>
                         <InfoRowWithBorder>
                             <CenterInfoBox>
                                 <DarkValue>{displayPeriod.entries}</DarkValue>

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-export const Table = styled.table`
+export const Table = styled.table<{ darkMode: boolean }>`
     width: 100%;
     max-width: 100vw;
     height: auto;
     margin: 2rem 0 1rem 0;
     padding: 1rem;
+    color: ${props => props.darkMode ? "rgb(255,255,255, 0.9)" : "#2f2f2f"};
 `;
 
 export const Tbody = styled.tbody`
@@ -14,14 +15,12 @@ export const Tbody = styled.tbody`
 
 export const Th = styled.th`
     font-family: "Work Sans Semi Bold";
-    color: #2F2f2f;
     padding: 0.25rem 0;
     font-size: 0.75rem;
 `;
 
 export const Td = styled.td`
     font-family: "Work Sans Bold";
-    color: #2F2F2F;
     padding: 0.25rem 0;
     font-size: 1rem;
 `;

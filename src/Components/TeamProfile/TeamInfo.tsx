@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Team } from '../../types';
-import { getDriverStyle } from '../../utils/currentInfo';
 import { InfoBox, InfoRow, Label, Value } from '../LayoutComponents';
 
-const GenContainer = styled.div<{ bg: string }>`
-    background-color: ${props => props.bg};
+const GenContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -19,15 +17,18 @@ const GenContainer = styled.div<{ bg: string }>`
       }
 `;
 
+const Champ = styled(Value)`
+      font-size: 2rem;
+`;
+
 
 
 const TeamInfo: React.FC<{ team: Team; }> = ( {team}: { team: Team } ) => {
-    const teamStyle = getDriverStyle(team.constructorId);
 
     return (
         <React.Fragment>
             
-            <GenContainer bg={teamStyle.primary}>
+            <GenContainer>
                 <InfoRow>
                     <InfoBox>
                         <Value>{team.nationality}</Value>
@@ -36,7 +37,7 @@ const TeamInfo: React.FC<{ team: Team; }> = ( {team}: { team: Team } ) => {
                 </InfoRow>
                 <InfoRow>
                     <InfoBox>
-                        <Value>{team.championships.length}</Value>
+                        <Champ>{team.championships.length}</Champ>
                         <Label>Championships</Label>
                     </InfoBox>
                 </InfoRow>

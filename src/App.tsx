@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
 import Header from './Components/Header';
 import CurrentDriversPanel from './Components/CurrentDriversPanel';
 import CurrentTeamsPanel from './Components/CurrentTeamsPanel';
 import DriverProfile from './Components/DriverProfile';
 import { Switch, Route } from 'react-router-dom';
-import { Spacer } from './Components/LayoutComponents';
+import { Spacer, AppStyled } from './Components/LayoutComponents';
 import TeamProfile from './Components/TeamProfile';
 import LegendsPanel from './Components/LegendsPanel';
 import SkySportsPanel from './Components/SkySportsPanel';
@@ -19,10 +18,14 @@ import HomeCircuits from './Components/HomeCircuits';
 import CircuitProfile from './Components/CircuitProfile';
 import SettingsModal from './Components/SettingsModal';
 import DesktopSwitch from './Components/DesktopSwitch';
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
+import { SettingsState } from './store/SettingsStore/settingsTypes';
 
 
 const App: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
+  const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
   useEffect(() => {
     const handleResize = () => {
@@ -42,13 +45,14 @@ const App: React.FC = () => {
   
 
   return (
-    <div className="App">
+    <AppStyled darkMode={settings.isDarkMode}>
 
       <Header />
       <Switch>
         <Route exact path="/">
           {isMobile
             ? <>
+              <Spacer />
               <HomeCircuits />
               <CurrentDriversPanel />
               <CurrentTeamsPanel />
@@ -59,6 +63,7 @@ const App: React.FC = () => {
               <SkySportsPanel />
             </>
             : <>
+              <Spacer />
               <HomeCircuits />
               <DesktopSwitch />
             </>
@@ -83,7 +88,7 @@ const App: React.FC = () => {
       <SearchModal />
       <RouteTracker />
 
-    </div>
+    </AppStyled>
   );
 };
 

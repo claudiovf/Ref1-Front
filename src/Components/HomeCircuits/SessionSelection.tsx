@@ -22,23 +22,15 @@ const Wrap = styled.div`
 
 `;
 
-const SelButton = styled(SelectionButton)`
+const SelButton = styled(SelectionButton)<{scratched: boolean}>`
+    text-decoration: ${props => props.scratched ? "line-through" : "none"};
     padding: 0.5rem 0.75rem;
     margin: 0rem;
     @media (max-width: 330px) {
         padding: 0.25rem 0.5rem;
       }
 `;
-const Scratched = styled.div`
-    color: #dadada;
-    font-family: "Work Sans Reg";
-    text-decoration: line-through;
-    padding: 0.25rem 0.5rem;
-    margin: 0rem;
-    @media (max-width: 330px) {
-        padding: 0.25rem 0.5rem;
-      }
-`;
+
 
 interface Props {
     handleSessionSelection: (session: string) => void;
@@ -62,23 +54,22 @@ const SessionSelection: React.FC<Props> = ({handleSessionSelection, sessionSelec
                             border={"rgb(0,0,0,0)"}
                             color={"#fff"}
                             selected={true}
+                            scratched={false}
                         >
                             {formattedPeriod(session)}
                         </SelButton>
-                        : !sessionsOver.includes(session)
-                            ? <SelButton
-                                key={session}
-                                bg={"rgb(0,0,0,0)"}
-                                border={"rgb(0,0,0,0)"}
-                                color={"#FFF"}
-                                selected={false}
-                                onClick={() => handleSessionSelection(session)}
-                            >
-                                {formattedPeriod(session)}
-                            </SelButton>
-                            : <Scratched key={session}>
-                                {formattedPeriod(session)}
-                            </Scratched>
+                        : <SelButton
+                            key={session}
+                            bg={"rgb(0,0,0,0)"}
+                            border={"rgb(0,0,0,0)"}
+                            color={sessionsOver.includes(session) ? "rgb(255,255,255, 0.5)" : "#FFF"}
+                            selected={false}
+                            scratched={sessionsOver.includes(session)}
+                            onClick={sessionsOver.includes(session) ? () => null : () => handleSessionSelection(session)}
+                        >
+                            {formattedPeriod(session)}
+                        </SelButton>
+                       
                     )}
                 </Wrap>
             </Container>

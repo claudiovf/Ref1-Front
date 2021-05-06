@@ -1,8 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { eventGa } from '../../RouteTracker';
+import { RootState } from '../../store';
 import { setSearch, toggleOpen } from '../../store/actions';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { formattedStat } from '../../utils/formatting';
 import { Section, Title, Scroll, popOutAnimation } from '../LayoutComponents';
 
@@ -42,6 +44,7 @@ const StatTitle = styled.div`
 `;
 
 const ExploreDrivers: React.FC = () => {
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     const stats = [
         'wins', 'podiums', 'pointsFinish', 'dnfs', 
@@ -53,7 +56,7 @@ const ExploreDrivers: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title>Explore Drivers</Title>
+                <Title darkMode={settings.isDarkMode}>Explore Drivers</Title>
                 <Scroll>
                     {
                         stats.map(stat => 

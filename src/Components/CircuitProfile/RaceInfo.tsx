@@ -8,7 +8,6 @@ import { SectionTitle } from '../LayoutComponents';
 
 
 const Tr = styled.tr`
-//background-color: teal;
 font-family: "Work Sans Semi Bold";
 font-size: 1.75rem;
 text-align: left;
@@ -18,7 +17,7 @@ vertical-align: bottom;
 
 const Label = styled.div`
     font-family: "Work Sans Semi Bold";
-    color: #828282;;
+    color: #a2a2a2;;
     font-size: 0.75rem;
 `;
 
@@ -30,8 +29,8 @@ const TrSpacer = styled(Tr)`
     height: 1.5rem;
 `;
 
-const Table = styled.table`
-    //background-color: tomato;
+const Table = styled.table<{ darkMode: boolean }>`
+    color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" }; 
     width: 100%;
     padding: 1.25rem;
     ${Tr}:nth-child(2) {
@@ -49,7 +48,8 @@ const Table = styled.table`
     }
 `;
 
-const Title = styled(SectionTitle)`
+const Title = styled(SectionTitle)<{ darkMode: boolean }>`
+    color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" }; 
     padding: 0.75rem 0 0.25rem 0;
     vertical-align: bottom;
     text-align: left;
@@ -61,7 +61,7 @@ const Title = styled(SectionTitle)`
 
 const DriverName = styled.span`
     font-family: "Work Sans Reg";
-    color: #2f2f2f;
+    color: #a2a2a2;
     font-size: 0.75rem;
 `;
 
@@ -78,8 +78,8 @@ const RaceInfo: React.FC<Props> = ({circuit}: Props ) => {
   
     return (
         <React.Fragment>
-            <Title color={"#2f2f2f"}>Circuit Information</Title>
-            <Table>
+            <Title color={"#2f2f2f"} darkMode={settings.isDarkMode}> Circuit Information </Title>
+            <Table darkMode={settings.isDarkMode}>
                 <tbody>
                     <Tr>
                         <TdBorder rowSpan={2}></TdBorder>

@@ -12,12 +12,21 @@ import GeneralInfo from './GeneralInfo';
 
 import { DRIVER_PROFILE } from '../../queries';
 import Achievements from './Achievements';
-import { getDriverStyle } from '../../utils/currentInfo';
+import { getDriverStyle, invertStyle } from '../../utils/currentInfo';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
+import styled from 'styled-components';
+
+const DriverProfileWrap = styled(ProfileWrap)<{bg: string}>`
+    background-color: ${props => props.bg}
+`;
 
 
 const DriverProfile: React.FC = () => {
     const [ driver, setDriver ] = useState<Driver | null>(null);
     
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     const { driverId } = useParams<{ driverId: string }>();
     const { loading, data } = useQuery<{ findDriver: Driver }>(DRIVER_PROFILE, { 
@@ -41,23 +50,23 @@ const DriverProfile: React.FC = () => {
         <React.Fragment>
             <ProfileContainer>
                 <StyledLink to="/">
-                    <BackHome>
+                    <BackHome darkMode={settings.isDarkMode}>
                         &larr; {driver.givenName} {driver.familyName}
                     </BackHome>
                 </StyledLink>
                 <Spacer />
-                <ProfileWrap>
+                <DriverProfileWrap bg={invertStyle(settings.isDarkMode, getDriverStyle(driver.driverId)).primary }>
                     <ProfileName 
-                        color={getDriverStyle(driver.driverId).secondary}
-                        bg={getDriverStyle(driver.driverId).primary}>
+                        color={invertStyle(settings.isDarkMode, getDriverStyle(driver.driverId)).secondary}
+                    >
                         {[driver.givenName, driver.familyName].join(" ").toUpperCase()}</ProfileName>
-                    <GenAchContainer contBg={getDriverStyle(driver.driverId).primary}>
+                    <GenAchContainer>
                         <GeneralInfo driver={driver} />
                         <Achievements driver={driver} />
                     </GenAchContainer>
                     <StatSection 
                         driver={driver} />
-                </ProfileWrap>
+                </DriverProfileWrap>
             </ProfileContainer>
         </React.Fragment>
     );

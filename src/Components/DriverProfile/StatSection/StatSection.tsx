@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../../store';
+import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
 import { Driver, DriverPeriod } from '../../../types';
-import { getDriverStyle } from '../../../utils/currentInfo';
+import { getDriverStyle, invertStyle } from '../../../utils/currentInfo';
 import PeriodButtons from './PeriodButtons';
 import PeriodRaceStats from './PeriodRaceStats';
 import PeriodStats from './PeriodStats';
@@ -28,7 +31,9 @@ interface Props {
 const StatInfo: React.FC<Props> = ({ driver }: Props) => {
     const [ periodSelected, setPeriodSelected] = useState<string>("Career");
     const [ displayPeriod, setDisplayPeriod ] = useState<DriverPeriod | null>(null);
-    const driverStyle = getDriverStyle(driver.driverId);
+
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
+    const driverStyle = invertStyle(settings.isDarkMode, getDriverStyle(driver.driverId));
     
     useEffect(() => {
         const periodToDisplay = driver.entries.find(p => p.period === periodSelected);

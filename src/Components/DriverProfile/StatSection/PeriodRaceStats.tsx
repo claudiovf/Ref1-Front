@@ -5,8 +5,7 @@ import { SectionTitle } from '../../LayoutComponents';
 import StatCard from '../../Common/StatCard';
 
 
-const StatsContainer = styled.div<{ bg: string }>`
-    background-color: ${props => props.bg};
+const StatsContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -52,7 +51,7 @@ const PeriodRaceStats: React.FC<Props> = ({ displayPeriod, driverStyle }: Props)
    
     return (
         <React.Fragment>
-            <StatsContainer bg={driverStyle.primary}>
+            <StatsContainer>
                 <RaceSectionTitle color={driverStyle.secondary} >Race Stats</RaceSectionTitle>
                 <RaceStats>
                         {displayPeriod.stats.map((s: Stat) => {

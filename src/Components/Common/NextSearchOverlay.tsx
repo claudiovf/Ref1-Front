@@ -2,19 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { SelectionButton, slideUpAnimation } from '../LayoutComponents';
 import { formattedPeriod, formattedStat, isDark } from '../../utils/formatting';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSearch, toggleOpen } from '../../store/actions';
 import { eventGa } from '../../RouteTracker';
 import { Search } from '@styled-icons/fluentui-system-filled';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 
 
-const CardOverlay = styled.div<{ rad: string; darkOverlay: boolean}>`
+const CardOverlay = styled.div<{ rad: string; darkOverlay: boolean; darkMode: boolean; }>`
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: ${ props => props.darkOverlay ? "rgba(47, 47, 47, 0.85)" : "rgba(255, 255, 255, 0.9)" };
+    ${props => props.darkMode 
+        ? `background-color: rgb(0,0,0, 0.7);`
+        : `background-color: ${props.darkOverlay ? "rgba(47, 47, 47, 0.85)" : "rgba(255, 255, 255, 0.9)" };`}
     border-radius: ${props => props.rad};
     display: flex;
     flex-direction: column;
@@ -101,6 +105,7 @@ interface Props {
 
 const NextSearchOverlay: React.FC<Props> = ({stats, rad, period, type, overlay, handleOverlay}: Props) => {
     const dispatch = useDispatch();
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     const handleNextSearch = (pct: boolean, stat: string) => {
         dispatch( setSearch({
@@ -128,7 +133,7 @@ const NextSearchOverlay: React.FC<Props> = ({stats, rad, period, type, overlay, 
                 :null
             }
             {overlay
-                ? <CardOverlay rad={rad} darkOverlay={isDark(stats[0])}>
+                ? <CardOverlay rad={rad} darkOverlay={isDark(stats[0])} darkMode={settings.isDarkMode}>
                     <MagButton 
                         selected={true}
                         bg={"#ff425c"}

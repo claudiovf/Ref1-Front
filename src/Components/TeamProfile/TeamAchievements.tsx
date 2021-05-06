@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Team } from '../../types';
-import { getDriverStyle } from '../../utils/currentInfo';
 import { Check } from '@styled-icons/bootstrap';
 
-const AchieveContainer = styled.div<{ bg: string }>`
-    background-color: ${props => props.bg};
+const AchieveContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,7 +23,7 @@ const Title = styled.div`
 `;
 
 const AchieveCard = styled.div`
-    background-color: rgb(255,255,255,0.15);
+    background-color: rgb(255,255,255,0.1);
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -51,7 +49,6 @@ const CheckBoot = styled(Check)`
 
 
 const TeamAchievements: React.FC<{team: Team}> = ({ team }: { team: Team }) => {
-    const teamStyle = getDriverStyle(team.constructorId);
     const career = team.entries.find(p => p.period === "Career");
 
     if (!career ) return null;
@@ -108,7 +105,7 @@ const TeamAchievements: React.FC<{team: Team}> = ({ team }: { team: Team }) => {
 
     return (
         <React.Fragment>
-            <AchieveContainer bg={teamStyle.primary}>
+            <AchieveContainer>
                 <AchieveCard>
                 <Title>Achievements</Title>
                 { team.championships.length > 0 

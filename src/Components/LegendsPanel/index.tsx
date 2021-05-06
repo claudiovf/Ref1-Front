@@ -2,14 +2,18 @@ import React from 'react';
 import { Section, Title, Scroll } from '../LayoutComponents';
 import CurrentDriverCards from '../CurrentDriversPanel/CurrentDriverCards';
 import { legendsList } from '../../utils/currentInfo';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 
 
 const LegendsPanel: React.FC = () => {
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     return (
         <React.Fragment>
             <Section>  
-                <Title>Legends</Title>
+                <Title darkMode={settings.isDarkMode}>Legends</Title>
                 <Scroll>
                     { legendsList.map(driver => 
                                 <CurrentDriverCards 

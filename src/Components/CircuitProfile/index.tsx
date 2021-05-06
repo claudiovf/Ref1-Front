@@ -8,16 +8,19 @@ import { BackHome, ProfileContainer,
 import Spinner from '../Common/Spinner';
 
 import { CIRCUIT_PROFILE } from '../../queries';
-import { getGP } from '../../utils/formatting';
+import { getCountryCode, getGP } from '../../utils/formatting';
 import styled from 'styled-components';
 import EventSchedule from './EventSchedule';
 import RaceInfo from './RaceInfo';
 import PreviousResults from './PreviousResults/PreviousResults';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 
 
 
-const ProfileBody = styled(ProfileWrap)`
-    background-color: #FFF;
+const ProfileBody = styled(ProfileWrap)<{ darkMode: boolean }>`
+    background-color: ${props => props.darkMode ? "#1f1f1f" : "#FFF" };
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,9 +46,9 @@ const RaceName = styled.div`
     
 `;
 
-const CircuitName = styled.div`
+const CircuitName = styled.div<{ darkMode: boolean }>`
     font-family: "Work Sans Semi Bold";
-    color: #2f2f2f;
+    color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" }; 
     font-size: 1rem;
     margin: 1rem 1rem 0 1rem;
     white-space: nowrap;
@@ -56,6 +59,10 @@ const Local = styled.div`
     font-size: 1rem;
     color: #00c49a;
     white-space: nowrap;
+    margin: 0.25rem
+`;
+const Flag = styled.div`
+    margin: 0.25rem
 `;
 
 const ProfileGP = styled(ProfileName)`
@@ -66,12 +73,14 @@ const ProfileGP = styled(ProfileName)`
 const CircuitProfile: React.FC = () => {
     const [ circuit, setCircuit ] = useState<CircuitType | null>(null);
     
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     const { circuitId } = useParams<{ circuitId: string }>();
     const { loading, data } = useQuery<{ findCircuit: CircuitType }>(CIRCUIT_PROFILE, {
         fetchPolicy: "cache-and-network", 
         variables: { circuitId } 
     });
+
     
     useEffect(() => {
         if ( data ) {
@@ -83,23 +92,27 @@ const CircuitProfile: React.FC = () => {
     if ( loading ) return <> <Spacer /><Spinner /> </>;
 
     if ( !circuit) return null;
+
     
     return (
         <React.Fragment>
             <ProfileContainer>
                 <StyledLink to="/">
-                    <BackHome>
+                    <BackHome darkMode={settings.isDarkMode}>
                         &larr; {getGP(circuit.circuitId)} Grand Prix
                     </BackHome>
                 </StyledLink>
                 <Spacer />
-                <ProfileBody>
-                    <ProfileGP color={"#00c49a"} bg={"none"}>
+                <ProfileBody darkMode={settings.isDarkMode}>
+                    <ProfileGP color={"#00c49a"}>
                         {getGP(circuit.circuitId).toUpperCase()} GP</ProfileGP>
                     <RaceName>{circuit.raceName}</RaceName>
-                    <CircuitName>{circuit.circuitName}</CircuitName>
+                    <CircuitName darkMode={settings.isDarkMode}> {circuit.circuitName} </CircuitName>
                     <Local>{circuit.location?.locality}, {circuit.location?.country}</Local>
-                    
+                    <Flag>
+                        <img src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryCode(circuit.circuitId)}.svg`} 
+                        alt={`${getGP(circuit.circuitId)} flag`} width={"28"} height={"24"} />
+                    </Flag>
                     <EventSchedule 
                         scheduleTrack={circuit.scheduleTrack}
                         scheduleUTC={circuit.scheduleUTC}    

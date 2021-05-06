@@ -80,7 +80,7 @@ export const getSecondSort = (splitStat: SplitStat): string | null => {
 
 export const resultItemStyle = (id: string, givenName: string | null): string => {
     return getDriverStyle(patchId(id, givenName)).team === "NA" 
-    ? "#e4eced" 
+    ? "rgb(235,235,235, 0.9)" 
     : getDriverStyle(patchId(id, givenName)).primary;
 }; 
 
@@ -183,6 +183,59 @@ export const getGP = (circuitId: string): string => {
     }
 };
 
+export const getCountryCode = (circuitId: string): string => {
+    switch(true) {
+        case circuitId === 'bahrain':
+            return 'BH';
+        case circuitId === 'imola':
+            return 'IT';
+        case circuitId === 'portimao':
+            return 'PT';
+        case circuitId === 'catalunya':
+            return 'ES';
+        case circuitId === 'monaco':
+            return 'MC';
+        case circuitId === 'BAK':
+            return 'AZ';
+        case circuitId === 'villeneuve':
+            return 'CA';
+        case circuitId === 'ricard':
+            return 'FR';
+        case circuitId === 'red_bull_ring':
+            return 'AT';
+        case circuitId === 'silverstone':
+            return 'GB';
+        case circuitId === 'hungaroring':
+            return 'HU';
+        case circuitId === 'spa':
+            return 'BE';
+        case circuitId === 'zandvoort':
+            return 'NL';
+        case circuitId === 'monza':
+            return 'IT';
+        case circuitId === 'sochi':
+            return 'RU';
+        case circuitId === 'marina_bay':
+            return 'SG';
+        case circuitId === 'suzuka':
+            return 'JP';
+        case circuitId === 'americas':
+            return 'US';
+        case circuitId === 'rodriguez':
+            return 'MX';
+        case circuitId === 'interlagos':
+            return 'BR';
+        case circuitId === 'albert_park':
+            return 'AU';
+        case circuitId === 'jeddah':
+            return 'SA';
+        case circuitId === 'yas_marina':
+            return 'AE';
+        default:
+            return "";
+    }
+};
+
 export const getSessionInfo = (schedule: Schedule, sessionSel: string): string => {
     switch(true) {
         case sessionSel === "FP1":
@@ -246,18 +299,19 @@ export const convertToAmPm = (time: string): string | number => {
     else return `${(hour24 - 12).toString().padStart(2,'0')}:${mins}pm`;
 };
 
-export const getLocalTimes = (eventSchedule: Schedule): DisplaySchedule => {
-    const getLocalDateWith = (dateStr: string) => {
+export const getLocalDateWith = (dateStr: string): {date: string; time: string} => {
 
-        /// includes daylight saving UK. ends in october
-        const date = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000);
-        const time = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000);
-        
-        return {
-            date: `${getMonthStr(date.getMonth())} ${date.getDate().toString().padStart(2,'0')}`,
-            time: `${time.getHours().toString().padStart(2,'0')}:${time.getMinutes().toString().padStart(2,'0')}`
-        };
+    /// includes daylight saving UK. ends in october
+    const date = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000);
+    const time = new Date(((Date.parse(dateStr)  / 1000) - 3600) * 1000);
+    
+    return {
+        date: `${getMonthStr(date.getMonth())} ${date.getDate().toString().padStart(2,'0')}`,
+        time: `${time.getHours().toString().padStart(2,'0')}:${time.getMinutes().toString().padStart(2,'0')}`
     };
+};
+
+export const getLocalTimes = (eventSchedule: Schedule): DisplaySchedule => {
 
     //removes an hour for london day light saving. ends in october
     return {

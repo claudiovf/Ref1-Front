@@ -5,6 +5,7 @@ import { formattedPeriod, formattedStat } from '../../utils/formatting';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { SearchState } from '../../store/searchTypes';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 
 
 
@@ -23,9 +24,9 @@ const Unselect = styled.span`
     margin-left: 0.5rem;
 `;
 
-const ScrollCover = styled.div`
+const ScrollCover = styled.div<{ darkMode: boolean}>`
     min-width: 100%;
-    background-color: #FFFFFF;
+    background-color: ${props => props.darkMode ? "#2f2f2f" : "#FFFFFF" };
     overflow: hidden;
     animation-name: ${slideUpAnimation};
     animation-duration: 0.3s;
@@ -72,21 +73,22 @@ interface Props {
 
 const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handleSelection }: Props) => {
     const search: SearchState = useSelector((state: RootState) => state.search);
-    
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
+
     if (!selected) {
         return(
             <React.Fragment>
-                <ScrollCover>
+                <ScrollCover darkMode={settings.isDarkMode}>
                     <SectionSearch>
-                        <FilterTitle>{title}</FilterTitle>
+                        <FilterTitle darkMode={settings.isDarkMode}>{title}</FilterTitle>
                         <SearchScrollNotSelected>
                             {
                                 optionsArr.map(item => 
                                     <SelectionButton 
                                         selected={false}
-                                        bg={"#e4eced"}
-                                        color={"#2F2F2F"}
-                                        border={"#e4eced"}
+                                        bg={settings.isDarkMode ? "#4f4f4f" : "#e4eced"}
+                                        color={settings.isDarkMode ? "rgb(255,255,255,0.9)" : "#2F2F2F"}
+                                        border={"rgb(0,0,0,0)"}
                                         key={item}
                                         onClick={() => handleSelection(item)}
                                         >
@@ -103,13 +105,13 @@ const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handle
     return (
         <React.Fragment>
                 <SectionSearch>
-                    <FilterTitle>{title}</FilterTitle>
+                    <FilterTitle darkMode={settings.isDarkMode}>{title}</FilterTitle>
                     <SearchScroll>
                         <SelectionButton 
                             selected={true}
-                            bg={"#2F2F2F"}
-                            color={"#FFFFFF"}
-                            border={"#2F2F2F"}
+                            bg={settings.isDarkMode ? "rgb(255,255,255, 0.5)" : "#2F2F2F"}
+                            color={settings.isDarkMode ? "#fff" : "#fff"}
+                            border={"rgb(0,0,0,0)"}
                             >
                                 {formattedPeriod(formattedStat(selected))} 
                                 {search.selections.period && ( selected === "Season" || selected === "Team" )

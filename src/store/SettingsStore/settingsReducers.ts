@@ -1,13 +1,14 @@
 import { 
     SettingsActionTypes, SettingsState, 
-    SET_DISTANCE, SET_TEMP, SET_TIME_FORMAT, TOGGLE_SETTINGS_OPEN 
+    SET_DISTANCE, SET_TEMP, SET_TIME_FORMAT, TOGGLE_SETTINGS_OPEN, SET_DARK_MODE 
 } from "./settingsTypes";
 
 const initialState: SettingsState = {
     temp: 'c',
     distance: localStorage.getItem('distUnit') ? 'm' : 'k',
     timeFormat: localStorage.getItem('timeFormat') ? 'ampm' : '24hour',
-    isOpen: false
+    isOpen: false,
+    isDarkMode: localStorage.getItem('darkMode') ? true : false
 };
 
 export const settingsReducer = ( state = initialState, action: SettingsActionTypes ): SettingsState => {
@@ -31,6 +32,11 @@ export const settingsReducer = ( state = initialState, action: SettingsActionTyp
             return { 
                 ...state,
                 timeFormat: action.payload
+            };
+        case SET_DARK_MODE:
+            return {
+                ...state,
+                isDarkMode: !state.isDarkMode
             };
         default:
             return state;

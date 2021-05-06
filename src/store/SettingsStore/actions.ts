@@ -1,7 +1,7 @@
 import { 
     Temp, Distance, TimeFormat,
-    SetDistanceAction, SetTempAction, SetTimeFormatAction,
-    SET_DISTANCE, SET_TEMP, SET_TIME_FORMAT, ToggleSettingsOpenAction, TOGGLE_SETTINGS_OPEN 
+    SetDistanceAction, SetTempAction, SetTimeFormatAction, SetDarkMode, 
+    SET_DISTANCE, SET_TEMP, SET_TIME_FORMAT, ToggleSettingsOpenAction, TOGGLE_SETTINGS_OPEN, SET_DARK_MODE
 } from "./settingsTypes";
 
 
@@ -29,5 +29,11 @@ export const setTimeFormat = (timeFormarSelection: TimeFormat): SetTimeFormatAct
     return {
         type: SET_TIME_FORMAT,
         payload: timeFormarSelection
+    };
+};
+
+export const setDarkMode = (): SetDarkMode => {
+    return {
+        type: SET_DARK_MODE
     };
 };

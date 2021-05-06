@@ -58,7 +58,7 @@ const DriversTableRows: React.FC<Props> = ({resultList, rankPrev}: Props) => {
                                 selected={true}
                                 bg={resultItemStyle(driver.driverId, driver.givenName)}
                                 color={getDriverStyle(patchId(driver.driverId, driver.givenName)).secondary}
-                                border={resultItemStyle(driver.driverId, driver.givenName)}
+                                border={"rgb(0,0,0,0)"}
                                 >
                                     {driver.givenName} {driver.familyName}
                             </OptionsButton>

@@ -1,7 +1,10 @@
 import { useQuery } from '@apollo/client';
 import React, {useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { GET_PREVIOUS_EVENTS } from '../../../queries';
+import { RootState } from '../../../store';
+import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
 import { CircuitEvent } from '../../../types';
 import { SectionTitle, Section, Scroll, SelectionButton } from '../../LayoutComponents';
 import EventResult from './EventResult';
@@ -33,7 +36,8 @@ const SectionCircuit = styled(Section)`
 `;
 
 
-const Title = styled(SectionTitle)`
+const Title = styled(SectionTitle)<{ darkMode: boolean }>`
+    color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" }; 
     padding: 0.25rem 0 1rem 0;
     vertical-align: bottom;
     text-align: left;
@@ -56,8 +60,9 @@ interface Props {
 const PreviousResults: React.FC<Props> = ({circuitId}: Props) => {
     const [ allEvents, setAllEvents ] = useState<CircuitEvent[] | null>(null);
     const [ prevSelected, setPrevSelected ] = useState<string | null>(null);
-
     const [ displayEvent, setDisplayEvent ] = useState<CircuitEvent | null>(null);
+
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     const { data } = useQuery<{ getPreviousEvents: CircuitEvent[] }>(GET_PREVIOUS_EVENTS, {
         fetchPolicy: "cache-and-network", 
@@ -83,7 +88,7 @@ const PreviousResults: React.FC<Props> = ({circuitId}: Props) => {
         return (
             <Container>
                 <ResultsWrap>
-                    <Title color={"#2f2f2f"}>Previous Results</Title>
+                    <Title color={"#2f2f2f"} darkMode={settings.isDarkMode}>Previous Results</Title>
                     <NoPrev color={"#2f2f2f"}>No previous events at this location.</NoPrev>
                 </ResultsWrap>
             </Container>
@@ -98,7 +103,7 @@ const PreviousResults: React.FC<Props> = ({circuitId}: Props) => {
         <React.Fragment>
             <Container>
                 <ResultsWrap>
-                    <Title color={"#2f2f2f"}>Previous Results</Title>
+                    <Title color={"#2f2f2f"} darkMode={settings.isDarkMode} >Previous Results</Title>
                     <SectionCircuit>
                         <Scroll>
                             {
@@ -115,7 +120,7 @@ const PreviousResults: React.FC<Props> = ({circuitId}: Props) => {
                                     </SelectionButton>
                                     : <SelectionButton
                                         key={race.date}
-                                        color={"#828282"}
+                                        color={"#a2a2a2"}
                                         bg={"rgb(0,0,0,0)"}
                                         border={"rgb(0,0,0,0)"}
                                         selected={false}

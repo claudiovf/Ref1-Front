@@ -19,7 +19,8 @@ const TitleRow = styled.div`
     flex-direction: column;
 `;
 
-const ScheduleTitle = styled(SectionTitle)`
+const ScheduleTitle = styled(SectionTitle)<{ darkMode: boolean }>`
+    color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" }; 
     padding: 0.25rem 0 0.75rem 0;
     vertical-align: bottom;
     text-align: center;
@@ -36,8 +37,9 @@ const TimeSelection = styled.div`
     font-size: 0.75rem;
 `;
 
-const ScheduleTable = styled.table`
-    background-color: rgb(11, 49, 66, 0.04);
+const ScheduleTable = styled.table<{ darkMode: boolean }>`
+    background-color: ${props => props.darkMode ? "#2f2f2f" : "rgb(11, 49, 66, 0.04)" };
+    color: ${props => props.darkMode ? "rgb(255,255,255,0.8)" : "#2f2f2f;" };
     width: 90vw;
     padding: 0.5rem 0.5rem 0.5rem 1.5rem;
     border-radius: 0.5rem;
@@ -51,7 +53,6 @@ const ScheduleTable = styled.table`
 const Td = styled.td`
     height: 1rem;
     padding: 0.5rem 0;
-    color: #2f2f2f;
     font-size: 1rem;
 `;
 
@@ -99,7 +100,7 @@ const EventSchedule: React.FC<Props> = ({ scheduleTrack, scheduleUTC}: Props) =>
         <React.Fragment>
             <ScheduleSection>
                 <TitleRow>
-                    <ScheduleTitle color={"#2f2f2f"}>Event Schedule</ScheduleTitle>
+                    <ScheduleTitle color={"#2f2f2f"} darkMode={settings.isDarkMode}> Event Schedule </ScheduleTitle>
                     <TimeSelection>
                     {["Your Time", "Track Time"].map(option => option === timeSelected
                                 ? <SelectionButton 
@@ -112,8 +113,8 @@ const EventSchedule: React.FC<Props> = ({ scheduleTrack, scheduleUTC}: Props) =>
                                 </SelectionButton> 
                                 : <SelectionButton 
                                     selected={false}
-                                    bg={"#fff"}
-                                    color={"#828282"}
+                                    bg={"rgb(0,0,0,0)"}
+                                    color={"#a2a2a2"}
                                     border={"rgb(255,255,255, 0)"}
                                     key={option}
                                     onClick={() => setTimeSelected(option)}>
@@ -123,7 +124,7 @@ const EventSchedule: React.FC<Props> = ({ scheduleTrack, scheduleUTC}: Props) =>
                         } 
                     </TimeSelection>
                 </TitleRow>
-                <ScheduleTable>
+                <ScheduleTable darkMode={settings.isDarkMode}>
                     <tbody>
                         <Tr>
                             <Td>Practice 1</Td>

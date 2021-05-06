@@ -57,7 +57,7 @@ const TeamsTableRows: React.FC<Props> = ({ resultList, rankPrev }: Props) => {
                                 selected={true}
                                 bg={resultItemStyle(team.constructorId, null)}
                                 color={getDriverStyle(patchId(team.constructorId, null)).secondary}
-                                border={resultItemStyle(team.constructorId, null)}
+                                border={"rgb(0,0,0,0)"}
                                 >
                                     {team.name}
                             </OptionsButton>

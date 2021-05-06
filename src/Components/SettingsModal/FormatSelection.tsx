@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { setDistance, setTimeFormat } from '../../store/SettingsStore/actions';
+import { RootState } from '../../store';
+import { setDistance, setTimeFormat, setDarkMode } from '../../store/SettingsStore/actions';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { SelectionButton, Title } from '../LayoutComponents';
 
 const OptionContainer = styled.div`
@@ -27,12 +29,28 @@ const OptionsWrap = styled.div`
 `;
 
 const OptionTitle = styled(Title)`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     font-size: 1rem;
     margin-bottom: 0.25rem;
 
     @media (min-width: 768px) {
         margin-bottom: -0.5rem;
     }
+`;
+
+const NewNotif = styled.span`
+  background-color: #ff425c;
+  font-family: "Work Sans Semi Bold";
+  color: #FFF;
+  font-size: 10px;
+  padding: 0.15rem;
+  border-radius: 5px;
+  margin: -1rem -2rem 0 0;
+  z-index: 2000;
 `;
 
 interface Props {
@@ -45,6 +63,7 @@ interface Props {
 const FormatSelection: React.FC<Props> = ({altFormat, title, defaultFormat, storageKey}: Props) => {
     const [selected, setSelected] = useState<string>(localStorage.getItem(storageKey) || defaultFormat);
     const dispatch = useDispatch();
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     useEffect(() => {
 
@@ -73,6 +92,10 @@ const FormatSelection: React.FC<Props> = ({altFormat, title, defaultFormat, stor
     const handleSelection = (format: string) => {
         if(format !== selected) {
             setSelected(format);
+            
+            if (storageKey === 'darkMode') {
+                dispatch (setDarkMode());
+            }
         }
     };
  
@@ -80,13 +103,15 @@ const FormatSelection: React.FC<Props> = ({altFormat, title, defaultFormat, stor
     return (
         <React.Fragment>
             <OptionContainer>
-                <OptionTitle>{title}</OptionTitle>
+                <OptionTitle darkMode={settings.isDarkMode}>
+                    {title}{storageKey === 'darkMode' ? <NewNotif>NEW</NewNotif> : null}
+                </OptionTitle>
                 <OptionsWrap>
                     {
                         [defaultFormat, altFormat].map(format => 
                             <SelectionButton
                                 key={format}
-                                color={format === selected ? "#FFF" : "#828282"}
+                                color={format === selected ? "#FFF" : "#a2a2a2"}
                                 bg={format === selected ? "#00c49a" : "rgb(0,0,0,0)"}
                                 border={"rgb(0,0,0,0)"}
                                 selected={format === selected ? true : false}

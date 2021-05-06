@@ -8,6 +8,7 @@ export const patchId = (id: string, firstName: string | null): string => {
     else return id;
 };
  
+
 export const getDriverStyle = (id: string): CurrTeamStyles => {
     switch(true) {
         case id === 'hamilton' || id === 'bottas' || id === 'mercedes':
@@ -20,14 +21,14 @@ export const getDriverStyle = (id: string): CurrTeamStyles => {
         case id === 'max_verstappen' || id === 'perez' || id === 'red_bull':
             return {
                 team: 'Red Bull Racing',
-                primary: '#0000AE',
-                secondary: '#F94774'
+                primary: '#002a55',
+                secondary: '#f30b47'
             };
         case id === 'leclerc' || id === 'sainz' || id === 'ferrari':
             return {
                 team: 'Scuderia Ferrari',
                 primary: '#C00000',
-                secondary: '#2E2E2E'
+                secondary: '#1f1f1f'
             };
         case id === 'norris' || id === 'ricciardo' || id === 'mclaren':
             return {
@@ -62,7 +63,7 @@ export const getDriverStyle = (id: string): CurrTeamStyles => {
         case id === 'latifi' || id === 'russell' || id === 'williams':
             return {
                 team: 'Williams Racing',
-                primary: '#212121',
+                primary: '#282828',
                 secondary: '#0082FA'
             };
         case id === 'mick_schumacher' || id === 'mazepin' || id === 'haas':
@@ -79,6 +80,21 @@ export const getDriverStyle = (id: string): CurrTeamStyles => {
                 secondary: '#2D2D2D'
             };
     }
+};
+
+export const invertStyle = (darkMode: boolean, style: CurrTeamStyles): CurrTeamStyles => {
+    if (darkMode) {
+        if (style.primary === '#02CCB6') return { ...style, primary: "#1f1f1f", secondary: style.primary}; //mercedes
+        if (style.primary === "#C00000") return {...style, primary: '#a10000'}; //ferrari
+        if (style.primary === '#FF8700') return { ...style, primary: "#1f1f1f", secondary: style.primary}; //mclaren
+        if (style.secondary === '#e60b0b') return { ...style, primary: '#3f3f3f'}; //haas
+        if (style.primary === "#0090FF") return {...style, primary: '#0b6eba'}; //alpine
+        if (style.secondary === '#0082FA') return { ...style, primary: "#1f1f1f"}; //williams
+
+        // redbull, aston, alphatauri, alfa returns reg style
+    }
+    
+    return style;
 };
 
 export const driversList = [

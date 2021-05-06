@@ -1,8 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { eventGa } from '../../RouteTracker';
+import { RootState } from '../../store';
 import { setSearch, toggleOpen } from '../../store/actions';
+import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { Section, Title, Scroll, popOutAnimation } from '../LayoutComponents';
 
 
@@ -41,7 +43,7 @@ const StatTitle = styled.div`
 `;
 
 const Standings: React.FC = () => {
-
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     const dispatch = useDispatch();
 
@@ -60,7 +62,7 @@ const Standings: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title>2021 Standings</Title>
+                <Title darkMode={settings.isDarkMode}>2021 Standings</Title>
                 <Scroll>
                     {
                         ["drivers", "teams"].map(type => 

@@ -5,8 +5,7 @@ import { getDriverStyle } from '../../utils/currentInfo';
 import { formattedDate } from '../../utils/formatting';
 import { InfoBox, InfoRow, Label, Value } from '../LayoutComponents';
 
-const GenContainer = styled.div<{ bg: string }>`
-    background-color: ${props => props.bg};
+const GenContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -33,7 +32,7 @@ const GeneralInfo: React.FC<{ driver: Driver; }> = ( {driver}: { driver: Driver 
 
     return (
         <React.Fragment>
-            <GenContainer bg={driverStyle.primary}>
+            <GenContainer>
                 <InfoRow>
                     <InfoBox>
                         <Value>{driver.nationality}</Value>

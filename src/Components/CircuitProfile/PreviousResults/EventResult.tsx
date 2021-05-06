@@ -1,7 +1,10 @@
 import { useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { GET_EVENT_RESULTS } from '../../../queries';
+import { RootState } from '../../../store';
+import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
 import { CircuitEvent, CircuitPos } from '../../../types';
 import Spinner from '../../Common/Spinner';
 import { StyledLink, SelectionButton } from '../../LayoutComponents';
@@ -58,10 +61,10 @@ const StyledLinkTeam = styled(StyledLink)`
     font-family: "Work Sans Reg";
 `;
 
-const Tr = styled.tr`
+const Tr = styled.tr<{ darkMode: boolean }>`
     td:first-child {
         width: 2rem;
-        color: #2f2f2f;
+        color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" }; 
         font-family: "Work Sans Bold";
         font-size: 1rem;
     }
@@ -69,7 +72,7 @@ const Tr = styled.tr`
         text-align: right;
         font-family: "Work Sans Reg";
         font-size: 0.75rem;
-        color: #2f2f2f;
+        color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" };
     }
 `;
 
@@ -90,6 +93,8 @@ interface Props {
 
 const EventResult: React.FC<Props> = ({displayEvent}: Props) => {
     const [ result, setResult ] = useState<CircuitPos[] | null>(null);
+
+    const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
     const { loading, data } = useQuery<{ getCircuitResults: CircuitEvent }>(GET_EVENT_RESULTS, {
         fetchPolicy: "cache-and-network", 
@@ -112,12 +117,12 @@ const EventResult: React.FC<Props> = ({displayEvent}: Props) => {
                     <Table>
                             {result?.map(pos =>
                                 <tbody key={pos.position}>
-                                    <Tr>
+                                    <Tr darkMode={settings.isDarkMode}>
                                         <td>{pos.position}</td>
                                         <TdName>
                                             <StyledLinkDriver to={"/profile/driver/" + pos.Driver.driverId}>
                                                 <ResultButton
-                                                    color={"#2f2f2f"}
+                                                    color={settings.isDarkMode ? "rgb(255,255,255, 0.9)" : "#2f2f2f"}
                                                     bg={"rgb(0,0,0,0)"}
                                                     border={"rgb(0,0,0,0)"}
                                                     selected={true}
@@ -128,7 +133,7 @@ const EventResult: React.FC<Props> = ({displayEvent}: Props) => {
                                         </TdName>
                                         <td>{pos.Time ? pos.Time.time : pos.status}</td>
                                     </Tr>
-                                    <Tr>
+                                    <Tr darkMode={settings.isDarkMode}>
                                         <td></td>
                                         <TdTeam>
                                             <StyledLinkTeam to={"/profile/team/" + pos.Constructor.constructorId}>
