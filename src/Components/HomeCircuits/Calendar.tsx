@@ -135,7 +135,7 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
         'catalunya',
         'monaco',
         'BAK',
-        'villeneuve',
+        'istanbul',
         'ricard',
         'red_bull_ring',
         'silverstone',

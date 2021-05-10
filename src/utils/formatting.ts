@@ -144,8 +144,8 @@ export const getGP = (circuitId: string): string => {
             return 'Monaco';
         case circuitId === 'BAK':
             return 'Azerbaijan';
-        case circuitId === 'villeneuve':
-            return 'Canadian';
+        case circuitId === 'istanbul':
+            return 'Turkish';
         case circuitId === 'ricard':
             return 'French';
         case circuitId === 'red_bull_ring':
@@ -197,8 +197,8 @@ export const getCountryCode = (circuitId: string): string => {
             return 'MC';
         case circuitId === 'BAK':
             return 'AZ';
-        case circuitId === 'villeneuve':
-            return 'CA';
+        case circuitId === 'istanbul':
+            return 'TR';
         case circuitId === 'ricard':
             return 'FR';
         case circuitId === 'red_bull_ring':

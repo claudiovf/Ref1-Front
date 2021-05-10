@@ -100,7 +100,9 @@ const EventSchedule: React.FC<Props> = ({ scheduleTrack, scheduleUTC}: Props) =>
         <React.Fragment>
             <ScheduleSection>
                 <TitleRow>
-                    <ScheduleTitle color={"#2f2f2f"} darkMode={settings.isDarkMode}> Event Schedule </ScheduleTitle>
+                    <ScheduleTitle color={"#2f2f2f"} darkMode={settings.isDarkMode}> Event Schedule
+                        {displaySchedule.race.date === 'Jun 13' ? <span>&nbsp;(TBC)</span> : null} 
+                    </ScheduleTitle>
                     <TimeSelection>
                     {["Your Time", "Track Time"].map(option => option === timeSelected
                                 ? <SelectionButton 
