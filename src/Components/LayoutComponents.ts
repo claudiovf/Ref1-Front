@@ -50,6 +50,15 @@ export const Title = styled.div<{darkMode: boolean}>`
       }
 `;
 
+export const H1 = styled.h1`
+    font-size: 0rem;
+    margin: 0
+`;
+export const H2 = styled.h2`
+    font-size: 1.25rem;
+    margin: 0
+`;
+
 export const SectionTitle = styled.div<{ color: string; }>`
     text-align: left;
     font-family: "Work Sans Bold";

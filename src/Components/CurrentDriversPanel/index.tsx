@@ -3,9 +3,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { driversList } from '../../utils/currentInfo';
-import { Section, Title, Scroll } from '../LayoutComponents';
+import { Section, Title, Scroll, H2 } from '../LayoutComponents';
 import CurrentDriverCards from './CurrentDriverCards';
-
 
 const CurrentDriversPanel: React.FC = () => {
     const settings: SettingsState = useSelector((state: RootState) => state.settings);
@@ -13,7 +12,7 @@ const CurrentDriversPanel: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title darkMode={settings.isDarkMode}>2021 Drivers</Title>
+                <Title darkMode={settings.isDarkMode}><H2>2021 Drivers</H2></Title>
                 <Scroll>
                     { driversList.map(driver => 
                         <CurrentDriverCards 

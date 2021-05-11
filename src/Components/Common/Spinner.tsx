@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const SpinnerWrapper= styled.div`
     min-height: auto;
     width: 100%;
-    margin-top: 2rem;
+    padding-top: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -23,6 +23,7 @@ const Th = styled.th`
     font-size: 1.75rem;
     padding: 0 0.75rem;
     width: 25%;
+    font-feature-settings: "tnum" on;
 `;
 
 const Td = styled.td`
@@ -142,7 +143,7 @@ const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: 
                     </tr>
                     <tr>
                         <Td>Days</Td>
-                        <Td>hours</Td>
+                        <Td>Hours</Td>
                         <Td>Mins</Td>
                         <Td>Secs</Td>
                     </tr>

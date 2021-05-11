@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, Title, Scroll } from '../LayoutComponents';
+import { Section, Title, Scroll, H2 } from '../LayoutComponents';
 import CurrentDriverCards from '../CurrentDriversPanel/CurrentDriverCards';
 import { skyList } from '../../utils/currentInfo';
 import { useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ const SkySportsPanel: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title darkMode={settings.isDarkMode}>Sky Sports Team</Title>
+                <Title darkMode={settings.isDarkMode}><H2>Sky Sports Team</H2></Title>
                 <Scroll>
                     { skyList.map(driver => 
                                 <CurrentDriverCards 

@@ -66,8 +66,8 @@ const Donate: React.FC = () => {
                         </HiringTitle>
                         <DonateText darkMode={settings.isDarkMode}>
                             We would love to hear from you about development opportunities.  
-                            Get in touch at contact.ref1app@gmail.com :)
-                        </DonateText>
+                            Get in touch at contact@ref1.app :)
+                        </DonateText>  
                     </>
                     : null
                 }

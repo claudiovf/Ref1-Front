@@ -6,7 +6,7 @@ import { RootState } from '../../store';
 import { setSearch, toggleOpen } from '../../store/actions';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { formattedStat } from '../../utils/formatting';
-import { Section, Title, Scroll, popOutAnimation } from '../LayoutComponents';
+import { Section, Title, Scroll, popOutAnimation, H2 } from '../LayoutComponents';
 
 
 const SearchCard = styled.div`
@@ -43,6 +43,7 @@ const StatTitle = styled.div`
     margin-top: 1rem;
 `;
 
+
 const ExploreTeams: React.FC = () => {
     const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
@@ -56,7 +57,7 @@ const ExploreTeams: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title darkMode={settings.isDarkMode}>Explore Teams</Title>
+                <Title darkMode={settings.isDarkMode}><H2>Explore Teams</H2></Title>
                 <Scroll>
                     {
                         stats.map(stat => 

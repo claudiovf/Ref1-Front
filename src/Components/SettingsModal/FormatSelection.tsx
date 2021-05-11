@@ -14,7 +14,7 @@ const OptionContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 0.25rem;
-
+    
     @media (min-width: 768px) {
         margin-bottom: 1rem;
     }

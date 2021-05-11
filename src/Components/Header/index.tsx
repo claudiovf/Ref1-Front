@@ -7,6 +7,7 @@ import { eventGa } from '../../RouteTracker';
 import { Settings } from '@styled-icons/fluentui-system-filled';
 import { toggleSettingsOpen } from '../../store/SettingsStore/actions';
 import { Search } from '@styled-icons/fluentui-system-filled';
+import { Twitter } from '@styled-icons/bootstrap';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 
@@ -35,6 +36,11 @@ export const LogoStyled = styled.div<{darkMode: boolean}>`
     cursor: pointer;
 `;
 
+const H1 = styled.h1`
+  font-size: 1.25rem;
+  margin: 0;
+`;
+
 const One = styled.span<{darkMode: boolean}>`
     color: ${props => props.darkMode ? "#00c49a" : "#00c49a" };
     font-family: "Work Sans Extra Bold";
@@ -42,7 +48,6 @@ const One = styled.span<{darkMode: boolean}>`
 
 export const MagBox = styled.div<{darkMode: boolean}>`
     color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" };
-    margin-right: 1.25rem;
     cursor: pointer;
     @media (min-width: 768px) {
       &:hover {
@@ -59,10 +64,20 @@ const Mag = styled.div`
 
 const SettingsContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
   margin-left: 1.25rem;
+  width: 4rem;
+`;
+
+const RightContainer = styled.div`
+  width: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 1.25rem;
 `;
 
 const NewNotif = styled.span`
@@ -72,13 +87,22 @@ const NewNotif = styled.span`
   color: #FFF;
   padding: 0.15rem;
   border-radius: 5px;
-  margin: 0 -2rem -0.75rem 0;
+  margin: -1.75rem 0 -0.75rem -0.5rem;
   z-index: 2000;
 `;
 
 
 
 const SettingsIcon = styled(Settings)<{ darkMode: boolean}>`
+  color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" };
+  cursor: pointer;
+  @media (min-width: 768px) {
+      &:hover {
+          transform: scale(1.1);
+        }
+  }
+`;
+const TwitterIcon = styled(Twitter)<{ darkMode: boolean}>`
   color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" };
   cursor: pointer;
   @media (min-width: 768px) {
@@ -94,6 +118,8 @@ const SearchIcon = styled(Search)`
 `;
 
 
+
+
 const Header: React.FC = () => {
   const [notifSeen, setNotifSeen] = useState<boolean>(localStorage.getItem('notif') === 'viewed');
 
@@ -106,9 +132,6 @@ const Header: React.FC = () => {
         <HeaderStyled darkMode={settings.isDarkMode}> 
 
             <SettingsContainer>
-              {
-                notifSeen ? null : <NewNotif>NEW</NewNotif>
-              }
               <SettingsIcon 
                 darkMode={settings.isDarkMode}
                 size={24} 
@@ -117,21 +140,34 @@ const Header: React.FC = () => {
                   setNotifSeen(true);
                   localStorage.setItem('notif', 'viewed');
                 }}
-              />
+                />
+                {
+                  notifSeen ? null : <NewNotif>NEW</NewNotif>
+                }
             </SettingsContainer>
 
             <StyledLink to={"/"}>
               <LogoStyled darkMode={settings.isDarkMode}>
-                REF<One darkMode={settings.isDarkMode}>1</One>
+                <H1>REF<One darkMode={settings.isDarkMode}>1</One></H1>
               </LogoStyled> 
             </StyledLink>
 
-            <MagBox 
-              darkMode={settings.isDarkMode}
-              onClick={ () => {
-                dispatch( toggleOpen() );
-                eventGa("HeaderSearch", 'default', 'default');
-            }} ><Mag><SearchIcon size={24} /></Mag></MagBox> 
+            <RightContainer>
+              <TwitterIcon 
+                  darkMode={settings.isDarkMode}
+                  size={24} 
+                  onClick={() => {
+                    window.open("https://twitter.com/AppRef1", '_blank')?.focus();
+                    eventGa("Twitter", 'Twitter', 'default');
+                  }}/>
+                  
+              <MagBox 
+                darkMode={settings.isDarkMode}
+                onClick={ () => {
+                  dispatch( toggleOpen() );
+                  eventGa("HeaderSearch", 'default', 'default');
+              }} ><Mag><SearchIcon size={24} /></Mag></MagBox> 
+            </RightContainer>
 
         </HeaderStyled>
       </React.Fragment>

@@ -5,7 +5,7 @@ import { eventGa } from '../../RouteTracker';
 import { RootState } from '../../store';
 import { setSearch, toggleOpen } from '../../store/actions';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
-import { Section, Title, Scroll, popOutAnimation } from '../LayoutComponents';
+import { Section, Title, Scroll, popOutAnimation, H2 } from '../LayoutComponents';
 
 
 const SearchCard = styled.div`
@@ -42,6 +42,7 @@ const StatTitle = styled.div`
     margin-top: 1rem;
 `;
 
+
 const Standings: React.FC = () => {
     const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
@@ -62,7 +63,7 @@ const Standings: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title darkMode={settings.isDarkMode}>2021 Standings</Title>
+                <Title darkMode={settings.isDarkMode}><H2>2021 Standings</H2></Title>
                 <Scroll>
                     {
                         ["drivers", "teams"].map(type => 

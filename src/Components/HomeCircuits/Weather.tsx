@@ -225,7 +225,7 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
         <React.Fragment>
             <WeatherContainer>
                 <IconTextWrap darkMode={settings.isDarkMode}>
-                    <img src={process.env.PUBLIC_URL + `/${raceWeather.icon}`} />
+                    <img src={process.env.PUBLIC_URL + `/${raceWeather.icon}`} alt="Weather Icon" />
                 </IconTextWrap>
                 <MeasureBox>
                 <WeatherTitle>SESSION FORECAST</WeatherTitle>

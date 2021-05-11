@@ -9,6 +9,7 @@ import Donate from './Donate';
 import { Title } from '../LayoutComponents';
 import FormatSelection from './FormatSelection';
 
+
 const overlayAnimation = keyframes`
     0% { opacity: 0;}
     100% { opacity: 1}
@@ -39,7 +40,7 @@ const Overlay = styled.div<{ overlayClosing: boolean }>`
     height: 100%;
     background: rgba(0,0,0,0.7);
     animation-name: ${props => props.overlayClosing ? overlayClosingAnimation: overlayAnimation};
-    animation-duration: 0.6s;
+    animation-duration: 0.5s;
     z-index: 2000;
 `;
 const CloseOverlay = styled.div`

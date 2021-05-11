@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
-import { Section, Title, Scroll } from '../LayoutComponents';
+import { Section, Title, Scroll, H2 } from '../LayoutComponents';
 import CurrentTeamCards from './CurrentTeamCards';
 
 
@@ -17,7 +17,7 @@ const CurrentTeamsPanel: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title darkMode={settings.isDarkMode}>2021 Teams</Title>
+                <Title darkMode={settings.isDarkMode}><H2>2021 Teams</H2></Title>
                 <Scroll>
                     { teamsList.map(team => {
                             return (

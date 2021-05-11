@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, Title, Scroll } from '../LayoutComponents';
+import { Section, Title, Scroll, H2 } from '../LayoutComponents';
 import CurrentDriverCards from '../CurrentDriversPanel/CurrentDriverCards';
 import { legendsList } from '../../utils/currentInfo';
 import { useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ const LegendsPanel: React.FC = () => {
     return (
         <React.Fragment>
             <Section>  
-                <Title darkMode={settings.isDarkMode}>Legends</Title>
+                <Title darkMode={settings.isDarkMode}><H2>Legends</H2></Title>
                 <Scroll>
                     { legendsList.map(driver => 
                                 <CurrentDriverCards 
