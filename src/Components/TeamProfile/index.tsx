@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { Team } from '../../types';
-import { BackHome, StyledLink, ProfileContainer, Spacer, ProfileName, ProfileWrap, GenAchContainer } from '../LayoutComponents';
+import { BackHome, StyledLink, ProfileContainer, Spacer, ProfileName, ProfileWrap, GenAchContainer, H1 } from '../LayoutComponents';
 import Spinner from '../Common/Spinner';
 
 import TeamStatSection from './StatSection/TeamStatSection';
@@ -57,8 +57,9 @@ const TeamProfile: React.FC = () => {
                     <ProfileName 
                         color={invertStyle(settings.isDarkMode, getDriverStyle(team.constructorId)).secondary}
                         >
-                        {getDriverStyle(team.constructorId).team === "NA" 
-                        ? team.name.toUpperCase() : getDriverStyle(team.constructorId).team.toUpperCase()}</ProfileName>
+                        <H1>{getDriverStyle(team.constructorId).team === "NA" 
+                        ? team.name.toUpperCase() : getDriverStyle(team.constructorId).team.toUpperCase()}</H1>
+                        </ProfileName>
                     <GenAchContainer>
                         <TeamInfo team={team} />
                         <TeamAchievements team={team} />

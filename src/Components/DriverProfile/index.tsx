@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Driver } from '../../types';
 import { BackHome, ProfileContainer, 
         Spacer, StyledLink, GenAchContainer, 
-        ProfileName, ProfileWrap } from '../LayoutComponents';
+        ProfileName, ProfileWrap, H1 } from '../LayoutComponents';
 import Spinner from '../Common/Spinner';
 
 import StatSection from './StatSection/StatSection';
@@ -59,7 +59,8 @@ const DriverProfile: React.FC = () => {
                     <ProfileName 
                         color={invertStyle(settings.isDarkMode, getDriverStyle(driver.driverId)).secondary}
                     >
-                        {[driver.givenName, driver.familyName].join(" ").toUpperCase()}</ProfileName>
+                        <H1>{[driver.givenName, driver.familyName].join(" ").toUpperCase()}</H1>
+                    </ProfileName>
                     <GenAchContainer>
                         <GeneralInfo driver={driver} />
                         <Achievements driver={driver} />

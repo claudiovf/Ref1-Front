@@ -113,7 +113,7 @@ interface Props {
 }
 
 const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
-
+    console.log('test');
     const { loading, data } = useQuery<{ findAllCircuits: CircuitType[] }>(GET_NEXT_RACES,
         { 
             fetchPolicy: "cache-and-network"

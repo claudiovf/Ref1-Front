@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { CurrTeamStyles, DriverPeriod } from '../../../types';
 import { InfoRow, InfoBox, Value, Label, SectionTitle, Icon } from '../../LayoutComponents';
-import { PercentOutline } from '@styled-icons/evaicons-outline';
-import { ArrowUpShort, ArrowDownShort } from '@styled-icons/bootstrap';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
+import Icons from '../../Icons/Icons';
 
 const StatsContainer = styled.div`
     display: flex;
@@ -68,6 +67,10 @@ const TopStats = styled.div<{darkMode: boolean}>`
     }
 `;
 
+const Pct = styled.span`
+    font-family: "Work Sans Semi Bold";
+    font-size: 1.5rem;
+`;
 
 
 interface Props {
@@ -94,12 +97,24 @@ const VsTeammates: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => 
                 <SectionTitle color={driverStyle.secondary} >Teammates Comparison</SectionTitle>
                 <TopStats darkMode={settings.isDarkMode}>
                         <InfoRow>
-                            <IconTeammate><ArrowUpShort size={32} /></IconTeammate>
+                            <IconTeammate>
+                                <Icons 
+                                    color={"#b4bebf"} 
+                                    size={"32"}
+                                    iconType={"ArrowUp"}
+                                />
+                            </IconTeammate>
                             <CenterInfoBox>
                                 <DarkValue>{displayPeriod.vsTeammates.driverAhead}</DarkValue>
                                 <DarkLabel>Driver Ahead</DarkLabel>
                             </CenterInfoBox>
-                            <IconTeammate><ArrowDownShort size={32} /></IconTeammate>
+                            <IconTeammate>
+                                <Icons 
+                                    color={"#b4bebf"} 
+                                    size={"32"}
+                                    iconType={"ArrowDown"}
+                                />
+                            </IconTeammate>
                             <CenterInfoBox>
                                 <DarkValue>{displayPeriod.vsTeammates.teammatesAhead}</DarkValue>
                                 <DarkLabel>Teammates Ahead</DarkLabel>
@@ -113,7 +128,7 @@ const VsTeammates: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => 
                                         key={inc.key}> </PctBarIncrement>)}
                         </InfoRow>
                         <InfoRow>
-                            <IconTeammate><PercentOutline size={24} /></IconTeammate>
+                            <IconTeammate><Pct>%</Pct></IconTeammate>
                             <CenterInfoBox>
                                 <DarkValue>{displayPeriod.vsTeammates.pctAhead}</DarkValue>
                                 <DarkLabel>Driver Percentage Ahead</DarkLabel>

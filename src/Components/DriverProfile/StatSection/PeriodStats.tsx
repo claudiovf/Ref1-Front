@@ -4,10 +4,10 @@ import { CurrTeamStyles, DriverPeriod } from '../../../types';
 import { formattedDate } from '../../../utils/formatting';
 import NextSearchOverlay from '../../Common/NextSearchOverlay';
 import { InfoRow, InfoBox, Value, Label, Icon, SectionTitle } from '../../LayoutComponents';
-import { Calendar } from '@styled-icons/zondicons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { SettingsState } from '../../../store/SettingsStore/settingsTypes';
+import Icons from '../../Icons/Icons';
 
 
 const StatsContainer = styled.div`
@@ -121,7 +121,13 @@ const PeriodStats: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => 
                             </CenterInfoBox>
                         </InfoRowWithBorder>
                         <InfoRow>
-                            <Icon><Calendar size={24} /></Icon>
+                            <Icon>
+                                <Icons 
+                                    color={"#b4bebf"} 
+                                    size={"24"}
+                                    iconType={"Calendar"}
+                                />
+                            </Icon>
                             <CenterInfoBox>
                                 <RaceValue>{displayPeriod.firstEntry.race}</RaceValue>
                                 <DateValue>{formattedDate(displayPeriod.firstEntry.date)}</DateValue>
@@ -129,7 +135,13 @@ const PeriodStats: React.FC<Props> = ({ displayPeriod, driverStyle }: Props) => 
                             </CenterInfoBox>
                         </InfoRow>
                         <InfoRow>
-                            <Icon><Calendar size={24} /></Icon>
+                            <Icon>
+                                <Icons 
+                                    color={"#b4bebf"} 
+                                    size={"24"}
+                                    iconType={"Calendar"}
+                                />
+                            </Icon>
                             <CenterInfoBox>
                                 <RaceValue>{displayPeriod.lastEntry.race}</RaceValue>
                                 <DateValue>{formattedDate(displayPeriod.lastEntry.date)}</DateValue>

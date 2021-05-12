@@ -17,6 +17,7 @@ export const AppStyled = styled.div<{darkMode: boolean}>`
       }
 `;
 
+
 export const Spacer = styled.div`
     min-height: 3rem;
 `;
@@ -51,7 +52,7 @@ export const Title = styled.div<{darkMode: boolean}>`
 `;
 
 export const H1 = styled.h1`
-    font-size: 0rem;
+    font-size: 2rem;
     margin: 0
 `;
 export const H2 = styled.h2`

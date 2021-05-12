@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Work Sans Extra Bold";
+    src: url('./Assets/WorkSans/static/WorkSans-ExtraBold.woff2') format('woff2');
+    font-display: swap;
+    unicode-range: U+000-5FF;
+}
+@font-face {
+    font-family: "Work Sans Bold";
+    src: url('./Assets/WorkSans/static/WorkSans-Bold.woff2') format('woff2');
+    font-display: swap;
+    unicode-range: U+000-5FF;
+}
+@font-face {
+    font-family: "Work Sans Semi Bold";
+    src: url('./Assets/WorkSans/static/WorkSans-SemiBold.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: "Work Sans Reg";
+    src: url('./Assets/WorkSans/static/WorkSans-Regular.woff2') format('woff2');
+    font-display: swap;
+    unicode-range: U+000-5FF;
+}

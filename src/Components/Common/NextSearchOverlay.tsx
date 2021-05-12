@@ -5,10 +5,9 @@ import { formattedPeriod, formattedStat, isDark } from '../../utils/formatting';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearch, toggleOpen } from '../../store/actions';
 import { eventGa } from '../../RouteTracker';
-import { Search } from '@styled-icons/fluentui-system-filled';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
-
+import Icons from '../Icons/Icons';
 
 const CardOverlay = styled.div<{ rad: string; darkOverlay: boolean; darkMode: boolean; }>`
     position: absolute;
@@ -54,12 +53,9 @@ const Mag = styled.div`
   transform: rotate(90deg);
   height: auto;
   font-size: 1.5rem;
+  margin-left: -0.25rem;
 `;
 
-const SearchIcon = styled(Search)`
-      padding: 0;
-      margin: 0.5rem 0 ;
-`;
 
 const NextSearchContainer = styled.div`
     position: absolute;
@@ -128,7 +124,11 @@ const NextSearchOverlay: React.FC<Props> = ({stats, rad, period, type, overlay, 
                     border={"#ff425c"}
                     color={"#FFFFFF"}
                     onClick={() => handleOverlay(true)}>
-                        <Mag><SearchIcon size={20} /></Mag>
+                        <Mag><Icons 
+                            color={"#FFF"} 
+                            size={"20"}
+                            iconType={"Search"}
+                            /></Mag>
                     </MagButton>
                 :null
             }

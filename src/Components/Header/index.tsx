@@ -4,10 +4,8 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleOpen } from '../../store/actions';
 import { eventGa } from '../../RouteTracker';
-import { Settings } from '@styled-icons/fluentui-system-filled';
+import Icons from '../Icons/Icons';
 import { toggleSettingsOpen } from '../../store/SettingsStore/actions';
-import { Search } from '@styled-icons/fluentui-system-filled';
-import { Twitter } from '@styled-icons/bootstrap';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 
@@ -93,28 +91,13 @@ const NewNotif = styled.span`
 
 
 
-const SettingsIcon = styled(Settings)<{ darkMode: boolean}>`
-  color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" };
+const IconWrap = styled.div`
   cursor: pointer;
   @media (min-width: 768px) {
       &:hover {
           transform: scale(1.1);
         }
   }
-`;
-const TwitterIcon = styled(Twitter)<{ darkMode: boolean}>`
-  color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" };
-  cursor: pointer;
-  @media (min-width: 768px) {
-      &:hover {
-          transform: scale(1.1);
-        }
-  }
-`;
-
-const SearchIcon = styled(Search)`
-      padding: 0;
-      margin: 0.5rem 0 ;
 `;
 
 
@@ -132,15 +115,19 @@ const Header: React.FC = () => {
         <HeaderStyled darkMode={settings.isDarkMode}> 
 
             <SettingsContainer>
-              <SettingsIcon 
-                darkMode={settings.isDarkMode}
-                size={24} 
-                onClick={ () => {
-                  dispatch( toggleSettingsOpen() );
-                  setNotifSeen(true);
-                  localStorage.setItem('notif', 'viewed');
-                }}
-                />
+                <IconWrap
+                  onClick={ () => {
+                    dispatch( toggleSettingsOpen() );
+                    setNotifSeen(true);
+                    localStorage.setItem('notif', 'viewed');
+                  }}
+                >
+                  <Icons 
+                    color={settings.isDarkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f"} 
+                    size={"24"}
+                    iconType={"Settings"}
+                  />
+                </IconWrap>
                 {
                   notifSeen ? null : <NewNotif>NEW</NewNotif>
                 }
@@ -153,20 +140,30 @@ const Header: React.FC = () => {
             </StyledLink>
 
             <RightContainer>
-              <TwitterIcon 
-                  darkMode={settings.isDarkMode}
-                  size={24} 
-                  onClick={() => {
-                    window.open("https://twitter.com/AppRef1", '_blank')?.focus();
-                    eventGa("Twitter", 'Twitter', 'default');
-                  }}/>
-                  
-              <MagBox 
-                darkMode={settings.isDarkMode}
+              <IconWrap
+                onClick={ () => {
+                  window.open("https://twitter.com/AppRef1");
+                  eventGa("Twitter", 'Twitter', 'default');
+                }}
+              >
+                <Icons 
+                  color={settings.isDarkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f"} 
+                  size={"24"}
+                  iconType={"Twitter"}
+                />
+              </IconWrap>
+              <IconWrap
                 onClick={ () => {
                   dispatch( toggleOpen() );
                   eventGa("HeaderSearch", 'default', 'default');
-              }} ><Mag><SearchIcon size={24} /></Mag></MagBox> 
+                }}
+              >
+                <Mag><Icons 
+                  color={settings.isDarkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f"} 
+                  size={"24"}
+                  iconType={"Search"}
+                /></Mag>
+              </IconWrap>
             </RightContainer>
 
         </HeaderStyled>

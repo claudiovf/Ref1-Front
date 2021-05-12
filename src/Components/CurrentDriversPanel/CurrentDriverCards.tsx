@@ -38,6 +38,7 @@ const Last = styled.div<{ color: string }>`
     font-size: 1rem;
 `;
 
+
 const Team = styled.div`
     color: #FFFFFF;
     font-family: "Work Sans Bold";

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { CircuitType } from '../../types';
 import { BackHome, ProfileContainer, 
         Spacer, StyledLink, 
-        ProfileName, ProfileWrap } from '../LayoutComponents';
+        ProfileName, ProfileWrap, H1 } from '../LayoutComponents';
 import Spinner from '../Common/Spinner';
 
 import { CIRCUIT_PROFILE } from '../../queries';
@@ -49,7 +49,7 @@ const RaceName = styled.div`
 const CircuitName = styled.div<{ darkMode: boolean }>`
     font-family: "Work Sans Semi Bold";
     color: ${props => props.darkMode ? "rgb(255,255,255,0.9)" : "#2f2f2f" }; 
-    font-size: 1rem;
+    font-size: 1rem; 
     margin: 1rem 1rem 0 1rem;
     white-space: nowrap;
 `;
@@ -105,7 +105,8 @@ const CircuitProfile: React.FC = () => {
                 <Spacer />
                 <ProfileBody darkMode={settings.isDarkMode}>
                     <ProfileGP color={"#00c49a"}>
-                        {getGP(circuit.circuitId).toUpperCase()} GP</ProfileGP>
+                        <H1>{getGP(circuit.circuitId).toUpperCase()} GP</H1>
+                    </ProfileGP>
                     <RaceName>{circuit.raceName}</RaceName>
                     <CircuitName darkMode={settings.isDarkMode}> {circuit.circuitName} </CircuitName>
                     <Local>{circuit.location?.locality}, {circuit.location?.country}</Local>

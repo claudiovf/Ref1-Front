@@ -7,7 +7,7 @@ const TeamProfile = lazy(() => import('./Components/TeamProfile'));
 const CircuitProfile = lazy(() => import('./Components/CircuitProfile'));
 import SearchModal from './Components/Search';
 import { Switch, Route } from 'react-router-dom';
-import { Spacer, AppStyled, H1 } from './Components/LayoutComponents';
+import { Spacer, AppStyled } from './Components/LayoutComponents';
 import LegendsPanel from './Components/LegendsPanel';
 import SkySportsPanel from './Components/SkySportsPanel';
 import ExploreDrivers from './Components/ExploreDrivers';
@@ -32,6 +32,7 @@ const App: React.FC = () => {
   const settings: SettingsState = useSelector((state: RootState) => state.settings);
   const search: SearchState = useSelector((state: RootState) => state.search);
 
+
   useEffect(() => {
     if(search.isOpen) {
       setIsSearch(true);
@@ -55,6 +56,7 @@ const App: React.FC = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [search.isOpen, settings.isOpen]);
+  
 
   const TRACKING_ID = "UA-192952368-1";
   ReactGA.initialize(TRACKING_ID);
@@ -64,7 +66,7 @@ const App: React.FC = () => {
     <AppStyled darkMode={settings.isDarkMode}>
 
       <Header />
-      <Spacer><H1>Ref1 App - F1 Calendar 2021 | Countdown | Standings | Results | Drivers &amp; Team Stats</H1></Spacer>
+      <Spacer />
       <Switch>
         <Suspense fallback={<> <Spacer /><Spinner /> </>}>
           <Route exact path="/">

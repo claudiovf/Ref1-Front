@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Driver } from '../../types';
-import { Check } from '@styled-icons/bootstrap';
+import Icons from '../Icons/Icons';
 
 const AchieveContainer = styled.div`
     display: flex;
@@ -42,9 +42,12 @@ const AchieveCard = styled.div`
       }
 `;
 
-const CheckBoot = styled(Check)`
-    margin-right: 0.5rem;
-    color: rgb(255,255,255, 0.7);
+const IconWrap = styled.div`
+      display: flex;
+      flex-direction: row;
+
+      svg:first-child {
+        margin-right: 1rem;
 `;
 
 
@@ -103,11 +106,22 @@ const Achievements: React.FC<{driver: Driver}> = ({ driver }: { driver: Driver }
                 <AchieveCard>
                 <Title>Achievements</Title>
                 { driver.championships.length > 0 
-                    ? <div><CheckBoot size={28} /> World Champion</div>
+                    ? <IconWrap><Icons 
+                        color={"rgb(255,255,255, 0.7"} 
+                        size={"28"}
+                        iconType={"CheckBoot"}
+                        /> World Champion
+                    </IconWrap>
                     : null
                 }
                 { resultsAchievements.map(a => a !== null 
-                    ? <div key={a}><CheckBoot size={28} /> {a}</div>
+                    ? <IconWrap key={a}>
+                        <Icons 
+                            color={"rgb(255,255,255, 0.7"} 
+                            size={"28"}
+                            iconType={"CheckBoot"}
+                            /> {a}
+                    </IconWrap>
                     : null
                 )}
         
