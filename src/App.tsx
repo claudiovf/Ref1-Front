@@ -5,7 +5,8 @@ import CurrentTeamsPanel from './Components/CurrentTeamsPanel';
 const DriverProfile = lazy(() => import('./Components/DriverProfile'));
 const TeamProfile = lazy(() => import('./Components/TeamProfile'));
 const CircuitProfile = lazy(() => import('./Components/CircuitProfile'));
-import SearchModal from './Components/Search';
+const SearchModal = lazy(() => import('./Components/Search'));
+const SettingsModal = lazy(() => import('./Components/SettingsModal'));
 import { Switch, Route } from 'react-router-dom';
 import { Spacer, AppStyled } from './Components/LayoutComponents';
 import LegendsPanel from './Components/LegendsPanel';
@@ -16,13 +17,12 @@ import Standings from './Components/Standings';
 import ReactGA from 'react-ga';
 import RouteTracker from './RouteTracker';
 import HomeCircuits from './Components/HomeCircuits';
-import SettingsModal from './Components/SettingsModal';
 import DesktopSwitch from './Components/DesktopSwitch';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import { SettingsState } from './store/SettingsStore/settingsTypes';
-import Spinner from './Components/Common/Spinner';
 import { SearchState } from './store/searchTypes';
+import { Helmet } from 'react-helmet';
 
 
 const App: React.FC = () => {
@@ -64,11 +64,18 @@ const App: React.FC = () => {
 
   return (
     <AppStyled darkMode={settings.isDarkMode}>
+      <Helmet>
+          <title>Ref1 App - F1 Calendar 2021 | Countdown | Standings | Results | Drivers & Team Stats</title>
+          <meta
+              name={"description"}
+              content={"Formula 1 Calendar 2021 | Countdown + Weather Forecast | Standings | Results | Drivers & Team Stats."}
+          />
+      </Helmet>
 
       <Header />
       <Spacer />
       <Switch>
-        <Suspense fallback={<> <Spacer /><Spinner /> </>}>
+        <Suspense fallback={<></>}>
           <Route exact path="/">
             {isMobile
               ? <>
@@ -97,17 +104,18 @@ const App: React.FC = () => {
           <Route exact path="/profile/circuit/:circuitId">
             <CircuitProfile />
           </Route>
-
-          {
-            isSearch 
-            ? <SearchModal />
-            : null
-          }
-          {
-            isSettings 
-            ? <SettingsModal />
-            : null
-          }
+            <Suspense fallback={<></>}>
+            {
+              isSearch 
+              ? <SearchModal />
+              : null
+            }
+            {
+              isSettings 
+              ? <SettingsModal />
+              : null
+            }
+            </Suspense>
         </Suspense>
       </Switch>
 

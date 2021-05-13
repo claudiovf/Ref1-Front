@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const TeamProfileWrap = styled(ProfileWrap)<{bg: string}>`
     background-color: ${props => props.bg}
@@ -47,6 +48,13 @@ const TeamProfile: React.FC = () => {
     return (
         <React.Fragment>
             <ProfileContainer>
+                <Helmet>
+                    <title>{team.name} | Ref1 App</title>
+                    <meta
+                        name={"description"}
+                        content={` ${team.name} - All Time and Season Stats - Wins | Podiums | Points Finish | DNFs | Points | Entries and more`}
+                    />
+                </Helmet>
                 <StyledLink to="/">
                     <BackHome darkMode={settings.isDarkMode}>
                         &larr;&nbsp;&nbsp;{team.name}

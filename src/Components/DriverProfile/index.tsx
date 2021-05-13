@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const DriverProfileWrap = styled(ProfileWrap)<{bg: string}>`
     background-color: ${props => props.bg}
@@ -49,6 +50,13 @@ const DriverProfile: React.FC = () => {
     return (
         <React.Fragment>
             <ProfileContainer>
+                <Helmet>
+                    <title>{[driver.givenName, driver.familyName].join(" ")} | Ref1 App</title>
+                    <meta
+                        name={"description"}
+                        content={` ${[driver.givenName, driver.familyName].join(" ")} - Career, Teams and Season Stats - Wins | Podiums | Points Finish | DNFs | Points | Entries and more`}
+                    />
+                </Helmet>
                 <StyledLink to="/">
                     <BackHome darkMode={settings.isDarkMode}>
                         &larr; {driver.givenName} {driver.familyName}

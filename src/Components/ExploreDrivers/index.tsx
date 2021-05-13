@@ -6,7 +6,7 @@ import { RootState } from '../../store';
 import { setSearch, toggleOpen } from '../../store/actions';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { formattedStat } from '../../utils/formatting';
-import { Section, Title, Scroll, popOutAnimation, H2 } from '../LayoutComponents';
+import { Section, Title, Scroll, CardsSlide, H2 } from '../LayoutComponents';
 
 
 const SearchCard = styled.div`
@@ -21,8 +21,8 @@ const SearchCard = styled.div`
     margin: 0.25rem;
     padding: 1rem;
     border-radius: 0.5rem;
-    animation-name: ${popOutAnimation};
-    animation-duration: 1s;
+    animation-name: ${CardsSlide};
+    animation-duration: 0.5s;
     cursor: pointer;
     @media (min-width: 768px) {
         &:hover {

@@ -16,6 +16,7 @@ import PreviousResults from './PreviousResults/PreviousResults';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -97,6 +98,13 @@ const CircuitProfile: React.FC = () => {
     return (
         <React.Fragment>
             <ProfileContainer>
+                <Helmet>
+                    <title>{getGP(circuit.circuitId)} Grand Prix | Ref1 App</title>
+                    <meta
+                        name={"description"}
+                        content={` ${getGP(circuit.circuitId)} Grand Prix - Schedule, Circuit Info, Previous Results and more about the ${circuit.raceName} in ${circuit.location?.locality}, ${circuit.location?.country}`}
+                    />
+                </Helmet>
                 <StyledLink to="/">
                     <BackHome darkMode={settings.isDarkMode}>
                         &larr; {getGP(circuit.circuitId)} Grand Prix
