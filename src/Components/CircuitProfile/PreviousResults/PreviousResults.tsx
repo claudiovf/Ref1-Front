@@ -64,15 +64,17 @@ const PreviousResults: React.FC<Props> = ({circuitId}: Props) => {
 
     const settings: SettingsState = useSelector((state: RootState) => state.settings);
 
+
     const { data } = useQuery<{ getPreviousEvents: CircuitEvent[] }>(GET_PREVIOUS_EVENTS, {
         fetchPolicy: "cache-and-network", 
-        variables: { circuitId } 
+        variables: { circuitId: circuitId === "red_bull_ring1" || circuitId === "red_bull_ring2" ? "red_bull_ring" : circuitId } 
     });
     
     useEffect(() => {
         if (data && data.getPreviousEvents.length > 0) {
             setAllEvents(data.getPreviousEvents);
             if (!prevSelected) {
+        
                 setPrevSelected(data.getPreviousEvents[0].date);
                 setDisplayEvent(data.getPreviousEvents[0]);
             } else {

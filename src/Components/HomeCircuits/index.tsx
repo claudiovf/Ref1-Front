@@ -76,8 +76,8 @@ const HomeCircuits: React.FC = () => {
     
     const topRef = useRef<HTMLDivElement | null>(null);
 
-    const nextCircuit = "monaco";
-    const circuitAfter = "BAK";
+    const nextCircuit = "BAK";
+    const circuitAfter = "ricard";
 
     const { loading, data } = useQuery<{ findCircuit: CircuitType }>(GET_NEXT_RACE, { 
         fetchPolicy: "cache-and-network", 
