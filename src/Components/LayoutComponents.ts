@@ -127,14 +127,18 @@ export const Cards = styled.div<{ bg: string}>`
       }
 `;
 
-export const ProfileContainer = styled.div`
+export const ProfileContainer = styled.div<{darkMode: boolean}>`
     animation-name: ${popOutAnimation};
     animation-duration: 1s;
     width: auto;
     overflow:visible;
     @media (min-width: 768px) {
-        background-color: #4f4f4f;
+        background-color: ${props => props.darkMode ? "#2f2f2f" : "#f0f0f0" };
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
       }
 `;
 
@@ -158,6 +162,8 @@ export const ProfileWrap = styled.div`
 
       @media (min-width: 960px) {
         width: 80%;
+        align-self: center;
+        max-width: 1200px;
         margin: 0 10% 0 10%;
       }
 `;
@@ -208,13 +214,15 @@ export const SelectionButton = styled(StyledButton)<{ bg: string; color: string;
     cursor: pointer;
     @media (min-width: 768px) {
         &:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
           }
     }
 `;
 
 export const BackHome = styled.div<{ darkMode: boolean}>`
     font-family: "Work Sans Semi Bold";
+    max-height: 3rem;
+    min-height: 3rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -223,7 +231,7 @@ export const BackHome = styled.div<{ darkMode: boolean}>`
     color: ${props => props.darkMode ? "rgb(255,255,255, 0.9)" : "#2E2E2E" }; 
     background-color: ${props => props.darkMode ? "#1f1f1f" : "#FFFFFF" };
     font-size: 1rem;
-    padding: 1rem 1rem;
+    padding: 0 1rem;
     box-shadow: 0px 1px 1px ${props => props.darkMode ? "#3f3f3f" : "#EEE" };
     position: fixed;
     z-index: 1000;

@@ -187,7 +187,7 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
                                             {race.location?.locality}, {race.location?.country}
                                         </RaceLocation>
                                         <Flag>
-                                            <img src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryCode(id)}.svg`} 
+                                            <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryCode(id)}.svg`} 
                                             alt={`${getGP(id)} flag`} width={"28"} height={"24"} />
                                         </Flag>
                                         <RaceDate darkMode={settings.isDarkMode}>

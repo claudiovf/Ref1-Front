@@ -24,9 +24,10 @@ const Unselect = styled.span`
     margin-left: 0.5rem;
 `;
 
-const ScrollCover = styled.div<{ darkMode: boolean}>`
+const ScrollCover = styled.div`
     min-width: 100%;
-    background-color: ${props => props.darkMode ? "#2f2f2f" : "#FFFFFF" };
+    max-width: 100%;
+    
     overflow: hidden;
     animation-name: ${slideUpAnimation};
     animation-duration: 0.3s;
@@ -41,7 +42,7 @@ const ScrollCover = styled.div<{ darkMode: boolean}>`
 
 const SectionSearch = styled(Section)`
     @media (min-width: 768px) {
-        width: 80%;
+        width: 100%;
         margin: 0;
         align-items: flex-start;
         justify-content: flex-start;
@@ -78,7 +79,7 @@ const SelectionSection: React.FC<Props> = ({ selected, optionsArr, title, handle
     if (!selected) {
         return(
             <React.Fragment>
-                <ScrollCover darkMode={settings.isDarkMode}>
+                <ScrollCover>
                     <SectionSearch>
                         <FilterTitle darkMode={settings.isDarkMode}>{title}</FilterTitle>
                         <SearchScrollNotSelected>

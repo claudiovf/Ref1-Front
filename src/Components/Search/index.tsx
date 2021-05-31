@@ -23,15 +23,11 @@ const overlayClosingAnimation = keyframes`
 `;
 
 const slideUpAnimation = keyframes`
-    0% { opacity: 0; top: 90%;}
-    50% { opacity: 0; top: 90%; }
-    100% { opacity: 1}
+    0% {transform: translate(-50%, 100%)}
 `;
 
 const slideDownAnimation = keyframes`
-    0% { opacity: 1;}
-    50% { opacity: 1; }
-    100% { opacity: 0; top: 100%;  }
+    100% { transform: translate(-50%, 100%)  }
 `;
 
 
@@ -59,16 +55,19 @@ const CloseOverlay = styled.div<{ overlayClosing: boolean }>`
     animation-duration: 0.6s;
 `;
 
-const ModalContainer = styled.div<{ closing: boolean }>`
-    min-width: 100%;
+const ModalContainer = styled.div<{ closing: boolean; darkMode: boolean }>`
+    min-width: 100vw;
+    max-width: 100vw;
     height: 100%;
     position:absolute;                        
     top: 52%;                        
-    left: 50%;                        
+    left: 50%;     
     transform:translate(-50%,-50%);  
+    background-color: ${props => props.darkMode ? "#2f2f2f" : "#FFF"}; 
     border-radius:1rem 1rem 0 0;
     animation-name: ${props => props.closing ? slideDownAnimation : slideUpAnimation};
     animation-duration: 0.6s;
+    transform-origin: bottom left;
     z-index: 3000;
     @media (min-width: 768px) {
         max-width: 40rem;
@@ -79,17 +78,21 @@ const ModalContainer = styled.div<{ closing: boolean }>`
     }
 `;
 
-const ModalOverflow = styled.div<{ darkMode: boolean }>`
+const ModalOverflow = styled.div`
     width: 100%;
     height: 100%;
-    position:absolute;             
-    top: 52%;                        
-    left: 50%;                        
-    transform:translate(-50%,-50%);  
-    background-color: ${props => props.darkMode ? "#2f2f2f" : "#FFF"};          
+    position:relative;             
+    // top: 52%;                        
+    // left: 50%;                        
+    // transform:translate(-50%,-50%);          
     border-radius:1rem 1rem 0 0;
     overflow-y:  auto;
     z-index: 3000;
+
+    display: flex;
+    flex-direction: column;
+    justify-contents: center;
+    align-items: center;
 
     @media (min-width: 768px) {
         width: 40rem;
@@ -102,16 +105,12 @@ const ModalOverflow = styled.div<{ darkMode: boolean }>`
 
 
 const SearchHeader = styled.div`
-    
+    margin-top: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
-    @media (min-width: 768px) {
-        margin-top: 1rem;
-    }
 `;
 
 const SearchTitle = styled(Title)`
@@ -165,8 +164,8 @@ const SearchModal: React.FC = () => {
         return (
                 <Overlay overlayClosing={closing}>
                     <CloseOverlay overlayClosing={closing} onClick={() => handleSearchClose()}></CloseOverlay>
-                    <ModalContainer closing={closing}>
-                        <ModalOverflow darkMode={settings.isDarkMode}>
+                    <ModalContainer closing={closing} darkMode={settings.isDarkMode}>
+                        <ModalOverflow>
                             <SearchHeader>
                                 <SearchTitle darkMode={settings.isDarkMode}>Search</SearchTitle>
                                 <CloseX onClick={() => handleSearchClose()}>&#x2715;</CloseX>

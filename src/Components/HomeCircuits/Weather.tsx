@@ -155,7 +155,7 @@ const Weather: React.FC<Props> = ({nextRaceLoc, raceTime, sessionSelected}: Prop
 
     const settings: SettingsState = useSelector((state: RootState) => state.settings);
     
-    if (handleCountdown(raceTime.race).days > 7 ) return <Notif>*Weather forecast is available during race week</Notif>;
+    if (handleCountdown(raceTime.race).days > 6 ) return <Notif>*Weather forecast is available during race week</Notif>;
 
     const lat = nextRaceLoc.lat;
     const long = nextRaceLoc.long;

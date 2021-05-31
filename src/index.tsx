@@ -37,7 +37,6 @@ const client = new ApolloClient({
 
 const store = createStore(rootReducer);
 
-
 ReactDOM.render(
   <BrowserRouter>
     <ApolloProvider client={client}>

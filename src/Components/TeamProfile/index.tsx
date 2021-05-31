@@ -47,7 +47,7 @@ const TeamProfile: React.FC = () => {
 
     return (
         <React.Fragment>
-            <ProfileContainer>
+            <ProfileContainer darkMode={settings.isDarkMode}>
                 <Helmet>
                     <title>{team.name} | Ref1 App</title>
                     <meta

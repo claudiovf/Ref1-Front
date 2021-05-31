@@ -97,7 +97,7 @@ const CircuitProfile: React.FC = () => {
     
     return (
         <React.Fragment>
-            <ProfileContainer>
+            <ProfileContainer darkMode={settings.isDarkMode}>
                 <Helmet>
                     <title>{getGP(circuit.circuitId)} Grand Prix | Ref1 App</title>
                     <meta
@@ -119,7 +119,7 @@ const CircuitProfile: React.FC = () => {
                     <CircuitName darkMode={settings.isDarkMode}> {circuit.circuitName} </CircuitName>
                     <Local>{circuit.location?.locality}, {circuit.location?.country}</Local>
                     <Flag>
-                        <img src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryCode(circuit.circuitId)}.svg`} 
+                        <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryCode(circuit.circuitId)}.svg`} 
                         alt={`${getGP(circuit.circuitId)} flag`} width={"28"} height={"24"} />
                     </Flag>
                     <EventSchedule 

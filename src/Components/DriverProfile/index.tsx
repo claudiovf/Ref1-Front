@@ -49,7 +49,7 @@ const DriverProfile: React.FC = () => {
     
     return (
         <React.Fragment>
-            <ProfileContainer>
+            <ProfileContainer darkMode={settings.isDarkMode}>
                 <Helmet>
                     <title>{[driver.givenName, driver.familyName].join(" ")} | Ref1 App</title>
                     <meta
