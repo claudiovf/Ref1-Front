@@ -18,7 +18,7 @@ const overlayAnimation = keyframes`
 `;
 const overlayClosingAnimation = keyframes`
     0% { opacity: 1;}
-    60% { opacity: 1}
+    70% { opacity: 1}
     100% { opacity: 0}
 `;
 
