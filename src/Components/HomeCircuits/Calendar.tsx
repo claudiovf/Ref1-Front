@@ -6,7 +6,7 @@ import { GET_NEXT_RACES } from '../../queries';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { CircuitType } from '../../types';
-import { getGP, getLocalTimes, convertToAmPm, getCountryCode } from '../../utils/formatting';
+import { getGP, getLocalTimes, convertToAmPm, CircuitIds } from '../../utils/formatting';
 import Spinner from '../Common/Spinner';
 import { Section, Scroll, SelectionButton, StyledLink } from '../LayoutComponents';
 
@@ -137,7 +137,6 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
         'catalunya',
         'monaco',
         'BAK',
-        'istanbul',
         'ricard',
         'red_bull_ring1',
         'red_bull_ring2',
@@ -169,6 +168,7 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
                         if (!race) return null;
 
                         const start = getLocalTimes(race.scheduleUTC);
+                        const countryInfo = getGP(race.circuitId as CircuitIds);
 
                         return (
                             <React.Fragment key={race.circuitId}>
@@ -178,7 +178,7 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
                                         ref ={race.circuitId === nextCircuit ? nextRef : null}
                                     >
                                         <RaceName>
-                                            {getGP(race.circuitId)} GP
+                                            {countryInfo.gpName} GP
                                         </RaceName>
                                         <CircuitName darkMode={settings.isDarkMode}>
                                             {race.circuitName}
@@ -187,8 +187,8 @@ const Calendar: React.FC<Props> = ({nextCircuit}: Props) => {
                                             {race.location?.locality}, {race.location?.country}
                                         </RaceLocation>
                                         <Flag>
-                                            <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryCode(id)}.svg`} 
-                                            alt={`${getGP(id)} flag`} width={"28"} height={"24"} />
+                                            <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryInfo.flagCode}.svg`} 
+                                            alt={`${countryInfo.gpName} flag`} width={"28"} height={"24"} />
                                         </Flag>
                                         <RaceDate darkMode={settings.isDarkMode}>
                                             { start.race.date}, {settings.timeFormat === '24hour' ? start.race.time : convertToAmPm(start.race.time)}

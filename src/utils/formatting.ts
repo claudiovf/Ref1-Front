@@ -129,116 +129,93 @@ export const formattedStat = (stat: string): string => {
             return stat;
     }
 };
+export type CircuitIds  =
+    'bahrain'
+    | 'imola'
+    | 'portimao'
+    | 'catalunya'
+    | 'monaco'
+    | 'BAK'
+    | 'istanbul'
+    | 'ricard'
+    | 'red_bull_ring1'
+    | 'red_bull_ring2'
+    | 'silverstone'
+    | 'hungaroring'
+    | 'spa'
+    | 'zandvoort'
+    | 'monza'
+    | 'sochi'
+    | 'marina_bay'
+    | 'suzuka'
+    | 'americas'
+    | 'rodriguez'
+    | 'interlagos'
+    | 'albert_park'
+    | 'jeddah'
+    | 'yas_marina';
 
-export const getGP = (circuitId: string): string => {
-    switch(true) {
-        case circuitId === 'bahrain':
-            return 'Bahrain';
-        case circuitId === 'imola':
-            return 'Emilia Romagna';
-        case circuitId === 'portimao':
-            return 'Portuguese';
-        case circuitId === 'catalunya':
-            return 'Spanish';
-        case circuitId === 'monaco':
-            return 'Monaco';
-        case circuitId === 'BAK':
-            return 'Azerbaijan';
-        case circuitId === 'istanbul':
-            return 'Turkish';
-        case circuitId === 'ricard':
-            return 'French';
-        case circuitId === 'red_bull_ring1':
-            return 'Steiermark';
-        case circuitId === 'red_bull_ring2':
-            return 'Austrian';
-        case circuitId === 'silverstone':
-            return 'British';
-        case circuitId === 'hungaroring':
-            return 'Hungarian';
-        case circuitId === 'spa':
-            return 'Belgian';
-        case circuitId === 'zandvoort':
-            return 'Dutch';
-        case circuitId === 'monza':
-            return 'Italian';
-        case circuitId === 'sochi':
-            return 'Russian';
-        case circuitId === 'marina_bay':
-            return 'Singapore';
-        case circuitId === 'suzuka':
-            return 'Japanese';
-        case circuitId === 'americas':
-            return 'United States';
-        case circuitId === 'rodriguez':
-            return 'Mexican';
-        case circuitId === 'interlagos':
-            return 'Brazilian';
-        case circuitId === 'albert_park':
-            return 'Australian';
-        case circuitId === 'jeddah':
-            return 'Saudi Arabian';
-        case circuitId === 'yas_marina':
-            return 'Abu Dhabi';
+export interface CountryInfo {
+    gpName: string,
+    flagCode: string
+}
+
+export const getGP = (circuitId: CircuitIds): CountryInfo => {
+    switch(circuitId) {
+        case 'bahrain':
+            return { gpName: 'Bahrain', flagCode: 'BH' } ;
+        case 'imola':
+            return { gpName: 'Emilia Romagna', flagCode: 'IT' };
+        case 'portimao':
+            return { gpName: 'Portuguese', flagCode: 'PT' };
+        case 'catalunya':
+            return { gpName: 'Spanish', flagCode: 'ES' };
+        case 'monaco':
+            return { gpName: 'Monaco', flagCode: 'MC' };
+        case 'BAK':
+            return { gpName: 'Azerbaijan', flagCode: 'AZ' };
+        case 'istanbul':
+            return { gpName: 'Turkish', flagCode: 'TR' };
+        case 'ricard':
+            return { gpName: 'French', flagCode: 'FR' };
+        case 'red_bull_ring1':
+            return { gpName: 'Steiermark', flagCode: 'AT' };
+        case 'red_bull_ring2':
+            return { gpName: 'Austrian', flagCode: 'AT' };
+        case 'silverstone':
+            return { gpName: 'British', flagCode: 'GB' };
+        case 'hungaroring':
+            return { gpName: 'Hungarian', flagCode: 'HU' };
+        case 'spa':
+            return { gpName: 'Belgian', flagCode: 'BE' };
+        case 'zandvoort':
+            return { gpName: 'Dutch', flagCode: 'NL' };
+        case 'monza':
+            return { gpName: 'Italian', flagCode: 'IT' };
+        case 'sochi':
+            return { gpName: 'Russian', flagCode: 'RU' };
+        case 'marina_bay':
+            return { gpName: 'Singapore', flagCode: 'SG' };
+        case 'suzuka':
+            return { gpName: 'Japanese', flagCode: 'JP' };
+        case 'americas':
+            return { gpName: 'United States', flagCode: 'US' };
+        case 'rodriguez':
+            return { gpName: 'Mexican', flagCode: 'MX' };
+        case 'interlagos':
+            return { gpName: 'Brazilian', flagCode: 'BR' };
+        case 'albert_park':
+            return { gpName: 'Australian', flagCode: 'AU' };
+        case 'jeddah':
+            return { gpName: 'Saudi Arabian', flagCode: 'SA' };
+        case 'yas_marina':
+            return { gpName: 'Abu Dhabi', flagCode: 'AE' };
         default:
-            return "";
+            return { gpName: "", flagCode: ""};
     }
 };
 
-export const getCountryCode = (circuitId: string): string => {
-    switch(true) {
-        case circuitId === 'bahrain':
-            return 'BH';
-        case circuitId === 'imola':
-            return 'IT';
-        case circuitId === 'portimao':
-            return 'PT';
-        case circuitId === 'catalunya':
-            return 'ES';
-        case circuitId === 'monaco':
-            return 'MC';
-        case circuitId === 'BAK':
-            return 'AZ';
-        case circuitId === 'istanbul':
-            return 'TR';
-        case circuitId === 'ricard':
-            return 'FR';
-        case circuitId === 'red_bull_ring1':
-            return 'AT';
-        case circuitId === 'red_bull_ring2':
-            return 'AT';
-        case circuitId === 'silverstone':
-            return 'GB';
-        case circuitId === 'hungaroring':
-            return 'HU';
-        case circuitId === 'spa':
-            return 'BE';
-        case circuitId === 'zandvoort':
-            return 'NL';
-        case circuitId === 'monza':
-            return 'IT';
-        case circuitId === 'sochi':
-            return 'RU';
-        case circuitId === 'marina_bay':
-            return 'SG';
-        case circuitId === 'suzuka':
-            return 'JP';
-        case circuitId === 'americas':
-            return 'US';
-        case circuitId === 'rodriguez':
-            return 'MX';
-        case circuitId === 'interlagos':
-            return 'BR';
-        case circuitId === 'albert_park':
-            return 'AU';
-        case circuitId === 'jeddah':
-            return 'SA';
-        case circuitId === 'yas_marina':
-            return 'AE';
-        default:
-            return "";
-    }
-};
+
 
 export const getSessionInfo = (schedule: Schedule, sessionSel: string): string => {
     switch(true) {

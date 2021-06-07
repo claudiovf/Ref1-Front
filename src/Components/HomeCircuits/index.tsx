@@ -6,7 +6,7 @@ import { GET_NEXT_RACE } from '../../queries';
 import { RootState } from '../../store';
 import { SettingsState } from '../../store/SettingsStore/settingsTypes';
 import { CircuitType } from '../../types';
-import { getGP } from '../../utils/formatting';
+import { CircuitIds, getGP } from '../../utils/formatting';
 import { SelectionButton, StyledButton, StyledLink } from '../LayoutComponents';
 const Calendar = lazy(() => import('./Calendar'));
 import CountDown from './CountDown';
@@ -76,9 +76,9 @@ const HomeCircuits: React.FC = () => {
     
     const topRef = useRef<HTMLDivElement | null>(null);
 
-    const nextCircuit = "BAK";
-    const circuitAfter = "ricard";
-
+    const nextCircuit = "ricard";
+    const circuitAfter = "red_bull_ring1";
+    
     const { loading, data } = useQuery<{ findCircuit: CircuitType }>(GET_NEXT_RACE, { 
         fetchPolicy: "cache-and-network", 
         variables: { circuitId: !timeUp ? nextCircuit : circuitAfter} 
@@ -125,7 +125,7 @@ const HomeCircuits: React.FC = () => {
                                     color={"#FFF"}
                                     border={"rgb(255,255,255, 0)"}
                                     >
-                                        {getGP(nextRace.circuitId)} GP
+                                        {getGP(nextRace.circuitId as CircuitIds).gpName} GP
                                 </SelectionButton> 
                             </StyledLink>
                         </NextTitle>

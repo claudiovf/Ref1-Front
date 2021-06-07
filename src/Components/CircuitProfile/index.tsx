@@ -8,7 +8,7 @@ import { BackHome, ProfileContainer,
 import Spinner from '../Common/Spinner';
 
 import { CIRCUIT_PROFILE } from '../../queries';
-import { getCountryCode, getGP } from '../../utils/formatting';
+import { CircuitIds, getGP } from '../../utils/formatting';
 import styled from 'styled-components';
 import EventSchedule from './EventSchedule';
 import RaceInfo from './RaceInfo';
@@ -94,33 +94,34 @@ const CircuitProfile: React.FC = () => {
 
     if ( !circuit) return null;
 
+    const countryInfo =  getGP(circuit.circuitId as CircuitIds);
     
     return (
         <React.Fragment>
             <ProfileContainer darkMode={settings.isDarkMode}>
                 <Helmet>
-                    <title>{getGP(circuit.circuitId)} Grand Prix | Ref1 App</title>
+                    <title>{countryInfo.gpName} Grand Prix | Ref1 App</title>
                     <meta
                         name={"description"}
-                        content={` ${getGP(circuit.circuitId)} Grand Prix - Schedule, Circuit Info, Previous Results and more about the ${circuit.raceName} in ${circuit.location?.locality}, ${circuit.location?.country}`}
+                        content={` ${countryInfo.gpName} Grand Prix - Schedule, Circuit Info, Previous Results and more about the ${circuit.raceName} in ${circuit.location?.locality}, ${circuit.location?.country}`}
                     />
                 </Helmet>
                 <StyledLink to="/">
                     <BackHome darkMode={settings.isDarkMode}>
-                        &larr; {getGP(circuit.circuitId)} Grand Prix
+                        &larr; {countryInfo.gpName} Grand Prix
                     </BackHome>
                 </StyledLink>
                 <Spacer />
                 <ProfileBody darkMode={settings.isDarkMode}>
                     <ProfileGP color={"#00c49a"}>
-                        <H1>{getGP(circuit.circuitId).toUpperCase()} GP</H1>
+                        <H1>{countryInfo.gpName.toUpperCase()} GP</H1>
                     </ProfileGP>
                     <RaceName>{circuit.raceName}</RaceName>
                     <CircuitName darkMode={settings.isDarkMode}> {circuit.circuitName} </CircuitName>
                     <Local>{circuit.location?.locality}, {circuit.location?.country}</Local>
                     <Flag>
-                        <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${getCountryCode(circuit.circuitId)}.svg`} 
-                        alt={`${getGP(circuit.circuitId)} flag`} width={"28"} height={"24"} />
+                        <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryInfo.flagCode}.svg`} 
+                        alt={`${countryInfo.gpName} flag`} width={"28"} height={"24"} />
                     </Flag>
                     <EventSchedule 
                         scheduleTrack={circuit.scheduleTrack}
