@@ -1,6 +1,6 @@
 # Ref1 App
 
-The new easy to use Formula 1 stats reference web app. Visit [Ref1.App](https://ref1.app) to see it live! :relaxed:
+The new easy to use Formula 1 stats reference progressive web app. Visit [Ref1.App](https://ref1.app) to see it live! :relaxed:
 
 What has: 
   * two thumbs 
@@ -19,6 +19,7 @@ Latest feature updates include:
   * Circuit previous race results
   * Dark Mode
   * User units preferences (km/miles, Celsius/Fahrenheit, 24-hour/ampm)
+  * Ref1 App is now PWA
 
 
 ## Overview
