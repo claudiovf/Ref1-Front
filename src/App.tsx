@@ -61,7 +61,7 @@ const App: React.FC = () => {
   
 
   //google analytics
-  const TRACKING_ID = "UA-192952368-1TEST";
+  const TRACKING_ID = "UA-192952368-1";
   ReactGA.initialize(TRACKING_ID);
   
 
