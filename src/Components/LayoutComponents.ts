@@ -122,7 +122,7 @@ export const Cards = styled.div<{ bg: string}>`
         max-width: 9rem;
         min-width: 9rem;
         &:hover {
-            transform: scale(1.02);
+            transform: scale(1.01);
           }
       }
 `;

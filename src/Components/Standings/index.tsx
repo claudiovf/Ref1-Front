@@ -64,7 +64,7 @@ const Standings: React.FC = () => {
         <React.Fragment>
             <Section>  
                 <Title darkMode={settings.isDarkMode}><H2>2021 Standings</H2></Title>
-                <Scroll>
+                <Scroll id="standings-scroll">
                     {
                         ["drivers", "teams"].map(type => 
                             <SearchCard 

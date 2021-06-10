@@ -46,6 +46,7 @@ const DesktopSwitch: React.FC = () => {
         <OptionsWrap>
             {viewOptions.map(option => 
                 <SelectionButton
+                    id={option}
                     key={option}
                     color={option === selected ? "#FFF" : "#828282"}
                     bg={option === selected ? "#00c49a" : "rgb(0,0,0,0)"}

@@ -85,44 +85,44 @@ export const resultItemStyle = (id: string, givenName: string | null): string =>
 }; 
 
 export const formattedStat = (stat: string): string => {
-    switch(true) {
-        case stat === "wins":
+    switch(stat) {
+        case "wins":
             return "Most Wins";
 
-        case stat === "wins_pct":
+        case "wins_pct":
             return "% Wins";
 
-        case stat === "podiums":
+        case "podiums":
             return "Most Podiums";
 
-        case stat === "podiums_pct":
+        case "podiums_pct":
             return "% Podiums";
 
-        case stat === "entries":
+        case "entries":
             return "Most Entries";
 
-        case stat === "avgPoints":
+        case "avgPoints":
             return "Average Points";
 
-        case stat === "points":
+        case "points":
             return "Most Points";
 
-        case stat === "avgPosition":
+        case "avgPosition":
             return "Average Result";
 
-        case stat === "pctAhead":
+        case "pctAhead":
             return "% Against Teammates";
 
-        case stat === "pointsFinish":
+        case "pointsFinish":
             return "Most Point Finishes";
 
-        case stat === "pointsFinish_pct":
+        case "pointsFinish_pct":
             return "% Point Finishes";
 
-        case stat === "dnfs":
+        case "dnfs":
             return "Most DNFs";
 
-        case stat === "dnfs_pct":
+        case "dnfs_pct":
             return "% DNFs";
         
         default:

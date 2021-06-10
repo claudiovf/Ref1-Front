@@ -39,7 +39,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint './src/**/*.{ts, tsx}'",
     "postinstall": "npm run build",
-    "deployAll": "git push heroku main && echo '🚀  Deployed to Heroku!' && npm run build && s3cmd sync build/* s3://ref1-dev-s3 && echo '🚀  Deployed to S3!' && rm -rf build"
+    "deployAll": "git push heroku main && echo '🚀  Deployed to Heroku!' && npm run build && s3cmd sync build/* s3://ref1-dev-s3 && echo '🚀  Deployed to S3!' && rm -rf build",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypress run"
   },
   "eslintConfig": {
     "extends": [
@@ -60,10 +62,11 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.14.2",
-    "@typescript-eslint/parser": "^4.14.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
-    "@testing-library/user-event": "^12.6.3"
+    "@testing-library/user-event": "^12.6.3",
+    "@typescript-eslint/eslint-plugin": "^4.14.2",
+    "@typescript-eslint/parser": "^4.14.2",
+    "cypress": "^7.5.0"
   }
 }

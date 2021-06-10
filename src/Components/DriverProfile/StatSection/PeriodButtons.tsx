@@ -69,7 +69,7 @@ const PeriodButtons: React.FC<Props> = ({periods, handlePeriodChange, style, per
     return (
         <React.Fragment>
             <ScrollWrapper bg={invertStyle(settings.isDarkMode, style).primary}>
-                <ProfileScroll>
+                <ProfileScroll id="driver-period-scroll">
                     {displayPeriods.map(period => period !== null
                         ? period === periodSelected
                             ? <SelectionButton 

@@ -18,7 +18,7 @@ const CurrentTeamsPanel: React.FC = () => {
         <React.Fragment>
             <Section>  
                 <Title darkMode={settings.isDarkMode}><H2>2021 Teams</H2></Title>
-                <Scroll>
+                <Scroll id="teams-2021-scroll">
                     { teamsList.map(team => {
                             return (
                                 <CurrentTeamCards 

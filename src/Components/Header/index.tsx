@@ -116,6 +116,7 @@ const Header: React.FC = () => {
 
             <SettingsContainer>
                 <IconWrap
+                  id="settings"
                   onClick={ () => {
                     dispatch( toggleSettingsOpen() );
                     setNotifSeen(true);
@@ -153,6 +154,7 @@ const Header: React.FC = () => {
                 />
               </IconWrap>
               <IconWrap
+                id="header-search"
                 onClick={ () => {
                   dispatch( toggleOpen() );
                   eventGa("HeaderSearch", 'default', 'default');

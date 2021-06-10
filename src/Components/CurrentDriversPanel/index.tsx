@@ -13,7 +13,7 @@ const CurrentDriversPanel: React.FC = () => {
         <React.Fragment>
             <Section>  
                 <Title darkMode={settings.isDarkMode}><H2>2021 Drivers</H2></Title>
-                <Scroll>
+                <Scroll id="drivers-2021-scroll">
                     { driversList.map(driver => 
                         <CurrentDriverCards 
                             driver={driver} 

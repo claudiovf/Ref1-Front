@@ -58,7 +58,7 @@ const ExploreTeams: React.FC = () => {
         <React.Fragment>
             <Section>  
                 <Title darkMode={settings.isDarkMode}><H2>Explore Teams</H2></Title>
-                <Scroll>
+                <Scroll id="explore-teams-scroll">
                     {
                         stats.map(stat => 
                             <SearchCard 

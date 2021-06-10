@@ -58,7 +58,7 @@ const ExploreDrivers: React.FC = () => {
         <React.Fragment>
             <Section>  
                 <Title darkMode={settings.isDarkMode}><H2>Explore Drivers</H2></Title>
-                <Scroll>
+                <Scroll id="explore-drivers-scroll">
                     {
                         stats.map(stat => 
                             <SearchCard 

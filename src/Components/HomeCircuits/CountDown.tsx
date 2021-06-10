@@ -80,11 +80,13 @@ const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: 
                     && sessionCountdown.hours < 1
                     && sessionCountdown.mins < 1
                     && sessionCountdown.secs < 1) {
+                        //last weekend session times up moves on to next circuit and refresh local storage
                         if(session === "race") {
                             handleTimeUp(true);
                             zeroedSessions.push(session);
                             localStorage.removeItem('countdownSession');
                         }
+                        //scratch session after started, refresh local storage
                         else {
                             zeroedSessions.push(session);
                             if(localStorage.getItem('countdownSession') === session ) {
@@ -136,7 +138,7 @@ const CountDown: React.FC<Props> = ({nextRaceDates, handleTimeUp, nextRaceLoc}: 
             <Table>
                 <tbody>
                     <tr>
-                        <Th>{days.toString().padStart(2, "0")}</Th>
+                        <Th id="count-days">{days.toString().padStart(2, "0")}</Th>
                         <Th>{hours.toString().padStart(2, "0")}</Th>
                         <Th>{mins.toString().padStart(2, "0")}</Th>
                         <Th>{secs.toString().padStart(2, "0")}</Th>

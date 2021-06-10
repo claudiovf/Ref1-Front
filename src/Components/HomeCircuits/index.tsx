@@ -76,6 +76,7 @@ const HomeCircuits: React.FC = () => {
     
     const topRef = useRef<HTMLDivElement | null>(null);
 
+    //next race and race after to be display when countdown time is up. to be automated
     const nextCircuit = "ricard";
     const circuitAfter = "red_bull_ring1";
     
@@ -112,7 +113,7 @@ const HomeCircuits: React.FC = () => {
 
     return (
         <React.Fragment>
-            <CircuitsContainer exp={expanded} darkMode={settings.isDarkMode} ref={topRef}>
+            <CircuitsContainer id="circuits-container" exp={expanded} darkMode={settings.isDarkMode} ref={topRef}>
                 {
                     loading || !data || !nextRace || !nextRace.location
                     ? <></>

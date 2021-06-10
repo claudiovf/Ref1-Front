@@ -34,6 +34,7 @@ const App: React.FC = () => {
 
 
   useEffect(() => {
+    //trigger for lazy modals
     if(search.isOpen) {
       setIsSearch(true);
     } else {
@@ -45,6 +46,7 @@ const App: React.FC = () => {
       setIsSettings(false);
     }
 
+    //window size listener for home view switch
     const handleResize = () => {
       if(window.innerWidth < 768) {
         setIsMobile(true);
@@ -58,7 +60,8 @@ const App: React.FC = () => {
   }, [search.isOpen, settings.isOpen]);
   
 
-  const TRACKING_ID = "UA-192952368-1";
+  //google analytics
+  const TRACKING_ID = "UA-192952368-1TEST";
   ReactGA.initialize(TRACKING_ID);
   
 

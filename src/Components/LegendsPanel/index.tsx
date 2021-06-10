@@ -14,7 +14,7 @@ const LegendsPanel: React.FC = () => {
         <React.Fragment>
             <Section>  
                 <Title darkMode={settings.isDarkMode}><H2>Legends</H2></Title>
-                <Scroll>
+                <Scroll id="legends-scroll">
                     { legendsList.map(driver => 
                                 <CurrentDriverCards 
                                     driver={driver} 
