@@ -27,8 +27,8 @@ describe('Ref1 Home', function() {
     
         it('weather forecast/message can be seen', function() {
         cy.get('#count-days')
-            .then($days => $days.text() > 5 
-                ? cy.contains("Weather Forecast")
+            .then($days => $days.text() < 5 
+                ? cy.contains("SESSION FORECAST")
                 : cy.contains("*Weather forecast is available during race week")
             )
         })

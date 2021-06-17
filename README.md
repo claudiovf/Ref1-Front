@@ -1,32 +1,19 @@
 # Ref1 App
 
-The new easy to use Formula 1 stats reference progressive web app. Visit [Ref1.App](https://ref1.app) to see it live! :relaxed:
+The new easy to use Formula 1 stats reference web app. Visit [Ref1.App](https://ref1.app) to see it live! :relaxed:
 
 What has: 
   * two thumbs 
   * started as a personal project to practice **MERNG + Typescript skills**
-  * and has now over **~~7k~~ ~~40k~~ ~~60k~~ ~~80k~~ ~~130k~~ 200k page views from 12k F1 fans in over 130 countries** since launching in March/2021? 
+  * and has now over **~~7k~~ ~~40k~~ ~~60k~~ ~~80k~~ 130k page views in over 50 countries**? 
   
   :+1: THIS PROJECT :+1:
 ![ref1_mockup_2](https://user-images.githubusercontent.com/64691675/113371172-710b6a00-93b1-11eb-90fd-d2e883a4a0c7.png)
-
-## UPDATES
-
-Latest feature updates include:
-  * Session Countdown
-  * Session weather forecast
-  * Circuit & Event information with schedule on user local time and track time.
-  * Circuit previous race results
-  * Dark Mode
-  * User units preferences (km/miles, Celsius/Fahrenheit, 24-hour/ampm)
-  * Ref1 App is now PWA
-
-
 ## Overview
 
 ### About The Project
 
-The objective of the [Ref1.App](https://ref1.app) was to create an **engaging, visually appealing and easy to use mobile-first web app** for all Formula 1 fans through the use of a modern stack. I was inspired to create a tool that could benefit new and lifelong fans of the sport. The app aims to address some of the pain points within the online experience that fans have had up until this point in terms of finding the Formula 1 info they want.
+The objective of the [Ref1.App](https://ref1.app) was to create an **engaging, visually appealing and easy to use mobile-first** web app for all Formula 1 fans through the use of a modern stack. I was inspired to create a tool that could benefit new and lifelong fans of the sport. The app aims to address some of the pain points within the online experience that fans have had up until this point in terms of finding the Formula 1 info they want.
 
  
 ### Parts + Stack
@@ -102,5 +89,5 @@ The use of NextSearch also removed the need to create a menu on the home page. T
 
 ## What's Next for Ref1 App?
 
-The app is currently up and running and has almost all the mechanics done. But Formula 1 has plenty more to be discovered. For next versions, I will be focusing on adding features like "No Spoiler", Track layouts and a lot more stats. **Stay tuned!**:v: 
+The app is currently up and running and has almost all the mechanics done. But Formula 1 has plenty more to be discovered. For next versions, I will be focusing on adding tracks, season calendar, race results, icons and a lot more stats. **Stay tuned!**:v: 
 

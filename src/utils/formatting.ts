@@ -218,14 +218,14 @@ export const getGP = (circuitId: CircuitIds): CountryInfo => {
 
 
 export const getSessionInfo = (schedule: Schedule, sessionSel: string): string => {
-    switch(true) {
-        case sessionSel === "FP1":
+    switch(sessionSel) {
+        case "FP1":
             return schedule.practice_1;
-        case sessionSel === "FP2":
+        case "FP2":
             return schedule.practice_2;
-        case sessionSel === "FP3":
+        case "FP3":
             return schedule.practice_3;
-        case sessionSel === "qualifying":
+        case "qualifying":
             return schedule.qualifying;
         default:
             return schedule.race;

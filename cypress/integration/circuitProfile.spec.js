@@ -1,7 +1,7 @@
 describe('Circuit Profile ', function() {
     beforeEach(function() {
         cy.visit('http://localhost:3000')
-        cy.contains('2021 Calendar').click()
+        cy.contains('2021 Calendar').click({force: true})
         cy.contains("Bahrain GP").click({force: true})
     })
 
