@@ -179,7 +179,7 @@ export const getGP = (circuitId: CircuitIds): CountryInfo => {
         case 'ricard':
             return { gpName: 'French', flagCode: 'FR' };
         case 'red_bull_ring1':
-            return { gpName: 'Steiermark', flagCode: 'AT' };
+            return { gpName: 'Styrian', flagCode: 'AT' };
         case 'red_bull_ring2':
             return { gpName: 'Austrian', flagCode: 'AT' };
         case 'silverstone':

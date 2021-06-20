@@ -38,10 +38,10 @@ describe('Driver Profile ', function() {
         cy.contains('Driver Ahead')
     })
     it('Podiums total is visible', function() {
-        cy.contains('Podiums').parent().contains('169')
+        cy.contains('Podiums').parent().contains('170')
     })
     it('Point Finishes total is visible', function() {
-        cy.contains('Point Finishes').parent().contains('234')
+        cy.contains('Point Finishes').parent().contains('235')
     })
     it('DNFs total is visible', function() {
         cy.contains('DNFs').parent().contains('24')
